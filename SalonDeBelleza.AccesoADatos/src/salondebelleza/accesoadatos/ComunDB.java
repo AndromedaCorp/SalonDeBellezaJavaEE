@@ -13,7 +13,7 @@ public class ComunDB {
     
     //la propiedad  "connectionUrl" es para almacenar el string de conexion a la base de datos actual
     static String connectionUrl = "jdbc:sqlserver://198.38.83.200:1433;"
-            +"database=eliqsv_salonbelleza;"
+            +"database=eliqsv_salonbelleza2;"
             +"user=eliqsv_andromeda;"
             + "password=fszlq6vgdxuhecrmoaiw;"
             + "loginTimeout=30;";
