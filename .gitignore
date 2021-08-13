@@ -1,5 +1,5 @@
 #voy a ignorar el driver de la base de datos, debido a que este cambia de localizacion, 
 #cada vez que el proyecto se ejecuta en una pc distinta, por ende esto genera error
 
-SalonDeBelleza.AccesoADatos/nbproject/private/private.properties*
-SalonDeBelleza.AppDesktop/build/built-jar.properties*
+SalonDeBelleza.AccesoADatos/nbproject/private/*.properties
+SalonDeBelleza.AppDesktop/build/*.properties
