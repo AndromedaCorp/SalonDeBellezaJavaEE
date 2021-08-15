@@ -146,5 +146,5 @@ public class CitaDALIT {
         assertTrue(clienteDelete.getId()==0);
     }
     ////////////////////////////////////////////////////////////////////
-    
+    //Commit de prueba
 }
