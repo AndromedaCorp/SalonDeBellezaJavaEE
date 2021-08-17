@@ -6,6 +6,7 @@
 package salondebelleza.accesoadatos;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,6 +17,9 @@ import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import salondebelleza.entidadesdenegocio.Cita;
+import salondebelleza.entidadesdenegocio.Cliente;
+import salondebelleza.entidadesdenegocio.Rol;
+import salondebelleza.entidadesdenegocio.Usuario;
 
 ;
 
@@ -45,18 +49,28 @@ public class CitaDALIT {
      * Test of crear method, of class ServicioDAL.
      */
     @Test
-    public void test1Crear() throws Exception {
+    public void test1Crear() throws Exception {   
+          int randomNum = (int) (Math.random() * 1000);      
         System.out.println("crear");
-        Cita pCita = new Cita(0,"TEST UNIT CITA");
-        int expResult = 0;
-        int result = CitaDAL.crear(pCita);
-        assertNotEquals(expResult, result);
+        Cita cita = new Cita();
+        cita.setIdUsuario(randomNum);
+        cita.setIdCliente(1);
+        cita.setFechaRegistrada(LocalDate.now());
+        cita.setFechaCita(LocalDate.now());
+        cita.setTotal(1.5);
+        cita.setEstado(Usuario.EstadoUsuario.INACTIVO);        
+//        Rol rolB = new Rol();
+//        rolB.setTop_aux(1);
+//        cita.setIdrol(RolDAL.buscar(rolB).get(0).getId());
+//        int expResult = 0;
+//        int result = UsuarioDAL.crear(usuario);
+//        assertNotEquals(expResult, result);
     }
     
-    public int testIndividualQuerySelect(Cliente pCliente) throws Exception {
+    public int testIndividualQuerySelect(Cita pCita) throws Exception {
         ComunDB comundb = new ComunDB();
         ComunDB.UtilQuery pUtilQuery = comundb.new UtilQuery("",null, 0);
-        ClienteDAL.querySelect(pCliente, pUtilQuery);
+        CitaDAL.querySelect(pCita, pUtilQuery);
         return pUtilQuery.getNumWhere();
     }
     
@@ -66,17 +80,16 @@ public class CitaDALIT {
     @Test
     public void test2QuerySelect() throws Exception {
         System.out.println("querySelect");
-        Cliente pCliente = new Cliente();
-        pCliente.setId(1);
-        assertTrue(testIndividualQuerySelect(pCliente) == 1);
-        pCliente.setNombre("TEST");
-        assertTrue(testIndividualQuerySelect(pCliente) == 2);
-        pCliente.setApellido("TEST");
-        assertTrue(testIndividualQuerySelect(pCliente) == 3);
-         pCliente.setDui("TEST");
-        assertTrue(testIndividualQuerySelect(pCliente) == 4);
-        pCliente.setNumero(1);
-        assertTrue(testIndividualQuerySelect(pCliente) == 5);
+        Cita pCita = new Cita();
+        pCita.setId(1);
+        assertTrue(testIndividualQuerySelect(pCita) == 1);
+        pCita.setIdUsuario(1);
+        assertTrue(testIndividualQuerySelect(pCita) == 2);
+        pCita.setTotal(1.1);
+        assertTrue(testIndividualQuerySelect(pCita) == 3);
+         pCita.setEstado((byte) 1);
+        assertTrue(testIndividualQuerySelect(pCita) == 4);
+        ;
     }
     
     /**
@@ -85,10 +98,17 @@ public class CitaDALIT {
     @Test
     public void test3Buscar() throws Exception {
         System.out.println("buscar");
-        Cliente pCliente = new Cliente(0, "Test Nombre", "Test Apellido", "Test Dui",0);
-        ArrayList<Cliente> result = ClienteDAL.buscar(pCliente);
-        assertTrue(result.size()>0);
-        clienteActual = result.get(0);
+        
+        Cita cita = new Cita();
+//         usuario.setIdrol(1);
+        cita.setTotal(1.0);
+        cita.setEstado(Cita.EstadoUsuario.INACTIVO);
+        cita.setTop_aux(10);
+        ArrayList<Cita> result = CitaDAL.buscar(cita);
+//        ArrayList<Cita> result = new ArrayList(CitaDAL.crear(cita));
+//        System.out.println(result.get(0));
+        assertTrue(result.size()> 0);
+        citaActual = result.get(0);
     }
     
     /**
@@ -97,8 +117,8 @@ public class CitaDALIT {
     @Test
     public void test4ObtenerPorId() throws Exception {
         System.out.println("obtenerPorId");
-        Cliente result = ClienteDAL.obtenerPorId(clienteActual);
-        assertEquals(clienteActual.getId(), result.getId());
+        Cita result = CitaDAL.obtenerPorId(citaActual);
+        assertEquals(citaActual.getId(), result.getId());
     }
 
     /**
@@ -107,20 +127,23 @@ public class CitaDALIT {
     @Test
     public void test5Modificar() throws Exception {
         System.out.println("modificar");
-        Cliente pCliente = new Cliente();       
-        pCliente.setId(clienteActual.getId());
-        pCliente.setNombre("Test Nombre");
-        pCliente.setApellido("Test Apellido");
-        pCliente.setDui("Test Dui");
-        pCliente.setNumero(1);
+        Cita cita = new Cita();
+        cita.setId(citaActual.getId());
+        cita.setTotal(1.4);           
+        cita.setEstado(Cita.EstadoUsuario.ACTIVO);
+        Cliente clienteB = new Cliente();
+        clienteB.setTop_aux(2);
+        cita.setIdCliente(ClienteDAL.buscar(clienteB).get(1).getId());
+        Usuario usuarioB = new Usuario();
+        usuarioB.setTop_aux(2);
+        cita.setIdUsuario(UsuarioDAL.buscar(usuarioB).get(1).getId());
         int expResult = 0;
-        int result = ClienteDAL.modificar(pCliente);
+        int result = CitaDAL.modificar(cita);
         assertNotEquals(expResult, result);
-        Cliente clienteUpdate = ClienteDAL.obtenerPorId(clienteActual);
-        assertTrue(clienteUpdate.getNombre().equals(pCliente.getNombre()));
-        assertTrue(clienteUpdate.getApellido().equals(pCliente.getApellido()));
-        assertTrue(clienteUpdate.getDui().equals(pCliente.getDui()));
-        assertTrue(clienteUpdate.getNumero()== (pCliente.getNumero()));
+//        Cita citaUpdate = CitaDAL.obtenerPorId(citaActual);
+//        assertTrue(citaUpdate.getLogin().equals(cita.getLogin()));
+
+     
     }
     
     /**
@@ -129,7 +152,7 @@ public class CitaDALIT {
     @Test
     public void test6ObtenerTodos() throws Exception {
         System.out.println("obtenerTodos");
-        ArrayList<Cliente> result = ClienteDAL.obtenerTodos();
+        ArrayList<Cita> result = CitaDAL.obtenerTodos();
         assertTrue(result.size()>0);
     }
 
@@ -140,10 +163,10 @@ public class CitaDALIT {
     public void test7Eliminar() throws Exception {
         System.out.println("eliminar");
         int expResult = 0;
-        int result = ClienteDAL.eliminar(clienteActual);
+        int result = CitaDAL.eliminar(citaActual);
         assertNotEquals(expResult, result);
-        Cliente clienteDelete = ClienteDAL.obtenerPorId(clienteActual);
-        assertTrue(clienteDelete.getId()==0);
+        Cita citaDelete = CitaDAL.obtenerPorId(citaActual);
+        assertTrue(citaDelete.getId()==0);
     }
     ////////////////////////////////////////////////////////////////////
     //Commit de prueba

@@ -11,14 +11,14 @@ public class Cita {
     private LocalDate fechaCita;
     private double total;
     private byte estado;
-     private int top_aux;
-        private ArrayList<Cliente> clientes;
+    private int top_aux;
+    private ArrayList<Cliente> clientes;
     private ArrayList<Usuario> usuarios;
 
     public Cita() {
     }
 
-    public Cita(int id, int idUsuario, int idCliente, LocalDate fechaRegistrada, LocalDate fechaCita, double total, byte estado, int top_aux, ArrayList<Cliente> clientes, ArrayList<Usuario> usuarios) {
+    public Cita(int id, int idUsuario, int idCliente, LocalDate fechaRegistrada, LocalDate fechaCita, double total, byte estado, ArrayList<Cliente> clientes, ArrayList<Usuario> usuarios) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idCliente = idCliente;
@@ -26,10 +26,12 @@ public class Cita {
         this.fechaCita = fechaCita;
         this.total = total;
         this.estado = estado;
-        this.top_aux = top_aux;
         this.clientes = clientes;
         this.usuarios = usuarios;
     }
+
+ 
+   
 
     public int getId() {
         return id;
@@ -112,4 +114,10 @@ public class Cita {
         this.usuarios = usuarios;
     }
 
+      public class EstadoUsuario {
+
+        public static final byte ACTIVO = 1;
+        public static final byte INACTIVO = 2;
+    }
+    
 }

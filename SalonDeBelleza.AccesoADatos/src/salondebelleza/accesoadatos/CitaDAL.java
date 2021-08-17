@@ -8,7 +8,7 @@ import salondebelleza.entidadesdenegocio.*; // Agregar la referencia al proyecto
 public class CitaDAL {// Clase para poder realizar consulta de Insertar, modificar, eliminar, obtener datos de la tabla Rol
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Rol
     static String obtenerCampos() {
-        return "c.Id,c.idUsuario,c.idCliente,c.fechaRegistrad,c.fechaCita,c.total,c.estado";
+        return "c.Id,c.idUsuario,c.idCliente,c.fechaRegistrada,c.fechaCita,c.total,c.estado";
     }
 
     // Metodo para obtener el SELECT a la tabla Rol y el TOP en el caso que se utilice una base de datos SQL SERVER
@@ -19,7 +19,7 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
             // Agregar el TOP a la consulta SELECT si el gestor de base de datos es SQL SERVER y "getTop_aux" es mayor a cero
             sql += "TOP " + pCita.getTop_aux() + " ";
         }
-        sql += (obtenerCampos() + " FROM Cliente c"); // Agregar los campos de la tabla de Rol mas el FROM a la tabla Rol con su alias "r"
+        sql += (obtenerCampos() + " FROM Cita c"); // Agregar los campos de la tabla de Rol mas el FROM a la tabla Rol con su alias "r"
         return sql;
     }
 
@@ -43,10 +43,10 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
-                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
-                ps.setDouble(5, pCita.getTotal()); 
-                 ps.setByte(6, pCita.getEstado()); 
+//                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
+//                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
+                ps.setDouble(3, pCita.getTotal()); 
+                 ps.setByte(4, pCita.getEstado()); 
                   
                // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
@@ -72,8 +72,8 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
              //   ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
                // ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
-                ps.setDouble(5, pCita.getTotal()); 
-                 ps.setByte(6, pCita.getEstado());
+                ps.setDouble(3, pCita.getTotal()); 
+                 ps.setByte(4, pCita.getEstado());
                   result = ps.executeUpdate(); 
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -193,7 +193,7 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         }
          // verificar si se va incluir el campo IdRol en el filtro de la consulta SELECT de la tabla de Usuario
       if (pCita.getIdUsuario()> 0) {
-            pUtilQuery.AgregarWhereAnd(" u.IdUsuario=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" c.IdUsuario=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
                 statement.setInt(pUtilQuery.getNumWhere(), pCita.getIdUsuario());
@@ -202,7 +202,7 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         
               // verificar si se va incluir el campo IdRol en el filtro de la consulta SELECT de la tabla de Usuario
       if (pCita.getIdCliente()> 0) {
-            pUtilQuery.AgregarWhereAnd(" u.IdCliente=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" c.IdCliente=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
                 statement.setInt(pUtilQuery.getNumWhere(), pCita.getIdCliente());
@@ -212,14 +212,14 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         
         // verificar si se va incluir el campo Nombre en el filtro de la consulta SELECT de la tabla de Usuario
         if (pCita.getTotal()> 0) {
-            pUtilQuery.AgregarWhereAnd(" u.Total LIKE ? "); // agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" c.Total = ? "); // agregar el campo Nombre al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo Nombre a la consulta SELECT de la tabla de Usuario
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pCita.getTotal()+ "%");
             }
         }
         if (pCita.getEstado()> 0) {
-            pUtilQuery.AgregarWhereAnd(" u.Estado=? "); // agregar el campo Estatus al filtro de la consulta SELECT y agregar en el WHERE o AND
+            pUtilQuery.AgregarWhereAnd(" c.Estado=? "); // agregar el campo Estatus al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo Estatus a la consulta SELECT de la tabla de Usuario
                 statement.setInt(pUtilQuery.getNumWhere(), pCita.getEstado());
