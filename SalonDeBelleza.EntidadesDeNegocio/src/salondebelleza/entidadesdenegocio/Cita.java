@@ -3,6 +3,7 @@ package salondebelleza.entidadesdenegocio;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//propiedades de la clase
 public class Cita {
     private int id;
     private int idUsuario;
@@ -15,6 +16,7 @@ public class Cita {
     private ArrayList<Cliente> clientes;
     private ArrayList<Usuario> usuarios;
 
+    //constructores de la clase
     public Cita() {
     }
 
@@ -32,7 +34,7 @@ public class Cita {
 
  
    
-
+//getter and setters
     public int getId() {
         return id;
     }
