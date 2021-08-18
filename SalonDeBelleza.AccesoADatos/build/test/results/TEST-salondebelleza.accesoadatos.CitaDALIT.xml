@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="5" failures="0" hostname="DESKTOP-2IRRBRR" name="salondebelleza.accesoadatos.CitaDALIT" skipped="0" tests="7" time="4.522" timestamp="2021-08-17T05:59:10">
+<testsuite errors="2" failures="0" hostname="DESKTOP-2IRRBRR" name="salondebelleza.accesoadatos.CitaDALIT" skipped="0" tests="7" time="4.403" timestamp="2021-08-18T17:25:47">
   <properties>
     <property name="" value="======" />
     <property name="libs.spring-framework300.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-aop-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-aspects-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-beans-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-context-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-context-support-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-core-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-expression-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-instrument-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-jdbc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-jms-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-orm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-oxm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-struts-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-test-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-tx-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-web-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.18.RELEASE.jar" />
@@ -19,7 +19,7 @@
     <property name="libs.eclipselink.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\docs\javax.persistence-2.1.0-doc.zip" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Foundation\jdk-11.0.12.7-hotspot\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner salondebelleza.accesoadatos.CitaDALIT skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\test\results\TEST-salondebelleza.accesoadatos.CitaDALIT.xml crashfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junitvmwatcher16945935046315920403.properties propsfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junit8927319087650092999.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner salondebelleza.accesoadatos.CitaDALIT skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\test\results\TEST-salondebelleza.accesoadatos.CitaDALIT.xml crashfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junitvmwatcher10154726933849019053.properties propsfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junit2284993861700159433.properties" />
     <property name="jdk.debug" value="release" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="javadoc.use" value="true" />
@@ -42,7 +42,7 @@
     <property name="libs.JAXB-ENDORSED.javadoc" value="" />
     <property name="sun.java2d.noddraw" value="true" />
     <property name="sun.zip.disableMemoryMapping" value="true" />
-    <property name="jnidispatch.path" value="C:\Users\Saul\AppData\Local\Temp\jna-2569605\jna267733218657937819.dll" />
+    <property name="jnidispatch.path" value="C:\Users\Saul\AppData\Local\Temp\jna-2569605\jna15928979244044322104.dll" />
     <property name="libs.maven-dependencies.maven-pom" value="" />
     <property name="libs.jsf12.src" value="" />
     <property name="libs.primefaces.javadoc" value="" />
@@ -161,7 +161,7 @@
     <property name="libs.JWSAntTasks.maven-pom" value="" />
     <property name="run.modulepath" value="" />
     <property name="apple.laf.useScreenMenuBar" value="true" />
-    <property name="user.country" value="ES" />
+    <property name="user.country" value="SV" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="libs.restapi.javadoc" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
@@ -197,7 +197,7 @@
     <property name="libs.jsp-compilation-syscp.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jstl-impl.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
     <property name="libs.jsp-compilation.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jstl-api.jar;C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant-launcher.jar" />
     <property name="libs.javaee-api-6.0.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee-api-6.0.jar" />
-    <property name="javac.includesfile.binary" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\null1917691763" />
+    <property name="javac.includesfile.binary" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\null310877326" />
     <property name="libs.javaee-api-7.0.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee-api-7.0.jar" />
     <property name="sun.cpu.isalist" value="amd64" />
     <property name="libs.restapi.maven-pom" value="" />
@@ -353,7 +353,7 @@
     <property name="user.properties.file" value="C:\Users\Saul\AppData\Roaming\NetBeans\12.0\build.properties" />
     <property name="libs.javaee-api-6.0.src" value="" />
     <property name="javac.includes" value="salondebelleza/accesoadatos/CitaDALIT.java" />
-    <property name="netbeans.autoupdate.country" value="ES" />
+    <property name="netbeans.autoupdate.country" value="SV" />
     <property name="java.class.path" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.EntidadesDeNegocio\dist\SalonDeBelleza.EntidadesDeNegocio.jar;C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar;C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar;C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\classes;C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-4.12.jar;C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\hamcrest-core-1.3.jar;C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\test\classes;C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant-junit4.jar" />
     <property name="libs.javaee-web-api-6.0.maven-pom" value="" />
     <property name="java.vm.vendor" value="Eclipse Foundation" />
@@ -405,63 +405,43 @@
     <property name="annotation.processing.run.all.processors" value="true" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
   </properties>
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test1Crear" time="0.029" />
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test2QuerySelect" time="0.004" />
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test3Buscar" time="2.397">
-    <error message="Error converting data type nvarchar to numeric." type="com.microsoft.sqlserver.jdbc.SQLServerException">com.microsoft.sqlserver.jdbc.SQLServerException: Error converting data type nvarchar to numeric.
-	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:262)
-	at com.microsoft.sqlserver.jdbc.SQLServerResultSet$FetchBuffer.nextRow(SQLServerResultSet.java:5448)
-	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.fetchBufferNext(SQLServerResultSet.java:1771)
-	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.next(SQLServerResultSet.java:1029)
-	at salondebelleza.accesoadatos.CitaDAL.obtenerDatos(CitaDAL.java:127)
-	at salondebelleza.accesoadatos.CitaDAL.buscar(CitaDAL.java:248)
-	at salondebelleza.accesoadatos.CitaDALIT.test3Buscar(CitaDALIT.java:107)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-</error>
-  </testcase>
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test4ObtenerPorId" time="0.671">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at salondebelleza.accesoadatos.CitaDAL.obtenerSelect(CitaDAL.java:18)
-	at salondebelleza.accesoadatos.CitaDAL.obtenerPorId(CitaDAL.java:143)
-	at salondebelleza.accesoadatos.CitaDALIT.test4ObtenerPorId(CitaDALIT.java:120)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-</error>
-  </testcase>
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test5Modificar" time="0.001">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at salondebelleza.accesoadatos.CitaDALIT.test5Modificar(CitaDALIT.java:131)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-</error>
-  </testcase>
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test6ObtenerTodos" time="0.637">
-    <error message="La conversión de datetime a TINYINT no es compatible." type="com.microsoft.sqlserver.jdbc.SQLServerException">com.microsoft.sqlserver.jdbc.SQLServerException: La conversión de datetime a TINYINT no es compatible.
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test1Crear" time="0.003" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test2QuerySelect" time="0.003" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test3Buscar" time="1.885" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test4ObtenerPorId" time="0.587" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test5Modificar" time="0.488">
+    <error message="El valor no está configurado para el número de parámetro 5." type="com.microsoft.sqlserver.jdbc.SQLServerException">com.microsoft.sqlserver.jdbc.SQLServerException: El valor no está configurado para el número de parámetro 5.
 	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:234)
-	at com.microsoft.sqlserver.jdbc.DataTypes.throwConversionError(DataTypes.java:1112)
-	at com.microsoft.sqlserver.jdbc.ServerDTVImpl.getValue(dtv.java:3704)
-	at com.microsoft.sqlserver.jdbc.DTV.getValue(dtv.java:247)
-	at com.microsoft.sqlserver.jdbc.Column.getValue(Column.java:190)
-	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getValue(SQLServerResultSet.java:2054)
-	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getValue(SQLServerResultSet.java:2040)
-	at com.microsoft.sqlserver.jdbc.SQLServerResultSet.getByte(SQLServerResultSet.java:2180)
-	at salondebelleza.accesoadatos.CitaDAL.asignarDatosResultSet(CitaDAL.java:120)
-	at salondebelleza.accesoadatos.CitaDAL.obtenerDatos(CitaDAL.java:129)
-	at salondebelleza.accesoadatos.CitaDAL.obtenerTodos(CitaDAL.java:171)
-	at salondebelleza.accesoadatos.CitaDALIT.test6ObtenerTodos(CitaDALIT.java:155)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.buildParamTypeDefinitions(SQLServerPreparedStatement.java:428)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.buildPreparedStrings(SQLServerPreparedStatement.java:381)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:556)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:524)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7418)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:3272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:247)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:222)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:473)
+	at salondebelleza.accesoadatos.CitaDAL.modificar(CitaDAL.java:78)
+	at salondebelleza.accesoadatos.CitaDALIT.test5Modificar(CitaDALIT.java:142)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 </error>
   </testcase>
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test7Eliminar" time="0.516">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at salondebelleza.accesoadatos.CitaDAL.eliminar(CitaDAL.java:96)
-	at salondebelleza.accesoadatos.CitaDALIT.test7Eliminar(CitaDALIT.java:166)
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test6ObtenerTodos" time="0.597" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test7Eliminar" time="0.63">
+    <error message="The DELETE statement conflicted with the REFERENCE constraint &quot;FK1_Cita_DetalleCita&quot;. The conflict occurred in database &quot;eliqsv_salonbelleza2&quot;, table &quot;dbo.DetalleCita&quot;, column &apos;IdCita&apos;." type="com.microsoft.sqlserver.jdbc.SQLServerException">com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint &quot;FK1_Cita_DetalleCita&quot;. The conflict occurred in database &quot;eliqsv_salonbelleza2&quot;, table &quot;dbo.DetalleCita&quot;, column &apos;IdCita&apos;.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:262)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1632)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:602)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:524)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7418)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:3272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:247)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:222)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:473)
+	at salondebelleza.accesoadatos.CitaDAL.eliminar(CitaDAL.java:98)
+	at salondebelleza.accesoadatos.CitaDALIT.test7Eliminar(CitaDALIT.java:167)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

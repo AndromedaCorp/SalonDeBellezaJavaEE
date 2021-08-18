@@ -5,7 +5,6 @@
         <group name="SysSeguridad.AccesoADatos"/>
         <group/>
         <group name="Javaee">
-            <file>file:/C:/Users/Saul/Documents/NetBeansProjects/SalonDeBellezaJavaEE/SalonDeBelleza.EntidadesDeNegocio/src/salondebelleza/entidadesdenegocio/Servicio.java</file>
             <file>file:/C:/Users/Saul/Documents/NetBeansProjects/SalonDeBellezaJavaEE/SalonDeBelleza.EntidadesDeNegocio/src/salondebelleza/entidadesdenegocio/Usuario.java</file>
             <file>file:/C:/Users/Saul/Documents/NetBeansProjects/SalonDeBellezaJavaEE/SalonDeBelleza.EntidadesDeNegocio/src/salondebelleza/entidadesdenegocio/Cita.java</file>
         </group>
