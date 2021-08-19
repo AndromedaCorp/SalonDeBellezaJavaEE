@@ -1,7 +1,7 @@
 
 package salondebelleza.entidadesdenegocio;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class DetalleCita {
     

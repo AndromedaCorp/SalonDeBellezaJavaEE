@@ -4,17 +4,19 @@ public class Servicio {
     private int id;
     private String nombre;
     private String descripcion;
-    private double precioServicio;
+    private double precio;
+    private double duracion;
     private int top_aux;
 
     public Servicio() {
     }
 
-    public Servicio(int id, String nombre, String descripcion, double precioServicio) {
+    public Servicio(int id, String nombre, String descripcion, double precio,double duracion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precioServicio = precioServicio;
+        this.precio = precio;
+        this.duracion = duracion;
     }
 
     public int getId() {
@@ -41,12 +43,20 @@ public class Servicio {
         this.descripcion = descripcion;
     }
 
-    public double getPrecioServicio() {
-        return precioServicio;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setPrecioServicio(double precioServicio) {
-        this.precioServicio = precioServicio;
+    public void setPrecio(double precioServicio) {
+        this.precio = precioServicio;
+    }
+    
+    public double getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(double duracion) {
+        this.duracion = duracion;
     }
 
     public int getTop_aux() {

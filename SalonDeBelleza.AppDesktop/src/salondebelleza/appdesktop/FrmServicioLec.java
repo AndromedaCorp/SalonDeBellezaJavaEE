@@ -19,7 +19,8 @@ public class FrmServicioLec extends javax.swing.JFrame {
         static final int ID = 0; // El campo Id sera  la primera columna en la tabla de datos
         static final int NOMBRE = 1; // El campo Nombre sera  la segunda columna en la tabla de datos
         static final int DESCRIPCION = 2;
-        static final int PRECIOSERVICIO = 3;
+        static final int PRECIO = 3;
+        static final int DURACION = 4;
     }
     
     // Metodo para ocultar columnas de nuestra tabla de datos
@@ -45,7 +46,8 @@ public class FrmServicioLec extends javax.swing.JFrame {
         model.addColumn("Id"); // agregar la columna Id a la tabla de datos 
         model.addColumn("Nombre"); // agregar la columna Nombre a la tabla de Datos   
         model.addColumn("Descripcion");
-        model.addColumn("PrecioServicio");
+        model.addColumn("Precio");
+        model.addColumn("Duracion");
         this.tbServicio.setModel(model); // iniciar el DefaultTableModel en nuestra tabla de datos
         Object row[] = null; // crear un array de un objecto para iniciar los datos de la fila
         for (int i = 0; i < pServicios.size(); i++) { // Recorrer el array de Servicios
@@ -54,7 +56,8 @@ public class FrmServicioLec extends javax.swing.JFrame {
             model.setValueAt(servicio.getId(), i, ColumnaTabla.ID); // agregar el valor de la columna Id en la fila
             model.setValueAt(servicio.getNombre(), i, ColumnaTabla.NOMBRE); // agregar el valor de la columna Nombre en la fila
             model.setValueAt(servicio.getDescripcion(), i, ColumnaTabla.DESCRIPCION);
-            model.setValueAt(servicio.getPrecioServicio(), i, ColumnaTabla.PRECIOSERVICIO);
+            model.setValueAt(servicio.getPrecio(), i, ColumnaTabla.PRECIO);
+            model.setValueAt(servicio.getDuracion(), i, ColumnaTabla.DURACION);
         }
         ocultarColumnasDeLaTabla(ColumnaTabla.ID); // Ocultar la columna de Id en la tabla 
     }
@@ -69,11 +72,13 @@ public class FrmServicioLec extends javax.swing.JFrame {
             int id = (int) this.tbServicio.getValueAt(filaSelect, ColumnaTabla.ID); // obtener el valor de la fila en la columna Id
             String nombre = (String) this.tbServicio.getValueAt(filaSelect, ColumnaTabla.NOMBRE);// obtener el valor de la fila en la columna Nombre
             String descripcion = (String) this.tbServicio.getValueAt(filaSelect, ColumnaTabla.DESCRIPCION);
-            double precioservicio = (double) this.tbServicio.getValueAt(filaSelect, ColumnaTabla.PRECIOSERVICIO);
+            double precio = (double) this.tbServicio.getValueAt(filaSelect, ColumnaTabla.PRECIO);
+            double duracion = (double) this.tbServicio.getValueAt(filaSelect, ColumnaTabla.DURACION);
             pServicio.setId(id); // Llenar propiedad de Id de Servicio con el valor obtenido de la fila de la tabla 
             pServicio.setNombre(nombre); // Llenar propiedad de Nombre de Servicio con el valor obtenido de la fila de la tabla 
             pServicio.setDescripcion(descripcion);
-            pServicio.setPrecioServicio(precioservicio);
+            pServicio.setPrecio(precio);
+            pServicio.setDuracion(duracion);
         }
         return isSelectRow; // devolver el valor de isSelectRow 
     }
@@ -106,7 +111,8 @@ public class FrmServicioLec extends javax.swing.JFrame {
             // llenar la propiedad Nombre de la instancia de Servicio con el valor de caja de texto txtNombre
             servicioSearch.setNombre(this.txtNombre.getText());
             servicioSearch.setDescripcion(this.txtDescripcion.getText());
-            servicioSearch.setPrecioServicio(Double.parseDouble(this.txtPrecioServicio.getText()));
+            servicioSearch.setPrecio(Double.parseDouble(this.txtPrecio.getText()));
+            servicioSearch.setDuracion(Double.parseDouble(this.txtDuracion.getText()));
             ArrayList<Servicio> servicios = ServicioDAL.buscar(servicioSearch); // buscar el Servicio en la base de datps
             iniciarDatosDeLaTabla(servicios); // iniciar la tabla con los datos obtenidos en el metodo de buscar de la DAL de Servicio
         } catch (Exception ex) {
@@ -119,7 +125,8 @@ public class FrmServicioLec extends javax.swing.JFrame {
     private void limpiarControles() {
         this.txtNombre.setText(""); // limpiar la caja de texto txtNombre
         this.txtDescripcion.setText("");
-        this.txtPrecioServicio.setText("0");
+        this.txtPrecio.setText("0");
+        this.txtDuracion.setText("0");
         TopRegistro.limpiarTopRegistro(cbTop); // iniciar el combo box de cbTop al valor 10
     }
     
@@ -164,7 +171,7 @@ public class FrmServicioLec extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtPrecioServicio = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cbTop = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -176,6 +183,8 @@ public class FrmServicioLec extends javax.swing.JFrame {
         btnVer = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        txtDuracion = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Servicio");
@@ -189,9 +198,9 @@ public class FrmServicioLec extends javax.swing.JFrame {
 
         jLabel2.setText("Descripcion");
 
-        jLabel3.setText("PrecioServicio");
+        jLabel3.setText("Precio");
 
-        txtPrecioServicio.setText("0");
+        txtPrecio.setText("0");
 
         jLabel4.setText("Top");
 
@@ -263,6 +272,10 @@ public class FrmServicioLec extends javax.swing.JFrame {
             }
         });
 
+        txtDuracion.setText("0");
+
+        jLabel5.setText("Duracion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,7 +290,7 @@ public class FrmServicioLec extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrecioServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -310,6 +323,10 @@ public class FrmServicioLec extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -320,13 +337,16 @@ public class FrmServicioLec extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPrecioServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(cbTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
@@ -405,10 +425,12 @@ public class FrmServicioLec extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbServicio;
     private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecioServicio;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

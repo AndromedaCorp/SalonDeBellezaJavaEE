@@ -7,7 +7,7 @@ import salondebelleza.entidadesdenegocio.*; // Agregar la referencia al proyecto
 public class ServicioDAL {// Clase para poder realizar consulta de Insertar, modificar, eliminar, obtener datos de la tabla Servicio
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Servicio
     static String obtenerCampos() {
-        return "s.Id, s.Nombre, s.Descripcion, s.PrecioServicio";
+        return "s.Id, s.Nombre, s.Descripcion, s.Precio, s.Duracion";
     }
     
     // Metodo para obtener el SELECT a la tabla Servicio y el TOP en el caso que se utilice una base de datos SQL SERVER
@@ -38,11 +38,12 @@ public class ServicioDAL {// Clase para poder realizar consulta de Insertar, mod
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "INSERT INTO Servicio(Nombre,Descripcion,PrecioServicio) VALUES(?,?,?)"; // Definir la consulta INSERT a la tabla de Rol utilizando el simbolo ? para enviar parametros
+            sql = "INSERT INTO Servicio(Nombre,Descripcion,Precio,Duracion) VALUES(?,?,?,?)"; // Definir la consulta INSERT a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setString(1, pServicio.getNombre()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 ps.setString(2, pServicio.getDescripcion()); // Agregar el parametro a la consulta donde estan el simbolo ? #2
-                ps.setDouble(3, pServicio.getPrecioServicio()); // Agregar el parametro a la consulta donde estan el simbolo ? #3
+                ps.setDouble(3, pServicio.getPrecio()); // Agregar el parametro a la consulta donde estan el simbolo ? #3
+                ps.setDouble(4, pServicio.getDuracion()); // Agregar el parametro a la consulta donde estan el simbolo ? #4
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -60,12 +61,13 @@ public class ServicioDAL {// Clase para poder realizar consulta de Insertar, mod
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "UPDATE Servicio SET Nombre=?,Descripcion=?,PrecioServicio=? WHERE Id=?"; // Definir la consulta UPDATE a la tabla de Servicio utilizando el simbolo ? para enviar parametros
+            sql = "UPDATE Servicio SET Nombre=?,Descripcion=?,Precio=?,Duracion=? WHERE Id=?"; // Definir la consulta UPDATE a la tabla de Servicio utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setString(1, pServicio.getNombre()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setString(2, pServicio.getDescripcion()); // Agregar el parametro a la consulta donde estan el simbolo ? #2
-                ps.setDouble(3, pServicio.getPrecioServicio()); // Agregar el parametro a la consulta donde estan el simbolo ? #3
-                ps.setInt(4, pServicio.getId()); // Agregar el parametro a la consulta donde estan el simbolo ? #4  
+                ps.setDouble(3, pServicio.getPrecio()); // Agregar el parametro a la consulta donde estan el simbolo ? #3
+                ps.setDouble(4, pServicio.getDuracion()); // Agregar el parametro a la consulta donde estan el simbolo ? #4
+                ps.setInt(5, pServicio.getId()); // Agregar el parametro a la consulta donde estan el simbolo ? #5  
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -101,7 +103,7 @@ public class ServicioDAL {// Clase para poder realizar consulta de Insertar, mod
     // Metodo para llenar las propiedades de la entidad de Servicio con los datos que viene en el ResultSet,
     // el metodo nos ayudara a no preocuparlos por los indices al momento de obtener los valores del ResultSet
     static int asignarDatosResultSet(Servicio pServicio, ResultSet pResultSet, int pIndex) throws Exception {
-        //  SELECT s.Id(indice 1),s.Nombre(indice 2),s.Descripcion(indice 3),s.PrecioServicio(indice 4) * FROM Servicio
+        //  SELECT s.Id(indice 1),s.Nombre(indice 2),s.Descripcion(indice 3),s.Precio(indice 4),s.Duracion(indice 5) * FROM Servicio
         pIndex++;
         pServicio.setId(pResultSet.getInt(pIndex)); // index 1
         pIndex++;
@@ -109,7 +111,9 @@ public class ServicioDAL {// Clase para poder realizar consulta de Insertar, mod
         pIndex++;
         pServicio.setDescripcion(pResultSet.getString(pIndex)); // index 3
         pIndex++;
-        pServicio.setPrecioServicio(pResultSet.getDouble(pIndex)); // index 4
+        pServicio.setPrecio(pResultSet.getDouble(pIndex)); // index 4
+        pIndex++;
+        pServicio.setDuracion(pResultSet.getDouble(pIndex)); // index 5
         return pIndex;
     }
     
@@ -199,12 +203,20 @@ public class ServicioDAL {// Clase para poder realizar consulta de Insertar, mod
                 statement.setString(pUtilQuery.getNumWhere(), "%" + pServicio.getDescripcion()+ "%"); 
             }
         }
-        // Verificar si se va incluir el campo PrecioServicio en el filtro de la consulta SELECT de la tabla de Servicio
-        if (pServicio.getPrecioServicio()> 0) { 
-            pUtilQuery.AgregarWhereAnd(" s.PrecioServicio=? "); // Agregar el campo PrecioServicio al filtro de la consulta SELECT y agregar en el WHERE o AND
+        // Verificar si se va incluir el campo Precio en el filtro de la consulta SELECT de la tabla de Servicio
+        if (pServicio.getPrecio()> 0) { 
+            pUtilQuery.AgregarWhereAnd(" s.Precio=? "); // Agregar el campo PrecioServicio al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) { 
                 // Agregar el parametro del campo PrecioServicio a la consulta SELECT de la tabla de Servicio
-                statement.setDouble(pUtilQuery.getNumWhere(), pServicio.getPrecioServicio()); 
+                statement.setDouble(pUtilQuery.getNumWhere(), pServicio.getPrecio()); 
+            }
+        }
+        // Verificar si se va incluir el campo Duracion en el filtro de la consulta SELECT de la tabla de Servicio
+        if (pServicio.getDuracion()> 0) { 
+            pUtilQuery.AgregarWhereAnd(" s.Duracion=? "); // Agregar el campo Duracion al filtro de la consulta SELECT y agregar en el WHERE o AND
+            if (statement != null) { 
+                // Agregar el parametro del campo Duracion a la consulta SELECT de la tabla de Servicio
+                statement.setDouble(pUtilQuery.getNumWhere(), pServicio.getDuracion()); 
             }
         }
     }

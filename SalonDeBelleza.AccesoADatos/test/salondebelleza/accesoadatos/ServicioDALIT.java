@@ -47,7 +47,7 @@ public class ServicioDALIT {
     @Test
     public void test1Crear() throws Exception {
         System.out.println("crear");
-        Servicio pServicio = new Servicio(0, "TEST UNIT SERVICIO", "TEST UNIT SERVICIO",0);
+        Servicio pServicio = new Servicio(0, "TEST UNIT SERVICIO", "TEST UNIT SERVICIO",0,0);
         int expResult = 0;
         int result = ServicioDAL.crear(pServicio);
         assertNotEquals(expResult, result);
@@ -75,8 +75,10 @@ public class ServicioDALIT {
         assertTrue(testIndividualQuerySelect(pServicio) == 2);
         pServicio.setDescripcion("TEST");
         assertTrue(testIndividualQuerySelect(pServicio) == 3);
-        pServicio.setPrecioServicio(1);
+        pServicio.setPrecio(1);
         assertTrue(testIndividualQuerySelect(pServicio) == 4);
+        pServicio.setDuracion(1);
+        assertTrue(testIndividualQuerySelect(pServicio) == 5);
     }
     
     /**
@@ -85,7 +87,7 @@ public class ServicioDALIT {
     @Test
     public void test3Buscar() throws Exception {
         System.out.println("buscar");
-        Servicio pServicio = new Servicio(0, "TEST UNIT SERVICIO", "TEST UNIT SERVICIO",0);
+        Servicio pServicio = new Servicio(0, "TEST UNIT SERVICIO", "TEST UNIT SERVICIO",0,0);
         ArrayList<Servicio> result = ServicioDAL.buscar(pServicio);
         assertTrue(result.size()>0);
         servicioActual = result.get(0);
@@ -111,14 +113,16 @@ public class ServicioDALIT {
         pServicio.setId(servicioActual.getId());
         pServicio.setNombre("TEST UNIT SERVICIO M");
         pServicio.setDescripcion("TEST UNIT SERVICIO M");
-        pServicio.setPrecioServicio(1);
+        pServicio.setPrecio(1);
+        pServicio.setDuracion(1);
         int expResult = 0;
         int result = ServicioDAL.modificar(pServicio);
         assertNotEquals(expResult, result);
         Servicio servicioUpdate = ServicioDAL.obtenerPorId(servicioActual);
         assertTrue(servicioUpdate.getNombre().equals(pServicio.getNombre()));
         assertTrue(servicioUpdate.getDescripcion().equals(pServicio.getDescripcion()));
-        assertTrue(servicioUpdate.getPrecioServicio() == (pServicio.getPrecioServicio()));
+        assertTrue(servicioUpdate.getPrecio() == (pServicio.getPrecio()));
+        assertTrue(servicioUpdate.getDuracion() == (pServicio.getDuracion()));
     }
     
     /**
