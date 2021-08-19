@@ -3,3 +3,5 @@
 
 SalonDeBelleza.AccesoADatos/nbproject/private/*private.properties
 SalonDeBelleza.AppDesktop/build/*built-jar.properties
+/SalonDeBelleza.AppWeb/nbproject/private/
+/SalonDeBelleza.AppWeb/build/
