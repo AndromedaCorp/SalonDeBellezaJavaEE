@@ -8,7 +8,7 @@ public class DetalleCita {
     private int id;
     private int idCita;
     private int idServicio;
-    private  float Precio;
+    private double Precio;
     private double Duracion;
     private Servicio servicio;
     private Cita cita;
@@ -20,7 +20,7 @@ public class DetalleCita {
     public DetalleCita() {
     }
 
-    public DetalleCita(int id, int idCita, int idServicio, float Precio, double Duracion, Servicio servicio, Cita cita) {
+    public DetalleCita(int id, int idCita, int idServicio, double Precio, double Duracion, Servicio servicio, Cita cita) {
         this.id = id;
         this.idCita = idCita;
         this.idServicio = idServicio;
@@ -54,11 +54,11 @@ public class DetalleCita {
         this.idServicio = idServicio;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return Precio;
     }
 
-    public void setPrecio(float Precio) {
+    public void setPrecio(double Precio) {
         this.Precio = Precio;
     }
 
