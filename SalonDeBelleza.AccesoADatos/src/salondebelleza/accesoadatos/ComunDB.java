@@ -23,6 +23,9 @@ public class ComunDB {
     /* El metodo obtenerConeccion() nos va a devolver una conexion abierta al gestor de base de datos que
        que estemos utilizando*/
     public static Connection obtenerConexion() throws SQLException{
+        // Registrar el Driver de la conexion a la base de datos SQL server
+        // para que lo reconozca el servidor web
+        DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
         Connection connection = DriverManager.getConnection(connectionUrl); //abrir la conexion a la base de datos
         return connection; //retornar la conexion a la base de datos
     }

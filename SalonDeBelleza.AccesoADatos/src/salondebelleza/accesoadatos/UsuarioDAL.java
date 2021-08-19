@@ -74,7 +74,8 @@ public class UsuarioDAL { // Clase para poder realizar consulta de Insertar, mod
         }
         if (usuarios.size() > 0) { // Verificar si el ArrayList de Usuario trae mas de un registro en tal caso solo debe de traer uno
             Usuario usuario;
-            usuario = usuarios.get(1); // Si el ArrayList de Usuario trae un registro o mas obtenemos solo el primero 
+            // Se solucciono tenia valor de 1 cuando debe de ser cero
+            usuario = usuarios.get(0); // Si el ArrayList de Usuario trae un registro o mas obtenemos solo el primero
             if (usuario.getId() > 0 && usuario.getLogin().equals(pUsuario.getLogin())) {
                 // Si el Id de Usuario es mayor a cero y el Login que se busco en la tabla de Usuario es igual al que solicitamos
                 // en los parametros significa que el login ya existe en la base de datos y devolvemos true en la variable "existe"
