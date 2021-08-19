@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="DESKTOP-2IRRBRR" name="salondebelleza.accesoadatos.CitaDALIT" skipped="0" tests="1" time="0.185" timestamp="2021-08-19T09:47:28">
+<testsuite errors="1" failures="0" hostname="DESKTOP-2IRRBRR" name="salondebelleza.accesoadatos.CitaDALIT" skipped="0" tests="7" time="4.875" timestamp="2021-08-19T20:20:02">
   <properties>
     <property name="" value="======" />
     <property name="libs.spring-framework300.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-aop-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-aspects-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-beans-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-context-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-context-support-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-core-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-expression-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-instrument-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-jdbc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-jms-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-orm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-oxm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-struts-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-test-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-tx-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-web-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.18.RELEASE.jar" />
     <property name="javac.test.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\hamcrest-core-1.3.jar" />
     <property name="java.specification.version" value="11" />
-    <property name="jar.index.metainf" value="false" />
     <property name="libs.spring-framework500.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-aop-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-aspects-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-beans-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-indexer-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-support-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-core-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-expression-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-instrument-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jcl-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jdbc-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jms-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-messaging-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-orm-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-oxm-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-test-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-tx-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-web-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webflux-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webmvc-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-websocket-5.2.2.RELEASE.jar" />
-    <property name="libs.spring-framework400.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-aop-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-aspects-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-beans-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-context-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-context-support-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-core-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-expression-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-instrument-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-instrument-tomcat-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-jdbc-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-jms-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-messaging-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-orm-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-oxm-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-test-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-tx-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-web-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-webmvc-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-webmvc-portlet-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-websocket-4.3.25.RELEASE.jar" />
+    <property name="jar.index.metainf" value="false" />
     <property name="libs.spring-webmvc4.0.javadoc" value="" />
+    <property name="libs.spring-framework400.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-aop-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-aspects-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-beans-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-context-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-context-support-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-core-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-expression-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-instrument-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-instrument-tomcat-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-jdbc-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-jms-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-messaging-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-orm-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-oxm-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-test-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-tx-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-web-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-webmvc-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-webmvc-portlet-4.3.25.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-websocket-4.3.25.RELEASE.jar" />
     <property name="test.binaryincludes" value="&lt;nothing&gt;" />
     <property name="do.jlink" value="false" />
     <property name="debug-transport" value="dt_shmem" />
     <property name="libs.javaee-web-api-8.0.src" value="" />
     <property name="java.vendor.url" value="https://adoptium.net/" />
     <property name="debug.modulepath" value="" />
-    <property name="libs.jsp-compilation.src" value="" />
     <property name="libs.eclipselink.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\docs\javax.persistence-2.1.0-doc.zip" />
+    <property name="libs.jsp-compilation.src" value="" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Foundation\jdk-11.0.12.7-hotspot\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner salondebelleza.accesoadatos.CitaDALIT methods=test5Modificar skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\test\results\TEST-salondebelleza.accesoadatos.CitaDALIT.xml crashfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junitvmwatcher17486004833149772677.properties propsfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junit16651933642061782005.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner salondebelleza.accesoadatos.CitaDALIT skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\test\results\TEST-salondebelleza.accesoadatos.CitaDALIT.xml crashfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junitvmwatcher8078856962766821689.properties propsfile=C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\junit13063527211106547911.properties" />
     <property name="jdk.debug" value="release" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="javadoc.use" value="true" />
@@ -27,26 +27,27 @@
     <property name="javadoc.notree" value="false" />
     <property name="basedir" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos" />
     <property name="application.vendor" value="Saul" />
-    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
     <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
     <property name="libs.javac-api.javadoc" value="" />
     <property name="libs.jsf20.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
     <property name="netbeans.extbrowser.manual_chrome_plugin_install" value="yes" />
-    <property name="libs.spring-framework500.javadoc" value="" />
     <property name="netbeans.default_userdir_root" value="C:\Users\Saul\AppData\Roaming\NetBeans" />
+    <property name="libs.spring-framework500.javadoc" value="" />
     <property name="libs.jsp-compilation-syscp.src" value="" />
     <property name="jdk.home" value="C:\Program Files\Eclipse Foundation\jdk-11.0.12.7-hotspot" />
     <property name="java.runtime.version" value="11.0.12+7" />
     <property name="libs.eclipselink.maven-pom" value="" />
     <property name="libs.metro.maven-pom" value="" />
     <property name="libs.JAXB-ENDORSED.javadoc" value="" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="sun.java2d.noddraw" value="true" />
     <property name="sun.zip.disableMemoryMapping" value="true" />
     <property name="libs.maven-dependencies.maven-pom" value="" />
-    <property name="jnidispatch.path" value="C:\Users\Saul\AppData\Local\Temp\jna-2569605\jna8623032833956837965.dll" />
+    <property name="jnidispatch.path" value="C:\Users\Saul\AppData\Local\Temp\jna-2569605\jna17520321589640772869.dll" />
+    <property name="libs.primefaces.javadoc" value="" />
     <property name="libs.jsp-compilation.javadoc" value="" />
     <property name="libs.jsf12.src" value="" />
-    <property name="libs.primefaces.javadoc" value="" />
     <property name="libs.groovy-all.maven-pom" value="" />
     <property name="java.vendor.version" value="Temurin-11.0.12+7" />
     <property name="libs.restapi.src" value="" />
@@ -65,10 +66,11 @@
     <property name="jlink.additionalparam" value="" />
     <property name="libs.testng.maven-pom" value="" />
     <property name="org.openide.version" value="deprecated" />
+    <property name="test.includes" value="salondebelleza/accesoadatos/CitaDALIT.java" />
     <property name="run.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes" />
     <property name="libs.jaxb.src" value="" />
-    <property name="sun.awt.enableExtraMouseButtons" value="true" />
     <property name="test.src.dir" value="test" />
+    <property name="sun.awt.enableExtraMouseButtons" value="true" />
     <property name="org.openide.major.version" value="IDE/1" />
     <property name="libs.spring-framework300.javadoc" value="" />
     <property name="ap.proc.none.internal" value="" />
@@ -77,8 +79,8 @@
     <property name="jar.index" value="false" />
     <property name="libs.jpa20-persistence.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\eclipselink\javax.persistence-2.1.0.jar" />
     <property name="java.vm.specification.version" value="11" />
-    <property name="libs.junit_5.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-jupiter-api-5.6.0.jar;C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-jupiter-params-5.6.0.jar;C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-jupiter-engine-5.6.0.jar" />
     <property name="libs.eclipselinkmodelgen.javadoc" value="" />
+    <property name="libs.junit_5.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-jupiter-api-5.6.0.jar;C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-jupiter-params-5.6.0.jar;C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-jupiter-engine-5.6.0.jar" />
     <property name="javadoc.noindex" value="false" />
     <property name="javadoc.private" value="false" />
     <property name="libs.spring-webmvc4.0.maven-pom" value="" />
@@ -87,13 +89,13 @@
     <property name="libs.eclipselinkmodelgen.maven-pom" value="" />
     <property name="have.sources" value="true" />
     <property name="annotation.processing.processors.list" value="" />
-    <property name="javac.deprecation" value="false" />
     <property name="jlink.launcher" value="true" />
+    <property name="javac.deprecation" value="false" />
     <property name="build.generated.sources.dir" value="build/generated-sources" />
     <property name="plugin.manager.check.updates" value="false" />
     <property name="netbeans.autoupdate.language" value="es" />
-    <property name="libs.eclipselinkmodelgen.src" value="" />
     <property name="build.compiler.emacs" value="true" />
+    <property name="libs.eclipselinkmodelgen.src" value="" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
     <property name="dist.jar" value="dist/SalonDeBelleza.AccesoADatos.jar" />
     <property name="libs.spring-webmvc4.0.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-4\spring-webmvc-4.3.25.RELEASE.jar" />
@@ -102,8 +104,8 @@
     <property name="netbeans.home" value="C:\Program Files\NetBeans-12.0\netbeans\platform" />
     <property name="libs.CopyLibs.javadoc" value="" />
     <property name="debug-transport-by-os" value="dt_shmem" />
-    <property name="libs.javaee-api-8.0.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.jsf20.src" value="" />
+    <property name="libs.javaee-api-8.0.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
     <property name="libs.jstl.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.javaee-endorsed-api-7.0.maven-pom" value="" />
@@ -134,11 +136,11 @@
     <property name="netbeans.productversion" value="Apache NetBeans IDE 12.0" />
     <property name="mkdist.disabled" value="true" />
     <property name="libs.javaee-web-api-6.0.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
-    <property name="libs.javaee-api-7.0.maven-pom" value="" />
     <property name="libs.groovy-all.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\groovy\modules\ext\groovy.jar;C:\Program Files\NetBeans-12.0\netbeans\groovy\modules\ext\groovy-ant.jar" />
+    <property name="libs.javaee-api-7.0.maven-pom" value="" />
     <property name="libs.absolutelayout.javadoc" value="" />
-    <property name="annotation.processing.processor.options" value="" />
     <property name="libs.jaxb.maven-pom" value="" />
+    <property name="annotation.processing.processor.options" value="" />
     <property name="libs.javaee-api-6.0.maven-pom" value="" />
     <property name="dist.dir" value="dist" />
     <property name="build.dir" value="build" />
@@ -162,8 +164,8 @@
     <property name="apple.laf.useScreenMenuBar" value="true" />
     <property name="user.country" value="SV" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
-    <property name="libs.jpa20-persistence.src" value="" />
     <property name="libs.restapi.javadoc" value="" />
+    <property name="libs.jpa20-persistence.src" value="" />
     <property name="endorsed.classpath" value="" />
     <property name="javac.test.sourcepath" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build\empty" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
@@ -176,9 +178,9 @@
     <property name="junit.available" value="true" />
     <property name="javac.processormodulepath" value="" />
     <property name="javadoc.encoding" value="UTF-8" />
-    <property name="libs.jsp-compilation-syscp.maven-pom" value="" />
-    <property name="libs.jstl.src" value="" />
     <property name="netbeans.hash.code" value="unique=NB_EXTIDE_JAVA_PHP_WEBCOMMON_WEBEE0b0bc0810-9b26-4553-9eb9-2f9a582f4520_708a54d2-5b3d-492e-b601-bb63d9d3d6c3" />
+    <property name="libs.jstl.src" value="" />
+    <property name="libs.jsp-compilation-syscp.maven-pom" value="" />
     <property name="jlink.strip" value="false" />
     <property name="libs.spring-webmvc3.0.classpath" value="" />
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
@@ -190,17 +192,18 @@
     <property name="javac.profile.cmd.line.arg" value="" />
     <property name="&gt;&gt;&gt;&gt;&gt;&gt;&gt;" value="338424a60e30e0704d32483229595a3069f57090" />
     <property name="application.title" value="SalonDeBelleza.AccesoADatos" />
+    <property name="ignore.failing.tests" value="true" />
     <property name="javac.test.modulepath" value="" />
     <property name="libs.PostgreSQLDriver.javadoc" value="" />
     <property name="libs.jsp-compilation-syscp.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jstl-impl.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar" />
     <property name="libs.jsp-compilation.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-2_2\javax.faces.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jstl-api.jar;C:\Program Files\NetBeans-12.0\netbeans\extide\ant\lib\ant-launcher.jar" />
     <property name="libs.javaee-api-6.0.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee-api-6.0.jar" />
-    <property name="javac.includesfile.binary" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\null2114450317" />
+    <property name="javac.includesfile.binary" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\null205980070" />
     <property name="libs.javaee-api-7.0.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee-api-7.0.jar" />
     <property name="sun.cpu.isalist" value="amd64" />
     <property name="libs.restapi.maven-pom" value="" />
-    <property name="do.depend" value="false" />
     <property name="javadoc.preview" value="true" />
+    <property name="do.depend" value="false" />
     <property name="sun.arch.data.model" value="64" />
     <property name="nb.show.statistics.ui" value="usageStatisticsEnabled" />
     <property name="libs.javaee-endorsed-api-7.0.src" value="" />
@@ -214,8 +217,8 @@
     <property name="java.version.date" value="2021-07-20" />
     <property name="java.home" value="C:\Program Files\Eclipse Foundation\jdk-11.0.12.7-hotspot" />
     <property name="work.dir" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos" />
-    <property name="jna.boot.library.name" value="jnidispatch-nb" />
     <property name="javac.test.compilerargs" value="" />
+    <property name="jna.boot.library.name" value="jnidispatch-nb" />
     <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\ide\modules\ext\postgresql-42.2.10.jar" />
     <property name="libs.spring-webmvc3.0.javadoc" value="" />
     <property name="project.SalonDeBelleza_EntidadesDeNegocio" value="../SalonDeBelleza.EntidadesDeNegocio" />
@@ -258,8 +261,8 @@
     <property name="endorsed.classpath.cmd.line.arg" value="" />
     <property name="libs.jpa20-persistence.maven-pom" value="" />
     <property name="build.sysclasspath" value="ignore" />
-    <property name="os.name" value="Windows 10" />
     <property name="libs.CopyLibs.maven-pom" value="" />
+    <property name="os.name" value="Windows 10" />
     <property name="jdkBug6558476" value="false" />
     <property name="javadoc.author" value="false" />
     <property name="http.nonProxyHosts" value="localhost|127.0.0.1|DESKTOP-2IRRBRR" />
@@ -268,8 +271,8 @@
     <property name="jar.compress" value="false" />
     <property name="libs.javaee-api-7.0.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.spring-webmvc5.0.src" value="" />
-    <property name="libs.jsf20.maven-pom" value="" />
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="libs.jsf20.maven-pom" value="" />
     <property name="libs.restlib.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\asm-all-repackaged-2.2.0-b21.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\cglib-2.2.0-b21.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\guava-14.0.1.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\hk2-api-2.2.0-b21.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\hk2-locator-2.2.0-b21.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\hk2-utils-2.2.0-b21.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\javax.annotation-api-1.2.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\javax.inject-2.2.0-b21.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\javax.servlet-api-3.0.1.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\jaxb-api-2.2.7.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\jersey-entity-filtering-2.5.1.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\jersey-media-moxy-2.5.1.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\org.osgi.core-4.2.0.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\osgi-resource-locator-1.0.1.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\persistence-api-1.0.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\ext\validation-api-1.1.0.Final.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\jersey-client.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\jersey-common.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\jersey-container-servlet.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\jersey-container-servlet-core.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jersey2\jersey-server.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.core-2.5.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.asm-2.5.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.antlr-2.5.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.jpa-2.5.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql-2.5.2.jar" />
     <property name="apple.awt.graphics.UseQuartz" value="true" />
     <property name="run.jvmargs" value="" />
@@ -283,10 +286,10 @@
     <property name="libs.jaxws21.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\java\docs\jaxws-api-doc.zip" />
     <property name="libs.spring-framework400.maven-pom" value="" />
     <property name="ap.processors.internal" value="" />
-    <property name="libs.spring-webmvc5.0.javadoc" value="" />
     <property name="libs.jsf12.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-1_2\jsf-api.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jsf-1_2\jsf-impl.jar" />
-    <property name="libs.hamcrest.javadoc" value="" />
+    <property name="libs.spring-webmvc5.0.javadoc" value="" />
     <property name="libs.spring-framework400.javadoc" value="" />
+    <property name="libs.hamcrest.javadoc" value="" />
     <property name="libs.javac-api.src" value="" />
     <property name="do.jar" value="true" />
     <property name="java.vm.info" value="mixed mode" />
@@ -294,15 +297,15 @@
     <property name="libs.jaxws21.maven-pom" value="" />
     <property name="run.test.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\hamcrest-core-1.3.jar:build/test/classes" />
     <property name="dist.jlink.output" value="dist/jlink/SalonDeBelleza.AccesoADatos" />
-    <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="java.class.version" value="55.0" />
+    <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="src.dir" value="src" />
-    <property name="debug.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes" />
     <property name="ant.project.default-target" value="default" />
+    <property name="debug.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes" />
     <property name="excludes" value="" />
     <property name="libs.javaee-api-7.0.src" value="" />
-    <property name="libs.junit_4.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\platform\docs\junit-4.12-javadoc.jar" />
     <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="libs.junit_4.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\platform\docs\junit-4.12-javadoc.jar" />
     <property name="run.test.jvmargs" value="" />
     <property name="libs.spring-webmvc4.0.src" value="" />
     <property name="sun.java2d.dpiaware" value="true" />
@@ -316,17 +319,16 @@
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="javadoc.additionalparam" value="" />
     <property name="libs.spring-webmvc5.0.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webmvc-5.2.2.RELEASE.jar" />
-    <property name="test.method" value="test5Modificar" />
-    <property name="libs.restlib.maven-pom" value="" />
     <property name="javac.debug" value="true" />
+    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.testng.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\testng-6.8.1-dist.jar" />
     <property name="libs.jsp-compiler.src" value="" />
     <property name="user.name" value="Saul" />
-    <property name="libs.maven-dependencies.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
     <property name="build.classes.dir" value="build/classes" />
+    <property name="libs.maven-dependencies.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
+    <property name="nb.junit.single" value="false" />
     <property name="javadoc.windowtitle" value="" />
-    <property name="nb.junit.single" value="true" />
-    <property name="nb.internal.action.name" value="run.single.method" />
+    <property name="nb.internal.action.name" value="test.single" />
     <property name="libs.javaee-api-8.0.maven-pom" value="" />
     <property name="libs.jaxws21.src" value="" />
     <property name="libs.maven-dependencies.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee6-endorsed\javax.annotation.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee6-endorsed\jaxb-api-osgi.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\javaee6-endorsed\webservices-api-osgi.jar" />
@@ -338,17 +340,17 @@
     <property name="ant.file.SalonDeBelleza.AccesoADatos" value="C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\SalonDeBelleza.AccesoADatos\build.xml" />
     <property name="ant.home" value="C:\Program Files\NetBeans-12.0\netbeans\extide\ant" />
     <property name="libs.spring-webmvc3.0.src" value="" />
-    <property name="debug.test.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\hamcrest-core-1.3.jar:build/test/classes" />
     <property name="javac.external.vm" value="true" />
     <property name="have.tests" value="true" />
+    <property name="debug.test.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar:build/classes:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans-12.0\netbeans\platform\modules\ext\hamcrest-core-1.3.jar:build/test/classes" />
     <property name="testng.debug.mode" value="" />
     <property name="javac.target" value="1.8" />
     <property name="ant.version" value="Apache Ant(TM) version 1.10.4 compiled on June 19 2018" />
     <property name="libs.absolutelayout.maven-pom" value="" />
     <property name="jdk.gtk.version" value="2.2" />
     <property name="java.failonerror" value="true" />
-    <property name="javac.modulepath" value="" />
     <property name="libs.spring-framework500.src" value="" />
+    <property name="javac.modulepath" value="" />
     <property name="user.properties.file" value="C:\Users\Saul\AppData\Roaming\NetBeans\12.0\build.properties" />
     <property name="libs.javaee-api-6.0.src" value="" />
     <property name="javac.includes" value="salondebelleza/accesoadatos/CitaDALIT.java" />
@@ -381,10 +383,10 @@
     <property name="jlink.additionalmodules" value="" />
     <property name="javac.classpath" value="../SalonDeBelleza.EntidadesDeNegocio/dist/SalonDeBelleza.EntidadesDeNegocio.jar:C:\Users\Saul\Documents\NetBeansProjects\SalonDeBellezaJavaEE\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre11.jar:..\sqljdbc_9.2\enu\mssql-jdbc-9.2.1.jre8.jar" />
     <property name="dist.jlink.dir" value="dist/jlink" />
-    <property name="nb.junit.batch" value="false" />
+    <property name="nb.junit.batch" value="true" />
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="libs.spring-framework300.maven-pom" value="" />
-    <property name="ant.project.invoked-targets" value="test-single-method" />
+    <property name="ant.project.invoked-targets" value="test-single" />
     <property name="libs.jstl.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jstl-impl.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jstl-api.jar" />
     <property name="ap.cmd.line.internal" value="" />
     <property name="libs.PostgreSQLDriver.src" value="" />
@@ -397,22 +399,44 @@
     <property name="libs.eclipselink.src" value="" />
     <property name="java.vm.version" value="11.0.12+7" />
     <property name="libs.metro.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-api-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-extra-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-extra-api-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-rt-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-tools-javadoc.jar" />
-    <property name="test.class" value="salondebelleza.accesoadatos.CitaDALIT" />
     <property name="sun.awt.datatransfer.timeout" value="1000" />
-    <property name="annotation.processing.run.all.processors" value="true" />
-    <property name="libs.javaee-web-api-7.0.src" value="" />
-    <property name="junit.forkmode" value="perTest" />
+    <property name="test.class" value="salondebelleza.accesoadatos.CitaDALIT" />
     <property name="libs.jsp-compiler.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\ant\extra\jspcompile.jar" />
+    <property name="libs.javaee-web-api-7.0.src" value="" />
+    <property name="annotation.processing.run.all.processors" value="true" />
+    <property name="junit.forkmode" value="perTest" />
   </properties>
-  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test5Modificar" time="0.014">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at salondebelleza.accesoadatos.CitaDALIT.test5Modificar(CitaDALIT.java:132)
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test1Crear" time="0.003" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test2QuerySelect" time="0.004" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test3Buscar" time="1.9" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test4ObtenerPorId" time="0.587" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test5Modificar" time="0.663" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test6ObtenerTodos" time="0.739" />
+  <testcase classname="salondebelleza.accesoadatos.CitaDALIT" name="test7Eliminar" time="0.77">
+    <error message="The DELETE statement conflicted with the REFERENCE constraint &quot;FK1_Cita_DetalleCita&quot;. The conflict occurred in database &quot;eliqsv_salonbelleza2&quot;, table &quot;dbo.DetalleCita&quot;, column &apos;IdCita&apos;." type="com.microsoft.sqlserver.jdbc.SQLServerException">com.microsoft.sqlserver.jdbc.SQLServerException: The DELETE statement conflicted with the REFERENCE constraint &quot;FK1_Cita_DetalleCita&quot;. The conflict occurred in database &quot;eliqsv_salonbelleza2&quot;, table &quot;dbo.DetalleCita&quot;, column &apos;IdCita&apos;.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:262)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1632)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:602)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:524)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7418)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:3272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:247)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:222)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:473)
+	at salondebelleza.accesoadatos.CitaDAL.eliminar(CitaDAL.java:105)
+	at salondebelleza.accesoadatos.CitaDALIT.test7Eliminar(CitaDALIT.java:170)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 </error>
   </testcase>
-  <system-out><![CDATA[modificar
+  <system-out><![CDATA[crear
+querySelect
+buscar
+obtenerPorId
+modificar
+obtenerTodos
+eliminar
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -40,14 +40,16 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "INSERT INTO Cita(IdUsuario,IdCliente,FechaRegistrada,FechaCita,Total,Estado) VALUES(?,?,?,?,?,?)"; // Definir la consulta INSERT a la tabla de Rol utilizando el simbolo ? para enviar parametros
+//            sql = "INSERT INTO Cita(IdUsuario,IdCliente,FechaRegistrada,FechaCita,Total,Estado) VALUES(?,?,?,?,?,?)";
+        sql = "INSERT INTO Cita(IdUsuario,IdCliente,Total,Estado) VALUES(?,?,?,?)";            
+
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
 //                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
 //                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
                 ps.setDouble(3, pCita.getTotal()); 
-                 ps.setShort(4, pCita.getEstado()); 
+                 ps.setByte(4, pCita.getEstado()); 
                   
                // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
@@ -67,14 +69,19 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "UPDATE Cita SET IdUsuario=?,IdCliente=?,Total=?,Estado=? WHERE Id=?"; // Definir la consulta UPDATE a la tabla de Rol utilizando el simbolo ? para enviar parametros
+//            sql = "UPDATE Cita SET IdUsuario=?,IdCliente,Total=?,Estado=? WHERE Id=?";
+             sql = "UPDATE Cita SET Total=?,Estado=? WHERE Id=?";
+// Definir la consulta UPDATE a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
-                ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
-                ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
+//                ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
+//                ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
              //   ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
                // ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
-                ps.setDouble(3, pCita.getTotal()); 
-                 ps.setByte(4, pCita.getEstado());
+                ps.setDouble(1, pCita.getTotal()); 
+                 ps.setByte(2, pCita.getEstado());
+                 
+                  ps.setInt(3, pCita.getId());
+                 
                   result = ps.executeUpdate(); 
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
@@ -117,8 +124,10 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         pCita.setIdUsuario(pResultSet.getInt(pIndex)); // index 1
         pIndex++;
         pCita.setIdCliente(pResultSet.getInt(pIndex)); // index 2
+        
 //        pIndex++;
 //        pCita.setTotal(pResultSet.getDouble(pIndex)); // index 
+        
         pIndex++;
         pCita.setEstado(pResultSet.getByte(pIndex)); // index 2    
         return pIndex;

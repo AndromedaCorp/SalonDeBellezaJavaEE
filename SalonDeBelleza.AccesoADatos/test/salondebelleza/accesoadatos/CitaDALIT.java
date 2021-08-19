@@ -58,7 +58,7 @@ public class CitaDALIT {
 //        cita.setFechaRegistrada(LocalDate.now());
 //        cita.setFechaCita(LocalDate.now());
         cita.setTotal(1);
-        cita.setEstado(Usuario.EstadoUsuario.INACTIVO);   
+        cita.setEstado(Cita.EstadoCita.INACTIVO);   
         cita.setTop_aux(1);
 //        Rol rolB = new Rol();
 //        rolB.setTop_aux(1);
@@ -103,7 +103,7 @@ public class CitaDALIT {
         Cita cita = new Cita();
 //         usuario.setIdrol(1);
 //        cita.setTotal(1);
-        cita.setEstado(Cita.EstadoUsuario.ACTIVO);
+        cita.setEstado(Cita.EstadoCita.INACTIVO);
         cita.setTop_aux(1);
         ArrayList<Cita> result = CitaDAL.buscar(cita);
 //        ArrayList<Cita> result = new ArrayList(CitaDAL.crear(cita));
@@ -127,23 +127,26 @@ public class CitaDALIT {
      */ 
     @Test
     public void test5Modificar() throws Exception {
-        System.out.println("modificar");
+   System.out.println("modificar");
         Cita cita = new Cita();
-        cita.setId(citaActual.getId());
-        cita.setTotal(1);           
-        cita.setEstado(Cita.EstadoUsuario.ACTIVO);
-//        Cliente clienteB = new Cliente();
-//        clienteB.setTop_aux(1);
-//        cita.setIdCliente(ClienteDAL.buscar(clienteB).get(1).getId());
-//        Usuario usuarioB = new Usuario();
-//        usuarioB.setTop_aux(1);
-//        cita.setIdUsuario(UsuarioDAL.buscar(usuarioB).get(1).getId());
+        cita.setId(citaActual.getId());     
+        cita.setTotal(10);
+        cita.setEstado(Cita.EstadoCita.ACTIVO);  
+        cita.setTop_aux(1);
+      
+//        Cliente idCliente = ntksew Cliente();
+//        idCliente.setTop_aux(1);
+//        cita.setIdCliente(ClienteDAL.buscar(idCliente).get(1).getId());
+        
+//        Usuario idUsuario = new Usuario();
+//        idUsuario.setTop_aux(1);
+//        cita.setIdUsuario(UsuarioDAL.buscar(idUsuario).get(1).getId());
+        
         int expResult = 0;
         int result = CitaDAL.modificar(cita);
         assertNotEquals(expResult, result);
 //        Cita citaUpdate = CitaDAL.obtenerPorId(citaActual);
-//        assertTrue(citaUpdate.getLogin().equals(cita.getLogin()));
-
+//        assertTrue(usuarioUpdate.getLogin().equals(usuario.getLogin()));
      
     }
     
