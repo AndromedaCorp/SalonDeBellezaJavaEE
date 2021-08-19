@@ -44,7 +44,7 @@ public class DetalleCitaDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pDetalleCita.getIdCita()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pDetalleCita.getIdServicio()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                ps.setFloat(3, pDetalleCita.getPrecio()); 
+                ps.setDouble(3, pDetalleCita.getPrecio()); 
                  ps.setDouble(4, pDetalleCita.getDuracion()); 
                   
                // Agregar el parametro a la consulta donde estan el simbolo ? #1
@@ -70,7 +70,7 @@ public class DetalleCitaDAL {
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pDetalleCita.getIdCita()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pDetalleCita.getIdServicio()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                ps.setFloat(3, pDetalleCita.getPrecio()); 
+                ps.setDouble(3, pDetalleCita.getPrecio()); 
                  ps.setDouble(4, pDetalleCita.getDuracion()); 
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
@@ -274,7 +274,7 @@ public class DetalleCitaDAL {
             pUtilQuery.AgregarWhereAnd(" d.Precio=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
-                statement.setFloat(pUtilQuery.getNumWhere(), pDetalleCita.getPrecio());
+                statement.setDouble(pUtilQuery.getNumWhere(), pDetalleCita.getPrecio());
             }
         }
         

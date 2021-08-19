@@ -50,10 +50,10 @@ public class CitaDALIT {
      */
     @Test
     public void test1Crear() throws Exception {   
-          int randomNum = (int) (Math.random() * 1000);      
+             
         System.out.println("crear");
         Cita cita = new Cita();
-        cita.setIdUsuario(randomNum);
+        cita.setIdUsuario(1);
         cita.setIdCliente(1);
 //        cita.setFechaRegistrada(LocalDate.now());
 //        cita.setFechaCita(LocalDate.now());
@@ -130,13 +130,13 @@ public class CitaDALIT {
         System.out.println("modificar");
         Cita cita = new Cita();
         cita.setId(citaActual.getId());
-        cita.setTotal(2);           
-        cita.setEstado(Cita.EstadoUsuario.INACTIVO);
+        cita.setTotal(1);           
+        cita.setEstado(Cita.EstadoUsuario.ACTIVO);
 //        Cliente clienteB = new Cliente();
-//        clienteB.setTop_aux(2);
+//        clienteB.setTop_aux(1);
 //        cita.setIdCliente(ClienteDAL.buscar(clienteB).get(1).getId());
 //        Usuario usuarioB = new Usuario();
-//        usuarioB.setTop_aux(2);
+//        usuarioB.setTop_aux(1);
 //        cita.setIdUsuario(UsuarioDAL.buscar(usuarioB).get(1).getId());
         int expResult = 0;
         int result = CitaDAL.modificar(cita);
