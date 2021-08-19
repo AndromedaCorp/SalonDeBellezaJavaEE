@@ -22,7 +22,8 @@ public class FrmServicioEsc extends javax.swing.JFrame {
             servicioActual = ServicioDAL.obtenerPorId(pServicio); // Obtener el Servicio por Id 
             this.txtNombre.setText(servicioActual.getNombre()); // Llenar la caja de texto txtNombre con el nombre del servicio
             this.txtDescripcion.setText(servicioActual.getDescripcion());
-            this.txtPrecioServicio.setText(Double.toString(servicioActual.getPrecioServicio()));
+            this.txtPrecio.setText(Double.toString(servicioActual.getPrecio()));
+            this.txtDuracion.setText(Double.toString(servicioActual.getDuracion()));
         } catch (Exception ex) {
             // Enviar el mensaje al usuario de la pantalla en el caso que suceda un error al obtener los datos de la base de datos
             JOptionPane.showMessageDialog(frmPadre, "Sucedio el siguiente error: " + ex.getMessage());
@@ -35,7 +36,7 @@ public class FrmServicioEsc extends javax.swing.JFrame {
         opcionForm = pOpcionForm;
         this.txtNombre.setEditable(true); // colocar txtNombre que se pueda editar
         this.txtDescripcion.setEditable(true);
-        this.txtPrecioServicio.setEditable(true);
+        this.txtPrecio.setEditable(true);
         switch (pOpcionForm) {
             case FormEscOpcion.CREAR:
                 btnOk.setText("Nuevo"); // modificar el texto del boton btnOk a "Nuevo" cuando la pOpcionForm sea CREAR
@@ -54,7 +55,7 @@ public class FrmServicioEsc extends javax.swing.JFrame {
                 this.setTitle("Eliminar el Servicio"); // modificar el titulo de la pantalla de FrmServicioEsc
                 this.txtNombre.setEditable(false); // deshabilitar la caja de texto txtNombre
                 this.txtDescripcion.setEditable(false);
-                this.txtPrecioServicio.setEditable(false);
+                this.txtPrecio.setEditable(false);
                 llenarControles(pServicio);
                 break;
             case FormEscOpcion.VER:
@@ -63,7 +64,7 @@ public class FrmServicioEsc extends javax.swing.JFrame {
                 this.setTitle("Ver el Servicio"); // modificar el titulo de la pantalla de FrmRolEsc
                 this.txtNombre.setEditable(false); // deshabilitar la caja de texto txtNombre
                 this.txtDescripcion.setEditable(false);
-                this.txtPrecioServicio.setEditable(false);
+                this.txtPrecio.setEditable(false);
                 llenarControles(pServicio);
                 break;
             default:
@@ -81,7 +82,7 @@ public class FrmServicioEsc extends javax.swing.JFrame {
         if (this.txtDescripcion.getText().trim().isEmpty()) {
             result = false; // en el caso que la caja de texto este vacia se colocara la variable resul en false
         }
-        if (this.txtPrecioServicio.getText().trim().isEmpty()) {
+        if (this.txtPrecio.getText().trim().isEmpty()) {
             result = false; // en el caso que la caja de texto este vacia se colocara la variable resul en false
         }
         if (result == false) {
@@ -117,7 +118,8 @@ public class FrmServicioEsc extends javax.swing.JFrame {
     private void llenarEntidadConLosDatosDeLosControles() {
         servicioActual.setNombre(this.txtNombre.getText()); // Llenar la propiedad de Nombre de la entidad de Servicio con el valor de la caja de texto txtNombre
         servicioActual.setDescripcion(this.txtDescripcion.getText());
-        servicioActual.setPrecioServicio(Double.parseDouble(this.txtPrecioServicio.getText()));
+        servicioActual.setPrecio(Double.parseDouble(this.txtPrecio.getText()));
+        servicioActual.setDuracion(Double.parseDouble(this.txtDuracion.getText()));
     }
 //
     // metodo para cerrar el formulario FrmRolEsc 
@@ -207,9 +209,11 @@ public class FrmServicioEsc extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
-        txtPrecioServicio = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         btnOk = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtDuracion = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Servicio");
@@ -239,6 +243,10 @@ public class FrmServicioEsc extends javax.swing.JFrame {
             }
         });
 
+        txtDuracion.setName(""); // NOI18N
+
+        jLabel4.setText("Duracion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,9 +266,15 @@ public class FrmServicioEsc extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrecioServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(379, 379, 379)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -274,15 +288,19 @@ public class FrmServicioEsc extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPrecioServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOk)
                     .addComponent(btnCancelar))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -314,8 +332,10 @@ public class FrmServicioEsc extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecioServicio;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }
