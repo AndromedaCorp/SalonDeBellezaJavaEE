@@ -11,5 +11,8 @@
         <group>
             <file>file:/C:/PROYECTOS/repos/SalonDeBelleza/SalonDeBellezaJavaEE/SalonDeBelleza.EntidadesDeNegocio/src/salondebelleza/entidadesdenegocio/Servicio.java</file>
         </group>
+        <group name="SalonBellezaEE">
+            <file>file:/C:/Proyectos/SalonDeBellezaJavaEE/SalonDeBelleza.EntidadesDeNegocio/src/salondebelleza/entidadesdenegocio/Usuario.java</file>
+        </group>
     </open-files>
 </project-private>
