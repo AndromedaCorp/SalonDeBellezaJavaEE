@@ -116,7 +116,7 @@ public class Cita {
         this.usuarios = usuarios;
     }
 
-      public class EstadoUsuario {
+      public class EstadoCita {
 
         public static final byte ACTIVO = 1;
         public static final byte INACTIVO = 2;

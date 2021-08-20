@@ -50,15 +50,16 @@ public class CitaDALIT {
      */
     @Test
     public void test1Crear() throws Exception {   
-          int randomNum = (int) (Math.random() * 1000);      
+             
         System.out.println("crear");
         Cita cita = new Cita();
-        cita.setIdUsuario(randomNum);
+        cita.setIdUsuario(1);
         cita.setIdCliente(1);
-        cita.setFechaRegistrada(LocalDate.now());
-        cita.setFechaCita(LocalDate.now());
-        cita.setTotal(1.5);
-        cita.setEstado(Usuario.EstadoUsuario.INACTIVO);        
+//        cita.setFechaRegistrada(LocalDate.now());
+//        cita.setFechaCita(LocalDate.now());
+        cita.setTotal(1);
+        cita.setEstado(Cita.EstadoCita.INACTIVO);   
+        cita.setTop_aux(1);
 //        Rol rolB = new Rol();
 //        rolB.setTop_aux(1);
 //        cita.setIdrol(RolDAL.buscar(rolB).get(0).getId());
@@ -85,7 +86,7 @@ public class CitaDALIT {
         assertTrue(testIndividualQuerySelect(pCita) == 1);
         pCita.setIdUsuario(1);
         assertTrue(testIndividualQuerySelect(pCita) == 2);
-        pCita.setTotal(1.1);
+        pCita.setTotal(1);
         assertTrue(testIndividualQuerySelect(pCita) == 3);
          pCita.setEstado((byte) 1);
         assertTrue(testIndividualQuerySelect(pCita) == 4);
@@ -101,9 +102,9 @@ public class CitaDALIT {
         
         Cita cita = new Cita();
 //         usuario.setIdrol(1);
-        cita.setTotal(1.0);
-        cita.setEstado(Cita.EstadoUsuario.INACTIVO);
-        cita.setTop_aux(10);
+        cita.setTotal(1);
+        cita.setEstado(Cita.EstadoCita.INACTIVO);
+        cita.setTop_aux(1);
         ArrayList<Cita> result = CitaDAL.buscar(cita);
 //        ArrayList<Cita> result = new ArrayList(CitaDAL.crear(cita));
 //        System.out.println(result.get(0));
@@ -126,23 +127,26 @@ public class CitaDALIT {
      */ 
     @Test
     public void test5Modificar() throws Exception {
-        System.out.println("modificar");
+   System.out.println("modificar");
         Cita cita = new Cita();
-        cita.setId(citaActual.getId());
-        cita.setTotal(1.4);           
-        cita.setEstado(Cita.EstadoUsuario.ACTIVO);
-        Cliente clienteB = new Cliente();
-        clienteB.setTop_aux(2);
-        cita.setIdCliente(ClienteDAL.buscar(clienteB).get(1).getId());
-        Usuario usuarioB = new Usuario();
-        usuarioB.setTop_aux(2);
-        cita.setIdUsuario(UsuarioDAL.buscar(usuarioB).get(1).getId());
+        cita.setId(citaActual.getId());     
+        cita.setTotal(10);
+        cita.setEstado(Cita.EstadoCita.ACTIVO);  
+        cita.setTop_aux(1);
+      
+//        Cliente idCliente = new Cliente();
+//        idCliente.setTop_aux(1);
+//        cita.setIdCliente(ClienteDAL.buscar(idCliente).get(1).getId());
+        
+//        Usuario idUsuario = new Usuario();
+//        idUsuario.setTop_aux(1);
+//        cita.setIdUsuario(UsuarioDAL.buscar(idUsuario).get(1).getId());
+        
         int expResult = 0;
         int result = CitaDAL.modificar(cita);
         assertNotEquals(expResult, result);
 //        Cita citaUpdate = CitaDAL.obtenerPorId(citaActual);
-//        assertTrue(citaUpdate.getLogin().equals(cita.getLogin()));
-
+//        assertTrue(usuarioUpdate.getLogin().equals(usuario.getLogin()));
      
     }
     

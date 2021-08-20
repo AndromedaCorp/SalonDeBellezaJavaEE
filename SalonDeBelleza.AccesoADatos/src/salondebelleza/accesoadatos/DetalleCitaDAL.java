@@ -115,7 +115,7 @@ public class DetalleCitaDAL {
         pIndex++;
         pDetalleCita.setIdServicio(pResultSet.getInt(pIndex)); // index 2
         pIndex++;
-        pDetalleCita.setPrecio(pResultSet.getFloat(pIndex)); // index 2
+        pDetalleCita.setPrecio(pResultSet.getDouble(pIndex)); // index 2
         pIndex++;
         pDetalleCita.setDuracion(pResultSet.getDouble(pIndex)); // index 2
         return pIndex;
@@ -315,6 +315,80 @@ public class DetalleCitaDAL {
         } 
         catch (SQLException ex) {
             throw ex; // Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
+        }
+        return detallecitas; // Devolver el ArrayList de Usuario
+    }
+    
+    
+    // Metodo para obtener todos los registro de la tabla de Usuario que cumplan con los filtros agregados 
+     // a la consulta SELECT de la tabla de Usuario 
+    public static ArrayList<DetalleCita> buscarIncluirCita(DetalleCita pDetalleCita) throws Exception {
+        ArrayList<DetalleCita> detallecitas = new ArrayList();
+        try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
+            String sql = "SELECT "; // Iniciar la variables para el String de la consulta SELECT
+            if (pDetalleCita.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+                sql += "TOP " + pDetalleCita.getTop_aux() + " "; // Agregar el TOP en el caso que se este utilizando SQL SERVER
+            }
+            sql += obtenerCampos(); // Obtener los campos de la tabla de Usuario que iran en el SELECT
+            sql += ",";
+            sql += RolDAL.obtenerCampos(); // Obtener los campos de la tabla de Rol que iran en el SELECT
+            sql += " FROM DetalleCita d";
+            sql += " JOIN Cita c on (d.IdCita=c.Id)"; // agregar el join para unir la tabla de Usuario con Rol
+            ComunDB comundb = new ComunDB();
+            ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);
+            querySelect(pDetalleCita, utilQuery); // Asignar el filtro a la consulta SELECT de la tabla de Usuario 
+            sql = utilQuery.getSQL();
+            sql += agregarOrderBy(pDetalleCita); // Concatenar a la consulta SELECT de la tabla Usuario el ORDER BY por Id
+            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
+                utilQuery.setStatement(ps);
+                utilQuery.setSQL(null);
+                utilQuery.setNumWhere(0);
+                querySelect(pDetalleCita, utilQuery); // Asignar los parametros al PreparedStatement de la consulta SELECT de la tabla de Usuario
+                obtenerDatosIncluirCita(ps, detallecitas);// Llenar el ArrayList de Usuario con las fila que devolvera la consulta SELECT a la tabla de Usuario
+                ps.close(); // Cerrar el PreparedStatement
+            } catch (SQLException ex) {
+                throw ex;// Enviar al siguiente metodo el error al ejecutar PreparedStatement en el caso que suceda
+            }
+            conn.close(); // Cerrar la conexion a la base de datos
+        } catch (SQLException ex) {
+            throw ex;// Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
+        }
+        return detallecitas; // Devolver el ArrayList de Usuario
+    }
+    
+    
+    // Metodo para obtener todos los registro de la tabla de Usuario que cumplan con los filtros agregados 
+     // a la consulta SELECT de la tabla de Usuario 
+    public static ArrayList<DetalleCita> buscarIncluirServicio(DetalleCita pDetalleCita) throws Exception {
+        ArrayList<DetalleCita> detallecitas = new ArrayList();
+        try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
+            String sql = "SELECT "; // Iniciar la variables para el String de la consulta SELECT
+            if (pDetalleCita.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+                sql += "TOP " + pDetalleCita.getTop_aux() + " "; // Agregar el TOP en el caso que se este utilizando SQL SERVER
+            }
+            sql += obtenerCampos(); // Obtener los campos de la tabla de Usuario que iran en el SELECT
+            sql += ",";
+            sql += RolDAL.obtenerCampos(); // Obtener los campos de la tabla de Rol que iran en el SELECT
+            sql += " FROM DetalleCita d";
+            sql += " JOIN Servicio s on (d.IdServicio=s.Id)"; // agregar el join para unir la tabla de Usuario con Rol
+            ComunDB comundb = new ComunDB();
+            ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);
+            querySelect(pDetalleCita, utilQuery); // Asignar el filtro a la consulta SELECT de la tabla de Usuario 
+            sql = utilQuery.getSQL();
+            sql += agregarOrderBy(pDetalleCita); // Concatenar a la consulta SELECT de la tabla Usuario el ORDER BY por Id
+            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
+                utilQuery.setStatement(ps);
+                utilQuery.setSQL(null);
+                utilQuery.setNumWhere(0);
+                querySelect(pDetalleCita, utilQuery); // Asignar los parametros al PreparedStatement de la consulta SELECT de la tabla de Usuario
+                obtenerDatosIncluirServicio(ps, detallecitas);// Llenar el ArrayList de Usuario con las fila que devolvera la consulta SELECT a la tabla de Usuario
+                ps.close(); // Cerrar el PreparedStatement
+            } catch (SQLException ex) {
+                throw ex;// Enviar al siguiente metodo el error al ejecutar PreparedStatement en el caso que suceda
+            }
+            conn.close(); // Cerrar la conexion a la base de datos
+        } catch (SQLException ex) {
+            throw ex;// Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
         }
         return detallecitas; // Devolver el ArrayList de Usuario
     }
