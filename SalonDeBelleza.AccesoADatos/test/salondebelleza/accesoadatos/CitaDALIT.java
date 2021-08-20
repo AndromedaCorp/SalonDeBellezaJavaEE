@@ -102,7 +102,7 @@ public class CitaDALIT {
         
         Cita cita = new Cita();
 //         usuario.setIdrol(1);
-//        cita.setTotal(1);
+        cita.setTotal(1);
         cita.setEstado(Cita.EstadoCita.INACTIVO);
         cita.setTop_aux(1);
         ArrayList<Cita> result = CitaDAL.buscar(cita);
@@ -134,7 +134,7 @@ public class CitaDALIT {
         cita.setEstado(Cita.EstadoCita.ACTIVO);  
         cita.setTop_aux(1);
       
-//        Cliente idCliente = ntksew Cliente();
+//        Cliente idCliente = new Cliente();
 //        idCliente.setTop_aux(1);
 //        cita.setIdCliente(ClienteDAL.buscar(idCliente).get(1).getId());
         
