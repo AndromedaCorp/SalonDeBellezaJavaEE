@@ -34,6 +34,7 @@ public class FrmInicio extends javax.swing.JFrame {
         meUsuario = new javax.swing.JMenuItem();
         meServicio = new javax.swing.JMenuItem();
         meCliente = new javax.swing.JMenuItem();
+        meCita = new javax.swing.JMenuItem();
         meCambiarPassword = new javax.swing.JMenu();
         meCambiarUsuario = new javax.swing.JMenu();
         meSalir = new javax.swing.JMenu();
@@ -77,17 +78,25 @@ public class FrmInicio extends javax.swing.JFrame {
         });
         meMantenimiento.add(meCliente);
 
+        meCita.setText("Cita");
+        meCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meCitaActionPerformed(evt);
+            }
+        });
+        meMantenimiento.add(meCita);
+
         meInicio.add(meMantenimiento);
 
         meCambiarPassword.setMnemonic('P');
         meCambiarPassword.setText(" CambiarPassword");
         meCambiarPassword.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                meCambiarPasswordMenuSelected(evt);
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                meCambiarPasswordMenuSelected(evt);
             }
         });
         meInicio.add(meCambiarPassword);
@@ -95,12 +104,12 @@ public class FrmInicio extends javax.swing.JFrame {
         meCambiarUsuario.setMnemonic('C');
         meCambiarUsuario.setText("CambiarUsuario");
         meCambiarUsuario.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                meCambiarUsuarioMenuSelected(evt);
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                meCambiarUsuarioMenuSelected(evt);
             }
         });
         meInicio.add(meCambiarUsuario);
@@ -108,12 +117,12 @@ public class FrmInicio extends javax.swing.JFrame {
         meSalir.setMnemonic('S');
         meSalir.setText("Salir");
         meSalir.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                meSalirMenuSelected(evt);
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                meSalirMenuSelected(evt);
             }
         });
         meInicio.add(meSalir);
@@ -186,10 +195,18 @@ public class FrmInicio extends javax.swing.JFrame {
       this.setEnabled(false);
     }//GEN-LAST:event_meClienteActionPerformed
 
+    private void meCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meCitaActionPerformed
+        // TODO add your handling code here:
+        FrmCitaLec frmCitaLec = new FrmCitaLec(this);
+        frmCitaLec.setVisible(true);
+        this.setEnabled(false);
+    }//GEN-LAST:event_meCitaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu meCambiarPassword;
     private javax.swing.JMenu meCambiarUsuario;
+    private javax.swing.JMenuItem meCita;
     private javax.swing.JMenuItem meCliente;
     private javax.swing.JMenuBar meInicio;
     private javax.swing.JMenu meMantenimiento;

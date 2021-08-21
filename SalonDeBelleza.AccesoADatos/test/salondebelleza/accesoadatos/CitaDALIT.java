@@ -21,7 +21,7 @@ import salondebelleza.entidadesdenegocio.Cliente;
 import salondebelleza.entidadesdenegocio.Rol;
 import salondebelleza.entidadesdenegocio.Usuario;
 
-;
+import java.util.Date;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CitaDALIT {
@@ -48,6 +48,8 @@ public class CitaDALIT {
      /**
      * Test of crear method, of class ServicioDAL.
      */
+    Date fecha = new Date(2010,12,12);
+    
     @Test
     public void test1Crear() throws Exception {   
              
@@ -55,8 +57,9 @@ public class CitaDALIT {
         Cita cita = new Cita();
         cita.setIdUsuario(1);
         cita.setIdCliente(1);
-//        cita.setFechaRegistrada(LocalDate.now());
-//        cita.setFechaCita(LocalDate.now());
+        cita.setFechaRegistrada(LocalDate.now());
+        cita.setFechaCita(fecha);
+        cita.setFechaCitaRealizada(fecha);
         cita.setTotal(1);
         cita.setEstado(Cita.EstadoCita.INACTIVO);   
         cita.setTop_aux(1);

@@ -40,16 +40,16 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-//            sql = "INSERT INTO Cita(IdUsuario,IdCliente,FechaRegistrada,FechaCita,Total,Estado) VALUES(?,?,?,?,?,?)";
-        sql = "INSERT INTO Cita(IdUsuario,IdCliente,Total,Estado) VALUES(?,?,?,?)";            
+            sql = "INSERT INTO Cita(IdUsuario,IdCliente,FechaRegistrada,Total,Estado) VALUES(?,?,?,?,?)";
+//        sql = "INSERT INTO Cita(IdUsuario,IdCliente,Total,Estado) VALUES(?,?,?,?)";            
 
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-//                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
+                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
 //                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
-                ps.setDouble(3, pCita.getTotal()); 
-                 ps.setByte(4, pCita.getEstado()); 
+                ps.setDouble(4, pCita.getTotal()); 
+                 ps.setByte(5, pCita.getEstado()); 
                   
                // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
@@ -144,6 +144,58 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
             resultSet.close(); // Cerrar el ResultSet
         } catch (SQLException ex) {
             throw ex; // Enviar al siguiente metodo el error al obtener ResultSet de la clase ComunDB   en el caso que suceda 
+        }
+    }
+    
+    // Metodo para  ejecutar el ResultSet de la consulta SELECT a la tabla de Usuario y JOIN a la tabla de Rol
+    private static void obtenerDatosIncluirUsuario(PreparedStatement pPS, ArrayList<Cita> pCitas) throws Exception {
+        try (ResultSet resultSet = ComunDB.obtenerResultSet(pPS);) { // obtener el ResultSet desde la clase ComunDB
+            HashMap<Integer, Usuario> usuarioMap = new HashMap(); //crear un HashMap para automatizar la creacion de instancias de la clase Rol
+            while (resultSet.next()) { // Recorrer cada una de la fila que regresa la consulta  SELECT de la tabla Usuario JOIN a la tabla de Rol
+                Cita cita = new Cita();
+                 // Llenar las propiedaddes de la Entidad Usuario con los datos obtenidos de la fila en el ResultSet
+                int index = asignarDatosResultSet(cita, resultSet, 0);
+                if (usuarioMap.containsKey(cita.getIdUsuario()) == false) { // verificar que el HashMap aun no contenga el Rol actual
+                    Usuario usuario = new Usuario();
+                    // en el caso que el Rol no este en el HashMap se asignara
+                    UsuarioDAL.asignarDatosResultSet(usuario, resultSet, index);
+                    usuarioMap.put(usuario.getId(), usuario); // agregar el Rol al  HashMap
+                    cita.setUsuario(usuario); // agregar el Rol al Usuario
+                } else {
+                    // En el caso que el Rol existe en el HashMap se agregara automaticamente al Usuario
+                    cita.setUsuario(usuarioMap.get(cita.getIdUsuario())); 
+                }
+                pCitas.add(cita); // Agregar el Usuario de la fila actual al ArrayList de Usuario
+            }
+            resultSet.close(); // cerrar el ResultSet
+        } catch (SQLException ex) {
+            throw ex; // enviar al siguiente metodo el error al obtener ResultSet de la clase ComunDB   en el caso que suceda 
+        }
+    }
+    
+    // Metodo para  ejecutar el ResultSet de la consulta SELECT a la tabla de Usuario y JOIN a la tabla de Rol
+    private static void obtenerDatosIncluirCliente(PreparedStatement pPS, ArrayList<Cita> pCitas) throws Exception {
+        try (ResultSet resultSet = ComunDB.obtenerResultSet(pPS);) { // obtener el ResultSet desde la clase ComunDB
+            HashMap<Integer, Cliente> clienteMap = new HashMap(); //crear un HashMap para automatizar la creacion de instancias de la clase Rol
+            while (resultSet.next()) { // Recorrer cada una de la fila que regresa la consulta  SELECT de la tabla Usuario JOIN a la tabla de Rol
+                Cita cita = new Cita();
+                 // Llenar las propiedaddes de la Entidad Usuario con los datos obtenidos de la fila en el ResultSet
+                int index = asignarDatosResultSet(cita, resultSet, 0);
+                if (clienteMap.containsKey(cita.getIdCliente()) == false) { // verificar que el HashMap aun no contenga el Rol actual
+                    Cliente cliente = new Cliente();
+                    // en el caso que el Rol no este en el HashMap se asignara
+                    ClienteDAL.asignarDatosResultSet(cliente, resultSet, index);
+                    clienteMap.put(cliente.getId(), cliente); // agregar el Rol al  HashMap
+                    cita.setCliente(cliente); // agregar el Rol al Usuario
+                } else {
+                    // En el caso que el Rol existe en el HashMap se agregara automaticamente al Usuario
+                    cita.setCliente(clienteMap.get(cita.getIdCliente())); 
+                }
+                pCitas.add(cita); // Agregar el Usuario de la fila actual al ArrayList de Usuario
+            }
+            resultSet.close(); // cerrar el ResultSet
+        } catch (SQLException ex) {
+            throw ex; // enviar al siguiente metodo el error al obtener ResultSet de la clase ComunDB   en el caso que suceda 
         }
     }
     
@@ -270,5 +322,114 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         return citas; // Devolver el ArrayList de Rol
     }
     ////////
+    // Metodo para obtener todos los registro de la tabla de Usuario que cumplan con los filtros agregados 
+     // a la consulta SELECT de la tabla de Usuario 
+    public static ArrayList<Cita> buscarIncluirUsuario(Cita pCita) throws Exception {
+        ArrayList<Cita> citas = new ArrayList();
+        try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
+            String sql = "SELECT "; // Iniciar la variables para el String de la consulta SELECT
+            if (pCita.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+                sql += "TOP " + pCita.getTop_aux() + " "; // Agregar el TOP en el caso que se este utilizando SQL SERVER
+            }
+            sql += obtenerCampos(); // Obtener los campos de la tabla de Usuario que iran en el SELECT
+            sql += ",";
+            sql += UsuarioDAL.obtenerCampos(); // Obtener los campos de la tabla de Rol que iran en el SELECT
+            sql += " FROM Cita c";
+            sql += " JOIN Usuario u on (c.IdUsuario=u.Id)"; // agregar el join para unir la tabla de Usuario con Rol
+            ComunDB comundb = new ComunDB();
+            ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);
+            querySelect(pCita, utilQuery); // Asignar el filtro a la consulta SELECT de la tabla de Usuario 
+            sql = utilQuery.getSQL();
+            sql += agregarOrderBy(pCita); // Concatenar a la consulta SELECT de la tabla Usuario el ORDER BY por Id
+            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
+                utilQuery.setStatement(ps);
+                utilQuery.setSQL(null);
+                utilQuery.setNumWhere(0);
+                querySelect(pCita, utilQuery); // Asignar los parametros al PreparedStatement de la consulta SELECT de la tabla de Usuario
+                obtenerDatosIncluirUsuario(ps, citas);// Llenar el ArrayList de Usuario con las fila que devolvera la consulta SELECT a la tabla de Usuario
+                ps.close(); // Cerrar el PreparedStatement
+            } catch (SQLException ex) {
+                throw ex;// Enviar al siguiente metodo el error al ejecutar PreparedStatement en el caso que suceda
+            }
+            conn.close(); // Cerrar la conexion a la base de datos
+        } catch (SQLException ex) {
+            throw ex;// Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
+        }
+        return citas; // Devolver el ArrayList de Usuario
+    }
+    
+    // Metodo para obtener todos los registro de la tabla de Usuario que cumplan con los filtros agregados 
+     // a la consulta SELECT de la tabla de Usuario 
+    public static ArrayList<Cita> buscarIncluirCliente(Cita pCita) throws Exception {
+        ArrayList<Cita> citas = new ArrayList();
+        try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
+            String sql = "SELECT "; // Iniciar la variables para el String de la consulta SELECT
+            if (pCita.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+                sql += "TOP " + pCita.getTop_aux() + " "; // Agregar el TOP en el caso que se este utilizando SQL SERVER
+            }
+            sql += obtenerCampos(); // Obtener los campos de la tabla de Usuario que iran en el SELECT
+            sql += ",";
+            sql += UsuarioDAL.obtenerCampos(); // Obtener los campos de la tabla de Rol que iran en el SELECT
+            sql += " FROM Cita c";
+            sql += " JOIN Cliente x on (c.Cliente=x.Id)"; // agregar el join para unir la tabla de Usuario con Rol
+            ComunDB comundb = new ComunDB();
+            ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);
+            querySelect(pCita, utilQuery); // Asignar el filtro a la consulta SELECT de la tabla de Usuario 
+            sql = utilQuery.getSQL();
+            sql += agregarOrderBy(pCita); // Concatenar a la consulta SELECT de la tabla Usuario el ORDER BY por Id
+            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
+                utilQuery.setStatement(ps);
+                utilQuery.setSQL(null);
+                utilQuery.setNumWhere(0);
+                querySelect(pCita, utilQuery); // Asignar los parametros al PreparedStatement de la consulta SELECT de la tabla de Usuario
+                obtenerDatosIncluirCliente(ps, citas);// Llenar el ArrayList de Usuario con las fila que devolvera la consulta SELECT a la tabla de Usuario
+                ps.close(); // Cerrar el PreparedStatement
+            } catch (SQLException ex) {
+                throw ex;// Enviar al siguiente metodo el error al ejecutar PreparedStatement en el caso que suceda
+            }
+            conn.close(); // Cerrar la conexion a la base de datos
+        } catch (SQLException ex) {
+            throw ex;// Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
+        }
+        return citas; // Devolver el ArrayList de Usuario
+    }
+    
+    // Metodo para obtener todos los registro de la tabla de Usuario que cumplan con los filtros agregados 
+     // a la consulta SELECT de la tabla de Usuario 
+    public static ArrayList<Cita> buscarIncluirUsuarioCliente(Cita pCita) throws Exception {
+        ArrayList<Cita> citas = new ArrayList();
+        try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
+            String sql = "SELECT "; // Iniciar la variables para el String de la consulta SELECT
+            if (pCita.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER) {
+                sql += "TOP " + pCita.getTop_aux() + " "; // Agregar el TOP en el caso que se este utilizando SQL SERVER
+            }
+            sql += obtenerCampos(); // Obtener los campos de la tabla de Usuario que iran en el SELECT
+            sql += ",";
+            sql += UsuarioDAL.obtenerCampos(); // Obtener los campos de la tabla de Rol que iran en el SELECT
+            sql += " FROM Cita c";
+            sql += " JOIN Usuario u on (c.IdUsuario=u.Id)"; // agregar el join para unir la tabla de Usuario con Rol
+            sql += " JOIN Cliente x on (c.IdCliente=x.Id)"; // agregar el join para unir la tabla de Usuario con Rol
+            ComunDB comundb = new ComunDB();
+            ComunDB.UtilQuery utilQuery = comundb.new UtilQuery(sql, null, 0);
+            querySelect(pCita, utilQuery); // Asignar el filtro a la consulta SELECT de la tabla de Usuario 
+            sql = utilQuery.getSQL();
+            sql += agregarOrderBy(pCita); // Concatenar a la consulta SELECT de la tabla Usuario el ORDER BY por Id
+            try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
+                utilQuery.setStatement(ps);
+                utilQuery.setSQL(null);
+                utilQuery.setNumWhere(0);
+                querySelect(pCita, utilQuery); // Asignar los parametros al PreparedStatement de la consulta SELECT de la tabla de Usuario
+                obtenerDatosIncluirCliente(ps, citas);// Llenar el ArrayList de Usuario con las fila que devolvera la consulta SELECT a la tabla de Usuario
+                obtenerDatosIncluirUsuario(ps, citas);// Llenar el ArrayList de Usuario con las fila que devolvera la consulta SELECT a la tabla de Usuario
+                ps.close(); // Cerrar el PreparedStatement
+            } catch (SQLException ex) {
+                throw ex;// Enviar al siguiente metodo el error al ejecutar PreparedStatement en el caso que suceda
+            }
+            conn.close(); // Cerrar la conexion a la base de datos
+        } catch (SQLException ex) {
+            throw ex;// Enviar al siguiente metodo el error al obtener la conexion  de la clase ComunDB en el caso que suceda
+        }
+        return citas; // Devolver el ArrayList de Usuario
+    }
     
 }

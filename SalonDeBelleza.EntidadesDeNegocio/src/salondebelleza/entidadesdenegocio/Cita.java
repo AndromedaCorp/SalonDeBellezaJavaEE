@@ -1,6 +1,7 @@
 package salondebelleza.entidadesdenegocio;
         
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
 
 //propiedades de la clase
@@ -9,23 +10,25 @@ public class Cita {
     private int idUsuario;
     private int idCliente;
     private LocalDate fechaRegistrada;
-    private LocalDate fechaCita;
+    private Date fechaCita;
+    private Date fechaCitaRealizada;
     private double total;
     private byte estado;
     private int top_aux;
-    private ArrayList<Cliente> clientes;
-    private ArrayList<Usuario> usuarios;
+    private Cliente clientes;
+    private Usuario usuarios;
 
     //constructores de la clase
     public Cita() {
     }
 
-    public Cita(int id, int idUsuario, int idCliente, LocalDate fechaRegistrada, LocalDate fechaCita, double total, byte estado, ArrayList<Cliente> clientes, ArrayList<Usuario> usuarios) {
+    public Cita(int id, int idUsuario, int idCliente, LocalDate fechaRegistrada, Date fechaCita,Date fechaCitaRealizada, double total, byte estado, Cliente clientes, Usuario usuarios) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idCliente = idCliente;
         this.fechaRegistrada = fechaRegistrada;
         this.fechaCita = fechaCita;
+        this.fechaCitaRealizada = fechaCitaRealizada;
         this.total = total;
         this.estado = estado;
         this.clientes = clientes;
@@ -67,12 +70,20 @@ public class Cita {
         this.fechaRegistrada = fechaRegistrada;
     }
 
-    public LocalDate getFechaCita() {
+    public Date getFechaCita() {
         return fechaCita;
     }
 
-    public void setFechaCita(LocalDate fechaCita) {
+    public void setFechaCita(Date fechaCita) {
         this.fechaCita = fechaCita;
+    }
+    
+    public Date getFechaCitaRealizada() {
+        return fechaCitaRealizada;
+    }
+
+    public void setFechaCitaRealizada(Date fechaCitaRealizada) {
+        this.fechaCitaRealizada = fechaCitaRealizada;
     }
 
     public double getTotal() {
@@ -100,19 +111,19 @@ public class Cita {
         this.top_aux = top_aux;
     }
     
-      public ArrayList<Cliente> getClientes() {
+      public Cliente getCliente() {
         return clientes;
     }
 
-    public void setClientes(ArrayList<Cliente> clientes ) {
+    public void setCliente(Cliente clientes ) {
         this.clientes = clientes;
     }
     
-    public ArrayList<Usuario> getUsuarios() {
+    public Usuario getUsuario() {
         return usuarios;
     }
 
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
+    public void setUsuario(Usuario usuarios) {
         this.usuarios = usuarios;
     }
 
