@@ -22,18 +22,17 @@ SalonDeBelleza.AccesoADatos/nbbuild/
 SalonDeBelleza.AccesoADatos/dist/
 SalonDeBelleza.AccesoADatos/nbdist/
 SalonDeBelleza.AccesoADatos/.nb-gradle/
-SalonDeBelleza.AccesoADatos/project.xml
 
 #CapaEn
 SalonDeBelleza.EntidadesDeNegocio/nbproject/private/
 SalonDeBelleza.EntidadesDeNegocio/nbproject/Makefile-*.mk
 SalonDeBelleza.EntidadesDeNegocio/nbproject/Package-*.bash
-SalonDeBelleza.EntidadesDeNegocio/nbproject/build/
-SalonDeBelleza.EntidadesDeNegocio/nbproject/nbbuild/
-SalonDeBelleza.EntidadesDeNegocio/nbproject/dist/
-SalonDeBelleza.EntidadesDeNegocio/nbproject/nbdist/
-SalonDeBelleza.EntidadesDeNegocio/nbproject/.nb-gradle/
-SalonDeBelleza.EntidadesDeNegocio/nbproject/project.xml
+SalonDeBelleza.EntidadesDeNegocio/build/
+SalonDeBelleza.EntidadesDeNegocio/nbbuild/
+SalonDeBelleza.EntidadesDeNegocio/dist/
+SalonDeBelleza.EntidadesDeNegocio/nbdist/
+SalonDeBelleza.EntidadesDeNegocio/.nb-gradle/
+SalonDeBelleza.EntidadesDeNegocio/project.xml
 
 #capaAppDesktop
 SalonDeBelleza.AppDesktop/nbproject/private/
