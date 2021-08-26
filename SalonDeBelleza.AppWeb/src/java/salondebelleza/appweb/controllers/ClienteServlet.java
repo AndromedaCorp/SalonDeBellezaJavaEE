@@ -1,4 +1,3 @@
-
 package salondebelleza.appweb.controllers;
 
 import java.io.IOException;
@@ -73,13 +72,13 @@ public class ClienteServlet extends HttpServlet {
         try {
             Cliente cliente = new Cliente(); // Crear una instancia  de la entidad de Cliente.
             cliente.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de cliente.
-            ArrayList<Cliente> clientes = ClienteDAL.buscar(cliente); // Ir a la capa de acceso a datos y buscar los registros de Rol.
+            ArrayList<Cliente> clientes = ClienteDAL.buscar(cliente); // Ir a la capa de acceso a datos y buscar los registros de Cliente.
             // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
-            request.setAttribute("clientes", clientes); // Enviar los clientees al jsp utilizando el request.setAttribute con el nombre del atributo roles.
+            request.setAttribute("clientes", clientes); // Enviar los clientes al jsp utilizando el request.setAttribute con el nombre del atributo Clientes.
             // Enviar el Top_aux de Cliente al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
             request.setAttribute("top_aux", cliente.getTop_aux());
             // El request.getRequestDispatcher nos permite direccionar a un jsp desde un servlet.              
-            request.getRequestDispatcher("Views/Cliente/index.jsp").forward(request, response); // Direccionar al jsp index de Rol.
+            request.getRequestDispatcher("Views/Cliente/index.jsp").forward(request, response); // Direccionar al jsp index de Cliente.
         } catch (Exception ex) {
             Utilidad.enviarError(ex.getMessage(), request, response); // Enviar al jsp de error si hay un Exception.
         }
@@ -91,7 +90,7 @@ public class ClienteServlet extends HttpServlet {
      * enviar los datos de los Clientes al jsp de index de Cliente
      *
      * @param request en este parámetro vamos a recibir el request de la
-     * peticion post enviada al servlet Rol
+     * peticion post enviada al servlet Cliente
      * @param response
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
@@ -100,7 +99,7 @@ public class ClienteServlet extends HttpServlet {
         try {
             Cliente cliente = obtenerCliente(request); // Llenar la instancia de cliente con los parámetros enviados en el request 
             ArrayList<Cliente> clientes = ClienteDAL.buscar(cliente); // Buscar los clientes que cumple con los datos enviados en el request
-            request.setAttribute("clientes", clientes); // Enviar los clientes al jsp utilizando el request.setAttribute con el nombre del atributo roles
+            request.setAttribute("clientes", clientes); // Enviar los clientes al jsp utilizando el request.setAttribute con el nombre del atributo Clientes
             // Enviar el Top_aux de Cliente al jsp utilizando el request.setAttribute con el nombre del atributo top_aux
             request.setAttribute("top_aux", cliente.getTop_aux());
             request.getRequestDispatcher("Views/Cliente/index.jsp").forward(request, response); // Direccionar al jsp index de Cliente
@@ -232,7 +231,6 @@ public class ClienteServlet extends HttpServlet {
         }
     }
     
-    
     /**
      * En este método se ejecutara cuando se envie una peticion get al servlet
      * Cliente , y el parámetro accion sea igual details.
@@ -263,10 +261,9 @@ public class ClienteServlet extends HttpServlet {
     private void doGetRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Enviar el cliente al jsp de delete que se obtiene por Id.
         requestObtenerPorId(request, response);
-        // Direccionar al jsp delete de Rol.
+        // Direccionar al jsp delete de Cliente.
         request.getRequestDispatcher("Views/Cliente/delete.jsp").forward(request, response);
     }
-    
     
     
     /**
@@ -274,7 +271,7 @@ public class ClienteServlet extends HttpServlet {
      * Cliente , y el parámetro accion sea igual delete.
      *
      * @param request en este parámetro vamos a recibir el request de la
-     * peticion post enviada al servlet Rol
+     * peticion post enviada al servlet Cliente
      * @param response
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
@@ -307,7 +304,7 @@ public class ClienteServlet extends HttpServlet {
      * @param request en este parámetro vamos a recibir el request de la
      * peticion get enviada al servlet Cliente
      * @param response en este parámetro vamos a recibir el response de la
-     * peticion get enviada al servlet Rol que utlizaremos para enviar el jsp al
+     * peticion get enviada al servlet Cliente que utlizaremos para enviar el jsp al
      * navegador web
      * @throws ServletException devolver una exception de un servlet
      * @throws IOException devolver una exception al leer o escribir un archivo
