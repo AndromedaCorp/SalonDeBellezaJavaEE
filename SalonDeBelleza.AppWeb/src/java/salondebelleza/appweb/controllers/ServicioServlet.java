@@ -316,10 +316,11 @@ public class ServicioServlet extends HttpServlet {
         SessionUser.authorize(request, response, new IAuthorize() {
             @Override
             public void authorize() throws ServletException, IOException {
-
+                        
             }
         });
     }
+    
 //        SessionUser.authorize(request, response, () -> { // Expresion Lambda  "Esto debe ir dentro del nuevo metodo creado".
 //            // Obtener el parámetro accion del request
 //            String accion = Utilidad.getParameter(request, "accion", "index");
