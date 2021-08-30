@@ -308,13 +308,21 @@ public class RolServlet extends HttpServlet {
      * @throws ServletException devolver una exception de un servlet
      * @throws IOException devolver una exception al leer o escribir un archivo
      */
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
-//        // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda, se ejecutara si el usuario tiene permitido
-//        // acceder a este Servlet 
-//        SessionUser.authorize(request, response, () -> { // Expresion Lambda  
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
+        // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda, se ejecutara si el usuario tiene permitido
+        // acceder a este Servlet 
+        SessionUser.authorize(request, response, new IAuthorize() {
+            @Override
+            public void authorize() throws ServletException, IOException {
+
+            }
+        });
+    }
+    
+//    SessionUser.authorize(request, response, () -> { // Expresion Lambda  
 //            // Obtener el parámetro accion del request
 //            String accion = Utilidad.getParameter(request, "accion", "index");
 //            // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
@@ -350,7 +358,6 @@ public class RolServlet extends HttpServlet {
 //                    doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex.
 //            }
 //        });
-//    }
     
     /**
      * Este método es un override al método de la clase HttpServlet para recibir
@@ -364,12 +371,12 @@ public class RolServlet extends HttpServlet {
      * @throws ServletException devolver una exception de un servlet
      * @throws IOException devolver una exception al leer o escribir un archivo
      */
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
-//        // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda,  se ejecutara si el usuario tiene permitido
-//        // acceder a este Servlet 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
+        // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda,  se ejecutara si el usuario tiene permitido
+        // acceder a este Servlet 
 //        SessionUser.authorize(request, response, () -> {
 //            // Obtener el parámetro accion del request.
 //            String accion = Utilidad.getParameter(request, "accion", "index");
@@ -401,7 +408,7 @@ public class RolServlet extends HttpServlet {
 //                    doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex.
 //            }
 //        });
-//    }
+    }
     // </editor-fold>
 
 }
