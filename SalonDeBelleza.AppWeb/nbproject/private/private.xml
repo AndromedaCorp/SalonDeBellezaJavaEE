@@ -7,5 +7,10 @@
             <file>file:/C:/Proyectos/SalonDeBellezaJavaEE/SalonDeBelleza.AppWeb/src/java/salondebelleza/appweb/controllers/ClienteServlet.java</file>
             <file>file:/C:/Proyectos/SalonDeBellezaJavaEE/SalonDeBelleza.AppWeb/src/java/salondebelleza/appweb/controllers/RolServlet.java</file>
         </group>
+        <group>
+            <file>file:/C:/PROYECTOS/repos/SalonDeBelleza/SalonDeBellezaJavaEE/SalonDeBelleza.AppWeb/src/java/salondebelleza/appweb/controllers/RolServlet.java</file>
+            <file>file:/C:/PROYECTOS/repos/SalonDeBelleza/SalonDeBellezaJavaEE/SalonDeBelleza.AppWeb/web/index.jsp</file>
+            <file>file:/C:/PROYECTOS/repos/SalonDeBelleza/SalonDeBellezaJavaEE/SalonDeBelleza.AppWeb/src/java/salondebelleza/appweb/controllers/ServicioServlet.java</file>
+        </group>
     </open-files>
 </project-private>
