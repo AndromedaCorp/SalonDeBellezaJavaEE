@@ -296,7 +296,6 @@ public class ClienteServlet extends HttpServlet {
     }
    //</editor-fold>
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    
      /**
      * Este método es un override al método de la clase HttpServlet para recibir
      * todas las peticiones get que se realice al Servlet Cliente
@@ -315,7 +314,14 @@ public class ClienteServlet extends HttpServlet {
         // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
         // puedan acceder al servlet de Cliente. Todo el codigo que este dentro  expresion Lambda, se ejecutara si el usuario tiene permitido
         // acceder a este Servlet 
-       /* SessionUser.authorize(request, response, () -> { // Expresion Lambda  
+        SessionUser.authorize(request, response, new IAuthorize() {
+            @Override
+            public void authorize() throws ServletException, IOException {
+
+            }
+        });
+    }
+       /*SessionUser.authorize(request, response, () -> { // Expresion Lambda  
             // Obtener el parámetro accion del request
             String accion = Utilidad.getParameter(request, "accion", "index");
             // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
@@ -351,7 +357,7 @@ public class ClienteServlet extends HttpServlet {
                     doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex.
             }
         });*/
-    }
+   // }
 
    /**
      * Este método es un override al método de la clase HttpServlet para recibir
