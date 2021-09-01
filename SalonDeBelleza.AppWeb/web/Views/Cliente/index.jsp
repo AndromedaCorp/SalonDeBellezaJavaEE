@@ -19,6 +19,7 @@
 %>
 <!DOCTYPE html>
 <html>
+    <%--Inicio de cabezera--%>
     <head>        
         <jsp:include page="/Views/Shared/title.jsp" />
         <title>Buscar Cliente</title>
