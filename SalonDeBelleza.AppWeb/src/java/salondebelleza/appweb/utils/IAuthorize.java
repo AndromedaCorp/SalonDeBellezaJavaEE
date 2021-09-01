@@ -12,3 +12,4 @@ import javax.servlet.ServletException;
 public interface IAuthorize {
     void authorize() throws ServletException, IOException;
 }
+
