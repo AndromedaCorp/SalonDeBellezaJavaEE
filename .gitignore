@@ -9,4 +9,51 @@
 #----------------------------------------------------------------------------------------------------
 
 
-/SalonDeBelleza.AppWeb/dist/
+# Created by https://www.toptal.com/developers/gitignore/api/netbeans
+# Edit at https://www.toptal.com/developers/gitignore?templates=netbeans
+
+### NetBeans ###
+##CapaDAL
+SalonDeBelleza.AccesoADatos/nbproject/private/
+SalonDeBelleza.AccesoADatos/nbproject/Makefile-*.mk
+SalonDeBelleza.AccesoADatos/nbproject/Package-*.bash
+SalonDeBelleza.AccesoADatos/build/
+SalonDeBelleza.AccesoADatos/nbbuild/
+SalonDeBelleza.AccesoADatos/dist/
+SalonDeBelleza.AccesoADatos/nbdist/
+SalonDeBelleza.AccesoADatos/.nb-gradle/
+
+#CapaEn
+SalonDeBelleza.EntidadesDeNegocio/nbproject/private/
+SalonDeBelleza.EntidadesDeNegocio/nbproject/Makefile-*.mk
+SalonDeBelleza.EntidadesDeNegocio/nbproject/Package-*.bash
+SalonDeBelleza.EntidadesDeNegocio/build/
+SalonDeBelleza.EntidadesDeNegocio/nbbuild/
+SalonDeBelleza.EntidadesDeNegocio/dist/
+SalonDeBelleza.EntidadesDeNegocio/nbdist/
+SalonDeBelleza.EntidadesDeNegocio/.nb-gradle/
+SalonDeBelleza.EntidadesDeNegocio/project.xml
+
+#capaAppDesktop
+SalonDeBelleza.AppDesktop/nbproject/private/
+SalonDeBelleza.AppDesktop/nbproject/Makefile-*.mk
+SalonDeBelleza.AppDesktop/nbproject/Package-*.bash
+SalonDeBelleza.AppDesktop/build/
+SalonDeBelleza.AppDesktop/nbbuild/
+SalonDeBelleza.AppDesktop/dist/
+SalonDeBelleza.AppDesktop/nbdist/
+SalonDeBelleza.AppDesktop/.nb-gradle/
+SalonDeBelleza.AppDesktop/project.xml
+
+#capaAppWeb
+SalonDeBelleza.AppWeb/nbproject/private/
+SalonDeBelleza.AppWeb/nbproject/Makefile-*.mk
+SalonDeBelleza.AppWeb/nbproject/Package-*.bash
+SalonDeBelleza.AppWeb/build/
+SalonDeBelleza.AppWeb/nbbuild/
+SalonDeBelleza.AppWeb/dist/
+SalonDeBelleza.AppWeb/nbdist/
+SalonDeBelleza.AppWeb/.nb-gradle/
+SalonDeBelleza.AppWeb/project.xml
+
+# End of https://www.toptal.com/developers/gitignore/api/netbeans
