@@ -57,18 +57,16 @@ public class CitaDALIT {
         Cita cita = new Cita();
         cita.setIdUsuario(1);
         cita.setIdCliente(1);
-        cita.setFechaRegistrada(LocalDate.now());
-        cita.setFechaCita(fecha);
-        cita.setFechaCitaRealizada(fecha);
+        cita.setFechaRegistrada(LocalDate.of(2021,05,06));
+        cita.setFechaCita(LocalDate.of(2021, 06, 07));
+//        cita.setFechaCitaRealizada(fecha);
         cita.setTotal(1);
         cita.setEstado(Cita.EstadoCita.INACTIVO);   
         cita.setTop_aux(1);
-//        Rol rolB = new Rol();
-//        rolB.setTop_aux(1);
-//        cita.setIdrol(RolDAL.buscar(rolB).get(0).getId());
-//        int expResult = 0;
-//        int result = UsuarioDAL.crear(usuario);
-//        assertNotEquals(expResult, result);
+
+        int expResult = 0;
+        int result = CitaDAL.crear(cita);
+        assertNotEquals(expResult, result);
     }
     
     public int testIndividualQuerySelect(Cita pCita) throws Exception {

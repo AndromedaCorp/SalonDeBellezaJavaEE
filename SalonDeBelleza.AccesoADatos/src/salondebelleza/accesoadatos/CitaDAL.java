@@ -40,16 +40,16 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "INSERT INTO Cita(IdUsuario,IdCliente,FechaRegistrada,Total,Estado) VALUES(?,?,?,?,?)";
+            sql = "INSERT INTO Cita(IdUsuario,IdCliente,FechaRegistrada,FechaCita,Total,Estado) VALUES(?,?,?,?,?,?)";
 //        sql = "INSERT INTO Cita(IdUsuario,IdCliente,Total,Estado) VALUES(?,?,?,?)";            
 
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
-//                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
-                ps.setDouble(4, pCita.getTotal()); 
-                 ps.setByte(5, pCita.getEstado()); 
+                ps.setObject(3, LocalDate.now());
+                  ps.setObject(4, LocalDate.now());           
+                ps.setDouble(5, pCita.getTotal()); 
+                 ps.setByte(6, pCita.getEstado()); 
                   
                // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
