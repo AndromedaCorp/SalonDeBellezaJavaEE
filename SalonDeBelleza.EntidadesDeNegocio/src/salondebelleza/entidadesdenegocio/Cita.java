@@ -1,5 +1,5 @@
 package salondebelleza.entidadesdenegocio;
-        
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ public class Cita {
     private int idUsuario;
     private int idCliente;
     private LocalDate fechaRegistrada;
-    private Date fechaCita;
-    private Date fechaCitaRealizada;
+    private LocalDate fechaCita;
+    private LocalDate fechaCitaRealizada;
     private double total;
     private byte estado;
     private int top_aux;
@@ -22,7 +22,7 @@ public class Cita {
     public Cita() {
     }
 
-    public Cita(int id, int idUsuario, int idCliente, LocalDate fechaRegistrada, Date fechaCita,Date fechaCitaRealizada, double total, byte estado, Cliente clientes, Usuario usuarios) {
+    public Cita(int id, int idUsuario, int idCliente, LocalDate fechaRegistrada, LocalDate fechaCita,LocalDate fechaCitaRealizada, double total, byte estado, Cliente clientes, Usuario usuarios) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idCliente = idCliente;
@@ -36,7 +36,7 @@ public class Cita {
     }
 
  
-   
+
 //getter and setters
     public int getId() {
         return id;
@@ -53,7 +53,7 @@ public class Cita {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-    
+
     public int getIdCliente() {
         return idCliente;
     }
@@ -70,19 +70,19 @@ public class Cita {
         this.fechaRegistrada = fechaRegistrada;
     }
 
-    public Date getFechaCita() {
+    public LocalDate getFechaCita() {
         return fechaCita;
     }
 
-    public void setFechaCita(Date fechaCita) {
+    public void setFechaCita(LocalDate fechaCita) {
         this.fechaCita = fechaCita;
     }
-    
-    public Date getFechaCitaRealizada() {
+
+    public LocalDate getFechaCitaRealizada() {
         return fechaCitaRealizada;
     }
 
-    public void setFechaCitaRealizada(Date fechaCitaRealizada) {
+    public void setFechaCitaRealizada(LocalDate fechaCitaRealizada) {
         this.fechaCitaRealizada = fechaCitaRealizada;
     }
 
@@ -102,7 +102,7 @@ public class Cita {
         this.estado = estado;
     }
 
-   
+
        public int getTop_aux() {
         return top_aux;
     }
@@ -110,7 +110,7 @@ public class Cita {
     public void setTop_aux(int top_aux) {
         this.top_aux = top_aux;
     }
-    
+
       public Cliente getCliente() {
         return clientes;
     }
@@ -118,7 +118,7 @@ public class Cita {
     public void setCliente(Cliente clientes ) {
         this.clientes = clientes;
     }
-    
+
     public Usuario getUsuario() {
         return usuarios;
     }
@@ -132,5 +132,5 @@ public class Cita {
         public static final byte ACTIVO = 1;
         public static final byte INACTIVO = 2;
     }
-    
+
 }
