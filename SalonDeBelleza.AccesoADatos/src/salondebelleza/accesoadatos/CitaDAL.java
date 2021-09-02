@@ -5,11 +5,16 @@ import java.sql.*;
 import java.time.LocalDate;
 import salondebelleza.entidadesdenegocio.*; // Agregar la referencia al proyecto de entidades de negocio y poder utilizar la entidad servicios
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
+
 public class CitaDAL {// Clase para poder realizar consulta de Insertar, modificar, eliminar, obtener datos de la tabla Rol
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Rol
     static String obtenerCampos() {
-//        return "c.id,c.idUsuario,c.idCliente,c.fechaRegistrada,c.fechaCita,c.total,c.estado";
-         return "c.id,c.idUsuario,c.idCliente,c.estado";
+        return "c.id,c.idUsuario,c.idCliente,c.fechaRegistrada,c.fechaCita,c.total,c.estado";
+       // return "c.id,c.idUsuario,c.idCliente,c.estado";
     }
 
     // Metodo para obtener el SELECT a la tabla Rol y el TOP en el caso que se utilice una base de datos SQL SERVER
@@ -69,18 +74,18 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-//            sql = "UPDATE Cita SET IdUsuario=?,IdCliente,Total=?,Estado=? WHERE Id=?";
-             sql = "UPDATE Cita SET Total=?,Estado=? WHERE Id=?";
+            sql = "UPDATE Cita SET IdUsuario=?,IdCliente=?,fechaRegistrada=?,fechaCita=?,Total=?,Estado=? WHERE Id=?";
+             //sql = "UPDATE Cita SET Total=?,Estado=? WHERE Id=?";
 // Definir la consulta UPDATE a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
-//                ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
-//                ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-             //   ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
-               // ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
-                ps.setDouble(1, pCita.getTotal()); 
-                 ps.setByte(2, pCita.getEstado());
+                ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
+                ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
+                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
+                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
+                ps.setDouble(5, pCita.getTotal()); 
+                 ps.setByte(6, pCita.getEstado());
                  
-                  ps.setInt(3, pCita.getId());
+                  ps.setInt(7, pCita.getId());
                  
                   result = ps.executeUpdate(); 
                 ps.close(); // Cerrar el PreparedStatement
@@ -116,17 +121,31 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
     
     // Metodo para llenar las propiedades de la entidad de Rol con los datos que viene en el ResultSet,
     // el metodo nos ayudara a no preocuparlos por los indices al momento de obtener los valores del ResultSet
-    static int asignarDatosResultSet(Cita pCita, ResultSet pResultSet, int pIndex) throws Exception {
+    static int asignarDatosResultSet( Cita pCita, ResultSet pResultSet, int pIndex) throws Exception {
         //  SELECT r.Id(indice 1),r.Nombre(indice 2) * FROM Rol
+        
+       
+      
+        
+        
         pIndex++;
          pCita.setId(pResultSet.getInt(pIndex)); // index 1
+         
         pIndex++;
         pCita.setIdUsuario(pResultSet.getInt(pIndex)); // index 1
+        
         pIndex++;
         pCita.setIdCliente(pResultSet.getInt(pIndex)); // index 2
+       
+        pIndex++;
+        pCita.setFechaCita(pResultSet.getDate(pIndex).toLocalDate()); // index 2
         
-//        pIndex++;
-//        pCita.setTotal(pResultSet.getDouble(pIndex)); // index 
+        
+        pIndex++;
+        pCita.setFechaRegistrada(pResultSet.getDate(pIndex).toLocalDate()); // index 2
+ 
+        pIndex++;
+        pCita.setTotal(pResultSet.getDouble(pIndex)); // index 2   
         
         pIndex++;
         pCita.setEstado(pResultSet.getByte(pIndex)); // index 2    
@@ -272,7 +291,24 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
                 statement.setInt(pUtilQuery.getNumWhere(), pCita.getIdCliente());
             }
         }
-        
+      
+//         if (pCita.getFechaRegistrada()> 0) {
+//            pUtilQuery.AgregarWhereAnd(" c.fechaRegistrada=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
+//            if (statement != null) {
+//                 // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
+//                statement.setDate(pUtilQuery.getNumWhere(), pCita.getFechaRegistrada());
+//            }
+//        }
+//         
+//           if (pCita.getFechaCita()> 0) {
+//            pUtilQuery.AgregarWhereAnd(" c.fechaRegistrada=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
+//            if (statement != null) {
+//                 // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
+//                statement.setDate(pUtilQuery.getNumWhere(), pCita.getFechaCita());
+//            }
+//        }
+      
+      
         
         // verificar si se va incluir el campo Nombre en el filtro de la consulta SELECT de la tabla de Usuario
         if (pCita.getTotal()> 0) {

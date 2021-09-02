@@ -76,6 +76,7 @@ public class UsuarioDALIT {
         usuario.setFechaRegistro(LocalDate.now());
         Rol rolB = new Rol();
         rolB.setTop_aux(1);
+        
         usuario.setIdrol(RolDAL.buscar(rolB).get(0).getId());
         int expResult = 0;
         int result = UsuarioDAL.crear(usuario);

@@ -102,9 +102,12 @@ public class CitaDALIT {
         System.out.println("buscar");
         
         Cita cita = new Cita();
-//         usuario.setIdrol(1);
-        cita.setTotal(1);
-        cita.setEstado(Cita.EstadoCita.INACTIVO);
+        cita.setIdUsuario(4);
+        cita.setIdCliente(2); 
+        cita.setFechaRegistrada(LocalDate.of(2021, 07, 25));
+        cita.setFechaCita(LocalDate.of(2021, 07, 25));
+        cita.setTotal(10);
+        cita.setEstado(Cita.EstadoCita.ACTIVO);
         cita.setTop_aux(1);
         ArrayList<Cita> result = CitaDAL.buscar(cita);
 //        ArrayList<Cita> result = new ArrayList(CitaDAL.crear(cita));
@@ -130,19 +133,16 @@ public class CitaDALIT {
     public void test5Modificar() throws Exception {
    System.out.println("modificar");
         Cita cita = new Cita();
+              
         cita.setId(citaActual.getId());     
+        cita.setIdUsuario(2);
+        cita.setIdCliente(2);
+        cita.setFechaCita(LocalDate.of(2021, 02, 9));
+        cita.setFechaRegistrada(LocalDate.of(2021, 02, 9));
         cita.setTotal(10);
         cita.setEstado(Cita.EstadoCita.ACTIVO);  
         cita.setTop_aux(1);
-      
-//        Cliente idCliente = new Cliente();
-//        idCliente.setTop_aux(1);
-//        cita.setIdCliente(ClienteDAL.buscar(idCliente).get(1).getId());
-        
-//        Usuario idUsuario = new Usuario();
-//        idUsuario.setTop_aux(1);
-//        cita.setIdUsuario(UsuarioDAL.buscar(idUsuario).get(1).getId());
-        
+             
         int expResult = 0;
         int result = CitaDAL.modificar(cita);
         assertNotEquals(expResult, result);
