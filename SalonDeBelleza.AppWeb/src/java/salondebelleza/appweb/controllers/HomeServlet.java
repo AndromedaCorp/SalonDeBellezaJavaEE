@@ -51,6 +51,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGetRequestIndex(request, response); // Ir al método doGetRequestIndex
-    } // </editor-fold>
+    }
+    // </editor-fold>
 
 }
