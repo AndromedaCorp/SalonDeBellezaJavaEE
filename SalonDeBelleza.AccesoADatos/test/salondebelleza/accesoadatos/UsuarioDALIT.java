@@ -74,6 +74,7 @@ public class UsuarioDALIT {
         usuario.setPassword("12345");
         usuario.setEstado(Usuario.EstadoUsuario.INACTIVO);
         usuario.setFechaRegistro(LocalDate.now());
+        
         Rol rolB = new Rol();
         rolB.setTop_aux(1);
         

@@ -51,8 +51,8 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                ps.setObject(3, LocalDate.now());
-                  ps.setObject(4, LocalDate.now());           
+                ps.setObject(3, pCita.getFechaCita());
+                  ps.setObject(4, pCita.getFechaRegistrada());           
                 ps.setDouble(5, pCita.getTotal()); 
                  ps.setByte(6, pCita.getEstado()); 
                   
@@ -80,8 +80,8 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pCita.getIdUsuario()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pCita.getIdCliente()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                ps.setDate(3, java.sql.Date.valueOf(LocalDate.now()));  // COLOQUE GUARDAR FECHA DEL MOMENTO PARA PROBAR ESTA DAL, DEBE CORREGIRSE
-                ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));   
+               ps.setObject(3, pCita.getFechaCita());
+                ps.setObject(4, pCita.getFechaRegistrada());  
                 ps.setDouble(5, pCita.getTotal()); 
                  ps.setByte(6, pCita.getEstado());
                  
@@ -284,7 +284,7 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
         }
         
               // verificar si se va incluir el campo IdRol en el filtro de la consulta SELECT de la tabla de Usuario
-      if (pCita.getIdCliente()> 0) {
+       if (pCita.getIdCliente() > 0 ) {
             pUtilQuery.AgregarWhereAnd(" c.IdCliente=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
             if (statement != null) {
                  // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
@@ -292,11 +292,12 @@ public class CitaDAL {// Clase para poder realizar consulta de Insertar, modific
             }
         }
       
-//         if (pCita.getFechaRegistrada()> 0) {
+//         if (pCita.getFechaRegistrada() !=  null) {
 //            pUtilQuery.AgregarWhereAnd(" c.fechaRegistrada=? "); // agregar el campo IdRol al filtro de la consulta SELECT y agregar en el WHERE o AND
 //            if (statement != null) {
 //                 // agregar el parametro del campo IdRol a la consulta SELECT de la tabla de Usuario
-//                statement.setDate(pUtilQuery.getNumWhere(), pCita.getFechaRegistrada());
+//                statement.setLocalDate(pUtilQuery.getNumWhere(), pCita.getFechaRegistrada());
+//                  
 //            }
 //        }
 //         

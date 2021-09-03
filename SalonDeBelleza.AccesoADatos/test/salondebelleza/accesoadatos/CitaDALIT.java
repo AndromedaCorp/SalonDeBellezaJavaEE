@@ -63,7 +63,7 @@ public class CitaDALIT {
         cita.setTotal(1);
         cita.setEstado(Cita.EstadoCita.INACTIVO);   
         cita.setTop_aux(1);
-
+     
         int expResult = 0;
         int result = CitaDAL.crear(cita);
         assertNotEquals(expResult, result);
@@ -87,6 +87,10 @@ public class CitaDALIT {
         assertTrue(testIndividualQuerySelect(pCita) == 1);
         pCita.setIdUsuario(1);
         assertTrue(testIndividualQuerySelect(pCita) == 2);
+        
+      
+        
+        
         pCita.setTotal(1);
         assertTrue(testIndividualQuerySelect(pCita) == 3);
          pCita.setEstado((byte) 1);
@@ -102,12 +106,12 @@ public class CitaDALIT {
         System.out.println("buscar");
         
         Cita cita = new Cita();
-        cita.setIdUsuario(4);
-        cita.setIdCliente(2); 
-        cita.setFechaRegistrada(LocalDate.of(2021, 07, 25));
-        cita.setFechaCita(LocalDate.of(2021, 07, 25));
-        cita.setTotal(10);
-        cita.setEstado(Cita.EstadoCita.ACTIVO);
+        cita.setIdUsuario(1);
+        cita.setIdCliente(1); 
+        cita.setFechaRegistrada(LocalDate.of(2021,05,06));
+        cita.setFechaCita(LocalDate.of(2021, 06, 07));
+        cita.setTotal(1);
+        cita.setEstado(Cita.EstadoCita.INACTIVO);
         cita.setTop_aux(1);
         ArrayList<Cita> result = CitaDAL.buscar(cita);
 //        ArrayList<Cita> result = new ArrayList(CitaDAL.crear(cita));
@@ -135,10 +139,10 @@ public class CitaDALIT {
         Cita cita = new Cita();
               
         cita.setId(citaActual.getId());     
-        cita.setIdUsuario(2);
-        cita.setIdCliente(2);
-        cita.setFechaCita(LocalDate.of(2021, 02, 9));
-        cita.setFechaRegistrada(LocalDate.of(2021, 02, 9));
+        cita.setIdUsuario(1);
+        cita.setIdCliente(1);
+        cita.setFechaCita(LocalDate.of(2021, 8, 12));
+        cita.setFechaRegistrada(LocalDate.of(2021, 6, 7));
         cita.setTotal(10);
         cita.setEstado(Cita.EstadoCita.ACTIVO);  
         cita.setTop_aux(1);
