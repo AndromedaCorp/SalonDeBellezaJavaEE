@@ -1,6 +1,4 @@
-
 package salondebelleza.accesoadatos;
-
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import salondebelleza.entidadesdenegocio.DetalleCita;
-
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,12 +22,12 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DetalleCitaDALIT {
-    
+
     private static DetalleCita detallecitaActual;
-    
+
     public DetalleCitaDALIT() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
@@ -46,23 +43,39 @@ public class DetalleCitaDALIT {
     @After
     public void tearDown() {
     }
-    
-    
-    /**
 
-     *  Testear el metodo de Crear de la clase UsuarioDAL
+    private void crearCita() throws Exception {
+        Cita cita = new Cita();
+        cita.setIdUsuario(1);
+        cita.setIdCliente(1);
+        cita.setFechaRegistrada(LocalDate.now());
+        cita.setFechaCita(LocalDate.of(2021, 9, 2));
+        cita.setFechaCitaRealizada(LocalDate.of(2021, 9, 4));
+        cita.setTotal(1);
+        cita.setEstado(Cita.EstadoCita.INACTIVO);
+        CitaDAL.crear(cita);
+    }
+
+    private Cita obtenerUltimaCita() throws Exception {
+        Cita cita = new Cita();
+        cita.setTop_aux(1);
+        return CitaDAL.buscar(cita).get(0);
+    }
+
+    /**
+     *
+     * Testear el metodo de Crear de la clase UsuarioDAL
      */
     @Test
     public void test1Crear() throws Exception {
         System.out.println("crear");
-        DetalleCita detallecita = new DetalleCita();
-         detallecita.setIdCita(1);
-         detallecita.setIdServicio(1);
+        DetalleCita detallecita = new DetalleCita();       
+        detallecita.setIdServicio(1);
         detallecita.setPrecio(0);
-        detallecita.setDuracion(0); 
-        Cita citaB = new Cita();
-        citaB.setTop_aux(1);
-        detallecita.setIdCita(CitaDAL.buscar(citaB).get(0).getId());
+        detallecita.setDuracion(0);
+        crearCita();
+        Cita cita=obtenerUltimaCita();
+        detallecita.setIdCita(cita.getId());
         Servicio servicioB = new Servicio();
         servicioB.setTop_aux(1);
         detallecita.setIdServicio(ServicioDAL.buscar(servicioB).get(0).getId());
@@ -70,20 +83,16 @@ public class DetalleCitaDALIT {
         int result = DetalleCitaDAL.crear(detallecita);
         assertNotEquals(expResult, result);
     }
-    
-    
-    
-    
+
     public int testIndividualQuerySelect(DetalleCita pDetalleCita) throws Exception {
         ComunDB comundb = new ComunDB();
         ComunDB.UtilQuery pUtilQuery = comundb.new UtilQuery("", null, 0);
         DetalleCitaDAL.querySelect(pDetalleCita, pUtilQuery);
         return pUtilQuery.getNumWhere();
     }
-    
-    
+
     /**
-     *  Testear el metodo de QuerySelect de la clase UsuarioDAL
+     * Testear el metodo de QuerySelect de la clase UsuarioDAL
      */
     @Test
     public void test2QuerySelect() throws Exception {
@@ -92,8 +101,8 @@ public class DetalleCitaDALIT {
         DetalleCita detallecita = new DetalleCita();
         detallecita.setId(1);
         index++;
-          assertTrue(testIndividualQuerySelect(detallecita) == index);
-        detallecita.setIdCita(1);
+        assertTrue(testIndividualQuerySelect(detallecita) == index);
+        detallecita.setIdCita(obtenerUltimaCita().getId());
         index++;
         assertTrue(testIndividualQuerySelect(detallecita) == index);
         detallecita.setIdServicio(1);
@@ -101,18 +110,18 @@ public class DetalleCitaDALIT {
         assertTrue(testIndividualQuerySelect(detallecita) == index);
         detallecita.setPrecio(1);
         index++;
-          assertTrue(testIndividualQuerySelect(detallecita) == index);
+        assertTrue(testIndividualQuerySelect(detallecita) == index);
         detallecita.setDuracion(1);
         index++;
     }
-    
-        /**
-     *  Testear el metodo de Buscar de la clase UsuarioDAL
+
+    /**
+     * Testear el metodo de Buscar de la clase UsuarioDAL
      */
     @Test
     public void test3Buscar() throws Exception {
         System.out.println("buscar");
-        
+
         DetalleCita detallecita = new DetalleCita();
         //detallecita.setIdCita(0);
         //detallecita.setIdServicio(0);
@@ -120,14 +129,13 @@ public class DetalleCitaDALIT {
         detallecita.setDuracion(0);
         detallecita.setTop_aux(10);
         ArrayList<DetalleCita> result = DetalleCitaDAL.buscar(detallecita);
-        assertTrue(result.size()> 0);
+        assertTrue(result.size() > 0);
         detallecitaActual = result.get(0);
 
     }
-    
-    
+
     /**
-     *  Testear el metodo de ObtenerPorId de la clase UsuarioDAL
+     * Testear el metodo de ObtenerPorId de la clase UsuarioDAL
      */
     @Test
     public void test4ObtenerPorId() throws Exception {
@@ -135,11 +143,9 @@ public class DetalleCitaDALIT {
         DetalleCita result = DetalleCitaDAL.obtenerPorId(detallecitaActual);
         assertEquals(detallecitaActual.getId(), result.getId());
     }
-    
-    
-    
+
     /**
-     *  Testear el metodo de Modificar de la clase UsuarioDAL
+     * Testear el metodo de Modificar de la clase UsuarioDAL
      */
     @Test
     public void test5Modificar() throws Exception {
@@ -151,11 +157,11 @@ public class DetalleCitaDALIT {
         Cita citaB = new Cita();
         citaB.setTop_aux(2);
         detallecita.setIdCita(CitaDAL.buscar(citaB).get(1).getId());
-        
+
         Servicio servicioB = new Servicio();
-       // Servicio.setTop_aux(2);
+        // Servicio.setTop_aux(2);
         detallecita.setIdServicio(ServicioDAL.buscar(servicioB).get(1).getId());
-        
+
         int expResult = 0;
         int result = DetalleCitaDAL.modificar(detallecita);
         assertNotEquals(expResult, result);
@@ -164,9 +170,9 @@ public class DetalleCitaDALIT {
         assertTrue(detallecitaUpdate.getDuracion() == (detallecita.getDuracion()));
 
     }
-    
+
     /**
-     *  Testear el metodo de ObtenerTodos de la clase UsuarioDAL
+     * Testear el metodo de ObtenerTodos de la clase UsuarioDAL
      */
     @Test
     public void test6ObtenerTodos() throws Exception {
@@ -174,7 +180,7 @@ public class DetalleCitaDALIT {
         ArrayList<DetalleCita> result = DetalleCitaDAL.obtenerTodos();
         assertTrue(result.size() > 0);
     }
-    
+
     /**
      * Test of eliminar method, of class ServicioDAL.
      */
@@ -185,7 +191,8 @@ public class DetalleCitaDALIT {
         int result = DetalleCitaDAL.eliminar(detallecitaActual);
         assertNotEquals(expResult, result);
         DetalleCita detallecitaDelete = DetalleCitaDAL.obtenerPorId(detallecitaActual);
-        assertTrue(detallecitaDelete.getId()==0);
+        CitaDAL.eliminar(obtenerUltimaCita());
+        assertTrue(detallecitaDelete.getId() == 0);
     }
-    
+
 }

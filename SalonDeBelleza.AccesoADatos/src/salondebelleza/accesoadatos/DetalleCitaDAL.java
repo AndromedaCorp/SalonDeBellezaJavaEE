@@ -9,7 +9,7 @@ public class DetalleCitaDAL {
     
     // Metodo para obtener los campos a utilizar en la consulta SELECT de la tabla de Usuario
     static String obtenerCampos() {
-        return "d.Id,d.idCita, d.idServicio, d.Precio. d.Duracion,";
+        return "d.Id, d.IdCita, d.IdServicio, d.Precio, d.Duracion";
     }
     // Metodo para obtener el SELECT a la tabla Rol y el TOP en el caso que se utilice una base de datos SQL SERVER
     private static String obtenerSelect(DetalleCita pDetalleCita) {
@@ -19,7 +19,7 @@ public class DetalleCitaDAL {
             // Agregar el TOP a la consulta SELECT si el gestor de base de datos es SQL SERVER y "getTop_aux" es mayor a cero
             sql += "TOP " + pDetalleCita.getTop_aux() + " ";
         }
-        sql += (obtenerCampos() + " DetalleCita d"); // Agregar los campos de la tabla de Rol mas el FROM a la tabla Rol con su alias "r"
+        sql += (obtenerCampos() + " FROM DetalleCita d"); // Agregar los campos de la tabla de Rol mas el FROM a la tabla Rol con su alias "r"
         return sql;
     }
     
@@ -40,21 +40,21 @@ public class DetalleCitaDAL {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "INSERT INTO Cita(IdCita,IdServicio,Precio,Duracion) VALUES(?,?,?,?)"; // Definir la consulta INSERT a la tabla de Rol utilizando el simbolo ? para enviar parametros
+            sql = "INSERT INTO DetalleCita(IdCita,IdServicio,Precio,Duracion) VALUES(?,?,?,?)"; // Definir la consulta INSERT a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pDetalleCita.getIdCita()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pDetalleCita.getIdServicio()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 ps.setDouble(3, pDetalleCita.getPrecio()); 
                  ps.setDouble(4, pDetalleCita.getDuracion()); 
-                  
-               // Agregar el parametro a la consulta donde estan el simbolo ? #1
-                result = ps.executeUpdate(); // Ejecutar la consulta INSERT en la base de datos
+                  result = ps.executeUpdate(); // Ejecutar la 
+               // Agregar el parametro a la consulta donde estan el siconsulta INSERT en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
                 throw ex; // Enviar al siguiente metodo el error al ejecutar PreparedStatement en el caso que suceda 
             }
             conn.close(); // Cerrar la conexion a la base de datos
         } catch (SQLException ex) {
+
             throw ex; // Enviar al siguiente metodo el error al obtener la conexion en el caso que suceda 
         }
         return result; // Retornar el numero de fila afectadas en el INSERT en la base de datos 
@@ -66,12 +66,13 @@ public class DetalleCitaDAL {
         int result;
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { // Obtener la conexion desde la clase ComunDB y encerrarla en try para cierre automatico
-            sql = "UPDATE DetalleCita SET IdCita=? IdServicio=? Precio=? Duracion=? WHERE Id=?"; // Definir la consulta UPDATE a la tabla de Rol utilizando el simbolo ? para enviar parametros
+            sql = "UPDATE DetalleCita SET IdCita=?, IdServicio=?, Precio=?, Duracion=? WHERE Id=?"; // Definir la consulta UPDATE a la tabla de Rol utilizando el simbolo ? para enviar parametros
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) { // Obtener el PreparedStatement desde la clase ComunDB
                 ps.setInt(1, pDetalleCita.getIdCita()); // Agregar el parametro a la consulta donde estan el simbolo ? #1  
                 ps.setInt(2, pDetalleCita.getIdServicio()); // Agregar el parametro a la consulta donde estan el simbolo ? #1
                 ps.setDouble(3, pDetalleCita.getPrecio()); 
                  ps.setDouble(4, pDetalleCita.getDuracion()); 
+                  ps.setDouble(5, pDetalleCita.getId()); 
                 result = ps.executeUpdate(); // Ejecutar la consulta UPDATE en la base de datos
                 ps.close(); // Cerrar el PreparedStatement
             } catch (SQLException ex) {
