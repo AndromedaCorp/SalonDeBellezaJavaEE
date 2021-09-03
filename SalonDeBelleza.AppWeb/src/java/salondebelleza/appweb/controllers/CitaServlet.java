@@ -44,7 +44,7 @@ public class CitaServlet extends HttpServlet {
             cita.setId(Integer.parseInt(Utilidad.getParameter(request, "id", "0")));
         }
         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Servicio.
-        cita.setIdUsuario(Utilidad.getParameter(request, "idusuario", ""));
+        cita.setIdUsuario(Integer.parseInt(Utilidad.getParameter(request, "idusuario", "")));
         if (accion.equals("index")) {  // Si accion es index.
             // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Servicio.
             cita.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
