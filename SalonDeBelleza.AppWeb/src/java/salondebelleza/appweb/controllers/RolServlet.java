@@ -311,13 +311,45 @@ public class RolServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
         // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda, se ejecutara si el usuario tiene permitido
-        // acceder a este Servlet 
-        SessionUser.authorize(request, response, new IAuthorize() {
+        // acceder a este Servlet      
+        final HttpServletRequest requestLocal=request;
+        final HttpServletResponse  responseLocal=response;
+        
+        SessionUser.authorize(requestLocal, response, new IAuthorize() {
             @Override
             public void authorize() throws ServletException, IOException {
-
+                        // Obtener el parámetro accion del request.
+            String accion = Utilidad.getParameter(requestLocal, "accion", "index");
+            // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
+            switch (accion) {
+                case "index":
+                    // Enviar el atributo accion al jsp de index.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestIndex(requestLocal, responseLocal); // Ir al metodo doGetRequestIndex.
+                    break;
+                case "create":
+                    // Enviar el atributo accion al jsp de create.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestCreate(requestLocal, responseLocal); // Ir al metodo doPostRequestCreate.
+                    break;
+                case "edit":
+                    // Enviar el atributo accion al jsp de edit.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestEdit(requestLocal, responseLocal); // Ir al metodo doPostRequestEdit.
+                    break;
+                case "delete":
+                    // Enviar el atributo accion al jsp de delete.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestDelete(requestLocal, responseLocal); // Ir al metodo doPostRequestDelete.
+                    break;
+                default:
+                    // Enviar el atributo accion al jsp de index.
+                    requestLocal.setAttribute("accion", accion);
+                    doGetRequestIndex(requestLocal, responseLocal); // Ir al metodo doGetRequestIndex.
+            }
             }
         });
     }
@@ -377,37 +409,43 @@ public class RolServlet extends HttpServlet {
         // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
         // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda,  se ejecutara si el usuario tiene permitido
         // acceder a este Servlet 
-//        SessionUser.authorize(request, response, () -> {
-//            // Obtener el parámetro accion del request.
-//            String accion = Utilidad.getParameter(request, "accion", "index");
-//            // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
-//            switch (accion) {
-//                case "index":
-//                    // Enviar el atributo accion al jsp de index.
-//                    request.setAttribute("accion", accion);
-//                    doPostRequestIndex(request, response); // Ir al metodo doGetRequestIndex.
-//                    break;
-//                case "create":
-//                    // Enviar el atributo accion al jsp de create.
-//                    request.setAttribute("accion", accion);
-//                    doPostRequestCreate(request, response); // Ir al metodo doPostRequestCreate.
-//                    break;
-//                case "edit":
-//                    // Enviar el atributo accion al jsp de edit.
-//                    request.setAttribute("accion", accion);
-//                    doPostRequestEdit(request, response); // Ir al metodo doPostRequestEdit.
-//                    break;
-//                case "delete":
-//                    // Enviar el atributo accion al jsp de delete.
-//                    request.setAttribute("accion", accion);
-//                    doPostRequestDelete(request, response); // Ir al metodo doPostRequestDelete.
-//                    break;
-//                default:
-//                    // Enviar el atributo accion al jsp de index.
-//                    request.setAttribute("accion", accion);
-//                    doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex.
-//            }
-//        });
+        final HttpServletRequest requestLocal=request;
+        final HttpServletResponse  responseLocal=response;
+        
+        SessionUser.authorize(requestLocal, response, new IAuthorize() {
+            @Override
+            public void authorize() throws ServletException, IOException {
+            // Obtener el parámetro accion del request.
+            String accion = Utilidad.getParameter(requestLocal, "accion", "index");
+            // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
+            switch (accion) {
+                case "index":
+                    // Enviar el atributo accion al jsp de index.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestIndex(requestLocal, responseLocal); // Ir al metodo doGetRequestIndex.
+                    break;
+                case "create":
+                    // Enviar el atributo accion al jsp de create.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestCreate(requestLocal, responseLocal); // Ir al metodo doPostRequestCreate.
+                    break;
+                case "edit":
+                    // Enviar el atributo accion al jsp de edit.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestEdit(requestLocal, responseLocal); // Ir al metodo doPostRequestEdit.
+                    break;
+                case "delete":
+                    // Enviar el atributo accion al jsp de delete.
+                    requestLocal.setAttribute("accion", accion);
+                    doPostRequestDelete(requestLocal, responseLocal); // Ir al metodo doPostRequestDelete.
+                    break;
+                default:
+                    // Enviar el atributo accion al jsp de index.
+                    requestLocal.setAttribute("accion", accion);
+                    doGetRequestIndex(requestLocal, responseLocal); // Ir al metodo doGetRequestIndex.
+            }
+        }
+        });
     }
     // </editor-fold>
 
