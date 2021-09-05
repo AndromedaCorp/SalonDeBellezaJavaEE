@@ -328,22 +328,22 @@ public class ClienteServlet extends HttpServlet {
                 case "index":
                     // Enviar el atributo accion al jsp de index.
                     requestLocal.setAttribute("accion", accion);
-                    doPostRequestIndex(requestLocal, responseLocal); // Ir al metodo doGetRequestIndex.
+                    doGetRequestIndex(requestLocal, responseLocal); // Ir al metodo doGetRequestIndex.
                     break;
                 case "create":
                     // Enviar el atributo accion al jsp de create.
                     requestLocal.setAttribute("accion", accion);
-                    doPostRequestCreate(requestLocal, responseLocal); // Ir al metodo doPostRequestCreate.
+                    doGetRequestCreate(requestLocal, responseLocal); // Ir al metodo doPostRequestCreate.
                     break;
                 case "edit":
                     // Enviar el atributo accion al jsp de edit.
                     requestLocal.setAttribute("accion", accion);
-                    doPostRequestEdit(requestLocal, responseLocal); // Ir al metodo doPostRequestEdit.
+                    doGetRequestEdit(requestLocal, responseLocal); // Ir al metodo doPostRequestEdit.
                     break;
                 case "delete":
                     // Enviar el atributo accion al jsp de delete.
                     requestLocal.setAttribute("accion", accion);
-                    doPostRequestDelete(requestLocal, responseLocal); // Ir al metodo doPostRequestDelete.
+                    doGetRequestDelete(requestLocal, responseLocal); // Ir al metodo doPostRequestDelete.
                     break;
                 default:
                     // Enviar el atributo accion al jsp de index.
