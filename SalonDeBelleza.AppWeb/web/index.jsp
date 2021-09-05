@@ -14,11 +14,14 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <jsp:include page="/Views/Shared/title.jsp" />
+ <%-- <jsp:include page="/Views/Shared/title.jsp" />--%>
     <title>Hello, world!</title>
   </head>
   <body>
+      <div class="col-md-4 mb-4 ">
       <jsp:include page="/Views/Shared/headerBody.jsp" />  
+      </div>
+      
         <main class="container"> 
             <div class="row">
                 <div class="col l12 s12">
@@ -27,7 +30,7 @@
                 </div>
             </div>            
         </main>
-        <jsp:include page="/Views/Shared/footerBody.jsp" />    
+       <%--  <jsp:include page="/Views/Shared/footerBody.jsp" /> --%>   
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
