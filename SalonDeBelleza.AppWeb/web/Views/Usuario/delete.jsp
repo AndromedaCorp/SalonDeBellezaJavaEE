@@ -36,8 +36,8 @@
                         </select>                                  
                     </div>
                     <div class="col-md-6"">
-                        <label for="txtRol">Rol</label>
-                        <input id="txtRol" type="text" value="<%=usuario.getRol().getNombre()%>" disabled>
+                        <label for="txtRol" class="form-label">Rol</label>
+                        <input id="txtRol" class="form-control" type="text" value="<%=usuario.getRol().getNombre()%>" disabled>
                     </div> 
                 
                 <div class="mb-3">
