@@ -11,40 +11,38 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Eliminar Usuario</h5>
-            <form action="Usuario" method="post">  
+            <form action="Usuario" method="post" class="row g-3">  
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <input type="hidden" name="id" value="<%=usuario.getId()%>">  
-                <div class="row">
-                    <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" value="<%=usuario.getNombre()%>" disabled>
-                        <label for="txtNombre">Nombre</label>
+                
+                    <div class="col-md-6"">
+                        <label for="txtNombre" class="form-label">Nombre</label>
+                        <input  id="txtNombre" class="form-control" type="text" value="<%=usuario.getNombre()%>" disabled>
                     </div>                       
-                    <div class="input-field col l4 s12">
-                        <input  id="txtApellido" type="text" value="<%=usuario.getApellido()%>" disabled>
-                        <label for="txtApellido">Apellido</label>
+                    <div class="col-md-6"">
+                        <label for="txtApellido" class="form-label">Apellido</label>
+                        <input  id="txtApellido" class="form-control" type="text" value="<%=usuario.getApellido()%>" disabled>   
                     </div> 
-                    <div class="input-field col l4 s12">
-                        <input  id="txtLogin" type="text" value="<%=usuario.getLogin()%>" disabled>
-                        <label for="txtLogin">Login</label>
+                    <div class="col-md-6"">
+                        <label for="txtLogin" class="form-label">Login</label>
+                        <input  id="txtLogin" class="form-control" type="text" value="<%=usuario.getLogin()%>" disabled>
                     </div>                     
-                    <div class="input-field col l4 s12">   
-                        <select id="slEstatus" name="estatus" disabled>
+                    <div class="col-md-6"">   
+                        <label for="slEstatus" class="form-label">Estatus</label>
+                        <select id="slEstatus" name="estatus" class="form-select" disabled>
                             <option value="0" <%=(usuario.getEstado()== 10) ? "selected" : ""%>>SELECCIONAR</option>
                             <option value="<%=Usuario.EstadoUsuario.ACTIVO%>"  <%=(usuario.getEstado() == Usuario.EstadoUsuario.ACTIVO) ? "selected" : ""%>>ACTIVO</option>
                             <option value="<%=Usuario.EstadoUsuario.INACTIVO%>"  <%=(usuario.getEstado() == Usuario.EstadoUsuario.INACTIVO) ? "selected" : ""%>>INACTIVO</option>
-                        </select>       
-                        <label for="slEstatus">Estatus</label>                       
+                        </select>                                  
                     </div>
-                    <div class="input-field col l4 s12">
-                        <input id="txtRol" type="text" value="<%=usuario.getRol().getNombre()%>" disabled>
+                    <div class="col-md-6"">
                         <label for="txtRol">Rol</label>
+                        <input id="txtRol" type="text" value="<%=usuario.getRol().getNombre()%>" disabled>
                     </div> 
-                </div>
-                <div class="row">
-                    <div class="col l12 s12">
-                        <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">delete</i>Eliminar</button>
-                        <a href="Usuario" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
-                    </div>
+                
+                <div class="mb-3">
+                    <button type="sutmit" class="btn btn-primary">Eliminar</button>
+                    <a href="Usuario" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>          
         </main>
