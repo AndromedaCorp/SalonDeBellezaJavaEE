@@ -12,26 +12,31 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Editar Cliente</h5>
-            <form action="Cliente" method="post">
+            <form action="Cliente" method="post" class="row g-3">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">   
                 <input type="hidden" name="id" value="<%=cliente.getId()%>">   
-                <div class="row">
-                    <div class="input-field col l4 s12">
-                        <input  id="txtNombre" type="text" name="nombre" value="<%=cliente.getNombre()%>" required class="validate" maxlength="50">
-                        <label for="txtNombre">Nombre</label>
-                        <input  id="txtApellido" type="text" name="apellido" value="<%=cliente.getApellido()%>" required class="validate" maxlength="50">
-                        <label for="txtApellido">Apellido</label>
-                        <input  id="txtDui" type="text" name="dui" value="<%=cliente.getDui()%>" required class="validate" maxlength="50">
-                        <label for="txtDui">DUI</label>
-                        <input  id="txtNumero" type="text" name="numero" value="<%=cliente.getNumero()%>" required class="validate" maxlength="30">
-                        <label for="txtNumero">Numero</label>
-                    </div>                                       
+                <div class="col-md-6">
+                        <label for="txtNombre" class="form-label">Nombre</label>
+                        <input  id="txtNombre" type="text" name="nombre" value="<%=cliente.getNombre()%>" required class="validate form-control" maxlength="50">
+                        
                 </div>
-                <div class="row">
-                    <div class="col l12 s12">
-                        <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">save</i>Guardar</button>
-                        <a href="Cliente" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
-                    </div>
+                <div class="col-md-6">
+                        <label for="txtApellido" class="form-label">Apellido</label>
+                        <input  id="txtApellido" type="text" name="apellido" value="<%=cliente.getApellido()%>" required class="validate form-control" maxlength="50">
+                        
+                </div>
+                <div class="col-md-6">
+                        <label for="txtDui" class="form-label">DUI</label>
+                        <input  id="txtDui" type="text" name="dui" value="<%=cliente.getDui()%>" required class="validate form-control" maxlength="50">
+                </div>
+                <div class="col-md-6">
+                        <label for="txtNumero" class="form-label">Numero</label>
+                        <input  id="txtNumero" type="text" name="numero" value="<%=cliente.getNumero()%>" required class="validate form-control" maxlength="30">
+                </div>
+                         
+                <div class="mb-3">
+                    <button type="sutmit" class="btn btn-primary">Guardar</button>
+                    <a href="Cliente" class="btn btn-danger">Cancelar</a>                          
                 </div>
             </form>          
         </main>

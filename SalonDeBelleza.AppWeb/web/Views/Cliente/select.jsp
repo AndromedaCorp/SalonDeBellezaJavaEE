@@ -5,10 +5,12 @@
 <% ArrayList<Cliente> clientes = ClienteDAL.obtenerTodos();
     int id = Integer.parseInt(request.getParameter("id"));
 %>
-<select id="slCliente" name="idCliente">
+
+<label for="idCliente" class="form-label">Cliente</label>
+<select id="slCliente" class="form-select" name="idCliente">
     <option <%=(id == 0) ? "selected" : ""%>  value="0">SELECCIONAR</option>
     <% for (Cliente cliente : clientes) {%>
     <option <%=(id == cliente.getId()) ? "selected" : ""%>  value="<%=cliente.getId()%>"><%= cliente.getNombre()%></option>
     <%}%>
 </select>
-<label for="idCliente">Cliente</label>
+
