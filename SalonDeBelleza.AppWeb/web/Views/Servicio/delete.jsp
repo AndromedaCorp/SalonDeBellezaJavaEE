@@ -11,26 +11,28 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Eliminar Servicio</h5>          
-            <form action="Servicio" method="post">
+            <form action="Servicio" method="post" class="row g-3">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">   
-                <input type="hidden" name="id" value="<%=servicio.getId()%>">   
-                <div class="row">
-                    <div class="input-field col l4 s12">
-                        <input disabled  id="txtNombre" type="text" value="<%=servicio.getNombre()%>">
-                        <label for="txtNombre">Nombre</label
-                        <input disabled  id="txtDescripcion" type="text" value="<%=servicio.getDescripcion()%>">
-                        <label for="txtDescripcion">Descripcion</label>
-                        <input disabled  id="txtPrecio" type="text" value="<%=servicio.getPrecio()%>">
-                        <label for="txtPrecio">Precio</label>
-                        <input disabled  id="txtDuracion" type="text" value="<%=servicio.getDuracion()%>">
-                        <label for="txtDuracion">Duracion</label>
-                    </div>                                        
+                <input type="hidden" name="id" value="<%=servicio.getId()%>"> 
+                <div class="col-md-6"">
+                    <label for="txtNombre" class="form-label">Nombre</label>
+                    <input disabled class="form-control" id="txtNombre" type="text" value="<%=servicio.getNombre()%>">
                 </div>
-                <div class="row">
-                    <div class="col l12 s12">
-                        <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">delete</i>Eliminar</button>
-                        <a href="Servicio" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
-                    </div>
+                <div class="col-md-6"">
+                    <label for="txtDescripcion" class="form-label">Descripcion</label>    
+                    <input disabled class="form-control" id="txtDescripcion" type="text" value="<%=servicio.getDescripcion()%>">                        
+                </div>
+                <div class="col-md-6"">
+                    <label for="txtPrecio" class="form-label">Precio</label>    
+                    <input disabled class="form-control" id="txtPrecio" type="text" value="<%=servicio.getPrecio()%>">                       
+                </div>
+                <div class="col-md-6"">
+                    <label for="txtDuracion" class="form-label">Duracion</label>     
+                    <input disabled class="form-control" id="txtDuracion" type="text" value="<%=servicio.getDuracion()%>">                       
+                </div>
+                <div class="mb-3">
+                    <button type="sutmit" class="btn btn-primary">Eliminar</button>                        
+                    <a href="Servicio" class="btn btn-danger">Cancelar</a>                          
                 </div>
             </form>          
         </main>
