@@ -8,9 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;  // Importar la clase ArrayList
-import salondebelleza.accesoadatos.RolDAL; // Importar la clase RolDAL de la capa de acceso a datos
 import salondebelleza.entidadesdenegocio.Rol;// Importar la clase Rol de la capa de entidades de negocio
 import salondebelleza.appweb.utils.*;// Importar las clases SessionUser, Utilidad del paquete de utils
+
+/* librerias para utilizar la web API */
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+
+
+/***************************************************/
 
 /**
  * En este Servlet, vamos a recibir todas las peticiones get y post que se
@@ -74,8 +82,25 @@ public class RolServlet extends HttpServlet {
         try {
             Rol rol = new Rol(); // Crear una instancia  de la entidad de Rol.
             rol.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de rol.
-            ArrayList<Rol> roles = RolDAL.buscar(rol); // Ir a la capa de acceso a datos y buscar los registros de Rol.
-            // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
+           
+            //codigo agregar para consumir la web API
+               HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Rol> roles = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Rol>>() {
+                }.getType();
+                roles = gson.fromJson(json, tipo);
+            }
+           
+            //****************************************************************************************
+           // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
             request.setAttribute("roles", roles); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles.
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
             request.setAttribute("top_aux", rol.getTop_aux());
@@ -100,7 +125,25 @@ public class RolServlet extends HttpServlet {
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request 
-            ArrayList<Rol> roles = RolDAL.buscar(rol); // Buscar los roles que cumple con los datos enviados en el request
+           
+            //Codigo agregar para consumir la web API
+             HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Rol> roles = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Rol>>() {
+                }.getType();
+                roles = gson.fromJson(json, tipo);
+            }
+           
+          //***********************************************
+          
             request.setAttribute("roles", roles); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo roles
             // Enviar el Top_aux de Rol al jsp utilizando el request.setAttribute con el nombre del atributo top_aux
             request.setAttribute("top_aux", rol.getTop_aux());
@@ -139,8 +182,20 @@ public class RolServlet extends HttpServlet {
     private void doPostRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
-            // Enviar los datos de Rol a la capa de accesoa a datos para que lo almacene en la base de datos el registro.
-            int result = RolDAL.crear(rol);
+      
+             //Codigo agregar para consumir la web API
+              int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol", "POST");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+             
+            //****************************************
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron ingresados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index
                 request.setAttribute("accion", "index");
@@ -169,8 +224,20 @@ public class RolServlet extends HttpServlet {
     private void requestObtenerPorId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
-            // Obtener desde la capa de acceso a datos el rol por Id.
-            Rol rol_result = RolDAL.obtenerPorId(rol);
+           
+         // Codigo agregar para consumir la Web API
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET");
+            con.connect();
+            int status = con.getResponseCode();
+            Gson gson = new Gson();
+            Rol rol_result = new Rol();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                rol_result = gson.fromJson(json, Rol.class);
+            }
+            //******************************************
+            
             if (rol_result.getId() > 0) { // Si el Id es mayor a cero.
                 // Enviar el atributo rol con el valor de los datos del rol de nuestra base de datos a un jsp
                 request.setAttribute("rol", rol_result);
@@ -214,8 +281,22 @@ public class RolServlet extends HttpServlet {
     private void doPostRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
-            // Enviar los datos de Rol a la capa de accesoa a datos para modificar el registro.
-            int result = RolDAL.modificar(rol);
+            
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "PUT");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //********************************************
+            
+            
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -277,8 +358,17 @@ public class RolServlet extends HttpServlet {
     private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
-            // Enviar los datos de Rol a la capa de accesoa a datos para que elimine el registro.
-            int result = RolDAL.eliminar(rol);
+           
+            
+       // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "DELETE");
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //*******************************************
             if (result != 0) {// Si el result es diferente a cero significa que los datos fueron eliminados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
