@@ -8,12 +8,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList; // Importar la clase ArrayList
-import salondebelleza.accesoadatos.RolDAL; // Importar la clase RolDAL de la capa de acceso a datos
-import salondebelleza.accesoadatos.UsuarioDAL; // Importar la clase UsuarioDAL de la capa de acceso a datos
+//import salondebelleza.accesoadatos.RolDAL; // Importar la clase RolDAL de la capa de acceso a datos
+//import salondebelleza.accesoadatos.UsuarioDAL; // Importar la clase UsuarioDAL de la capa de acceso a datos
 import salondebelleza.appweb.utils.*; // Importar las clases SessionUser, Utilidad del paquete de utils
 import salondebelleza.entidadesdenegocio.Rol; // Importar la clase Rol de la capa de entidades de negocio
 import salondebelleza.entidadesdenegocio.Usuario; // Importar la clase Usuario de la capa de entidades de negocio
 
+/* Librerias para utilizar la Web API */
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+/* ************************************* */
 /**
  * En este Servlet, vamos a recibir todas las peticiones get y post que se
  * realice al Servlet Usuario. Aprender conceptos básicos de servlets
@@ -37,6 +50,11 @@ public class UsuarioServlet extends HttpServlet {
      * @return Usuario devolver la instancia de la entidad Usuario con los
      * valores obtenidos del request
      */
+    private Gson obtenerGson() {
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME)).create();
+        return gson;
+    }
+
     private Usuario obtenerUsuario(HttpServletRequest request) {
         // Obtener el parámetro accion del request
         String accion = Utilidad.getParameter(request, "accion", "index");
@@ -94,8 +112,25 @@ public class UsuarioServlet extends HttpServlet {
         try {
             Usuario usuario = new Usuario(); // Crear una instancia  de la entidad de Usuario.
             usuario.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Usuario.
+
+            // Codigo agregar para consumir la Web API
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Usuario> usuarios = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Usuario>>() {
+                }.getType();
+                usuarios = gson.fromJson(json, tipo);
+            }
+            //********************************************
             // Ir a la capa de acceso a datos y buscar los registros de Usuario y asociar Rol.
-            ArrayList<Usuario> usuarios = UsuarioDAL.buscarIncluirRol(usuario);
+            //ArrayList<Usuario> usuarios = UsuarioDAL.buscarIncluirRol(usuario);
             // Enviar los usuarios al jsp utilizando el request.setAttribute con el nombre del atributo usuario.
             request.setAttribute("usuarios", usuarios);
             // Enviar el Top_aux de Usuario al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
@@ -120,8 +155,26 @@ public class UsuarioServlet extends HttpServlet {
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API   
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Usuario> usuarios = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Usuario>>() {
+                }.getType();
+                usuarios = gson.fromJson(json, tipo);
+            }
+            //*******************************************
+
             // Ir a la capa de acceso a datos y buscar los registros de Usuario y asociar Rol.
-            ArrayList<Usuario> usuarios = UsuarioDAL.buscarIncluirRol(usuario);
+            // ArrayList<Usuario> usuarios = UsuarioDAL.buscarIncluirRol(usuario);
             // Enviar los usuarios al jsp utilizando el request.setAttribute con el nombre del atributo usuario.
             request.setAttribute("usuarios", usuarios);
             // Enviar el Top_aux de Usuario al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
@@ -160,8 +213,22 @@ public class UsuarioServlet extends HttpServlet {
     private void doPostRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario", "POST");
+            con.setDoOutput(true);
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //*******************************************
+
             // Enviar los datos de Usuario a la capa de accesoa a datos para que lo almacene en la base de datos el registro.
-            int result = UsuarioDAL.crear(usuario);
+            //int result = UsuarioDAL.crear(usuario);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron ingresados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index
                 request.setAttribute("accion", "index");
@@ -190,12 +257,40 @@ public class UsuarioServlet extends HttpServlet {
     private void requestObtenerPorId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
-            Usuario usuario_result = UsuarioDAL.obtenerPorId(usuario); // Obtener desde la capa de acceso a datos el usuario por Id.
+
+            // Codigo agregar para consumir la Web API
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "GET");
+            con.connect();
+            int status = con.getResponseCode();
+            Gson gson = obtenerGson();
+            Usuario usuario_result = new Usuario();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                usuario_result = gson.fromJson(json, Usuario.class);
+            }
+            //******************************************
+
+            //Usuario usuario_result = UsuarioDAL.obtenerPorId(usuario); // Obtener desde la capa de acceso a datos el usuario por Id.
             if (usuario_result.getId() > 0) { // Si el Id es mayor a cero.
                 Rol rol = new Rol();
                 rol.setId(usuario_result.getIdrol());
+
+                // Codigo agregar para consumir la Web API
+                HttpURLConnection con_Rol = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET");
+                con_Rol.connect();
+                int status_Rol = con_Rol.getResponseCode();
+                Rol rol_result = new Rol();
+                if (status_Rol == HttpURLConnection.HTTP_OK) {
+                    String json = Utilidad.obtenerJSONWebAPI(con_Rol);
+                    con_Rol.disconnect();
+                    rol_result = gson.fromJson(json, Rol.class);
+                }
+                usuario_result.setRol(rol_result);
+                //******************************************
+
                 // Obtener desde la capa de acceso a datos el rol por Id y asignarlo al usuario.
-                usuario_result.setRol(RolDAL.obtenerPorId(rol));
+                //usuario_result.setRol(RolDAL.obtenerPorId(rol));
                 // Enviar el atributo usuario con el valor de los datos del usuario de nuestra base de datos a un jsp
                 request.setAttribute("usuario", usuario_result);
             } else {
@@ -238,8 +333,22 @@ public class UsuarioServlet extends HttpServlet {
     private void doPostRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "PUT");
+            con.setDoOutput(true);
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //********************************************
+
             // Enviar los datos de Usuario a la capa de accesoa a datos para modificar el registro.
-            int result = UsuarioDAL.modificar(usuario);
+            //int result = UsuarioDAL.modificar(usuario);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -301,8 +410,19 @@ public class UsuarioServlet extends HttpServlet {
     private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "DELETE");
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //*******************************************
+
             // Enviar los datos de Usuario a la capa de accesoa a datos para que elimine el registro.
-            int result = UsuarioDAL.eliminar(usuario);
+            //int result = UsuarioDAL.eliminar(usuario);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron eliminados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -346,14 +466,47 @@ public class UsuarioServlet extends HttpServlet {
     private void doPostRequestLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Login", "POST");
+            con.setDoOutput(true);
+            //Gson gson = new Gson();
+            //Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))).create();
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            String jsonX = gson.toJson(usuario);
+            int status = con.getResponseCode();
+            Usuario usuario_auth = new Usuario();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                usuario_auth = gson.fromJson(json, Usuario.class);
+            }
+            //******************************************
+
             // Ir a la capa de accesoa a datos para que autorizar el usuario.
-            Usuario usuario_auth = UsuarioDAL.login(usuario);
+            //Usuario usuario_auth = UsuarioDAL.login(usuario);
             // Confirmar que el usuario cumple con la autorizacion para entrar al sistema.
             if (usuario_auth.getId() != 0 && usuario_auth.getLogin().equals(usuario.getLogin())) {
                 Rol rol = new Rol();
                 rol.setId(usuario_auth.getIdrol());
+
+                // Codigo agregar para consumir la Web API
+                HttpURLConnection con_Rol = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET");
+                con_Rol.connect();
+                int status_Rol = con_Rol.getResponseCode();
+                Rol rol_result = new Rol();
+                if (status_Rol == HttpURLConnection.HTTP_OK) {
+                    String json = Utilidad.obtenerJSONWebAPI(con_Rol);
+                    con_Rol.disconnect();
+                    rol_result = gson.fromJson(json, Rol.class);
+                }
+                usuario_auth.setRol(rol_result);
+                //******************************************
+
                 // Obtener desde la capa de acceso a datos el rol por Id y asignarlo al usuario.
-                usuario_auth.setRol(RolDAL.obtenerPorId(rol));
+                //usuario_auth.setRol(RolDAL.obtenerPorId(rol));
                 // Autenticar el usuario en la aplicacion web, mediante variables de session.
                 SessionUser.autenticarUser(request, usuario_auth);
                 response.sendRedirect("Home"); // Direccionar al Servlet de Home para ir al jsp index en la carpeta principal 
@@ -367,6 +520,8 @@ public class UsuarioServlet extends HttpServlet {
         } catch (Exception ex) {
             // Enviar al jsp de error si hay un Exception.
             request.setAttribute("error", ex.getMessage());
+            request.setAttribute("accion", "login");
+            doGetRequestLogin(request, response); // Ir al método doGetRequestLogin para que nos direccione al jsp login.
         }
     }
 
@@ -385,8 +540,27 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = new Usuario();
             // Obtener el login de la variable de session y asignarlo a la instancia de Usuario.
             usuario.setLogin(SessionUser.getUser(request));
+
+            // Codigo agregar para consumir la Web API   
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Usuario> usuarios = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Usuario>>() {
+                }.getType();
+                usuarios = gson.fromJson(json, tipo);
+            }
+            Usuario usuario_result = usuarios.get(0);
+            //*******************************************
+
             // Buscar el  Usuario por Login en la capa de acceso a datos  
-            Usuario usuario_result = UsuarioDAL.buscar(usuario).get(0);
+            //Usuario usuario_result = UsuarioDAL.buscar(usuario).get(0);
             if (usuario_result.getId() > 0) { // Si el Id de Usuario es mayor a cero
                 // Enviar el atributo usuario con el valor del usuario que se obtuvo por Login
                 request.setAttribute("usuario", usuario_result);
@@ -416,8 +590,23 @@ public class UsuarioServlet extends HttpServlet {
         try {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
             String passActual = Utilidad.getParameter(request, "passwordActual", ""); // Obtener el parámetro passwordActual del request
+
+            // Codigo agregar para consumir la Web API
+            usuario.setConfirmPassword_aux(passActual);
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/CambiarPassword", "POST");
+            con.setDoOutput(true);
+            Gson gson = obtenerGson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //******************************************* 
+
             // Llamamos el método cambiarPassword de la capa de acceso a datos para cambiar el password actual del usuario que inicio session.
-            int result = UsuarioDAL.cambiarPassword(usuario, passActual);
+            //int result = UsuarioDAL.cambiarPassword(usuario, passActual);
             if (result != 0) { // Si el result es diferente a cero significa que se cambio el password correctamente.
                 // Direccionar al Servlet de Usuario enviando el parámetro accion igual login. Esto hará que nos pida el sistema
                 // volver iniciar session con el nuevo password.
