@@ -120,7 +120,7 @@ public class Utilidad {
         SSLContext sc = SSLContext.getInstance("SSL"); // "TLS" "SSL"
         sc.init(null, trustAllCerts, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-        /*        HttpsURLConnection.setDefaultHostnameVerifier((String hostname, SSLSession session) -> false);*/
+           /*  HttpsURLConnection.setDefaultHostnameVerifier((String hostname, SSLSession session) -> false);*/
         HttpsURLConnection con = (HttpsURLConnection) pUrl.openConnection();
         return con;
     }
