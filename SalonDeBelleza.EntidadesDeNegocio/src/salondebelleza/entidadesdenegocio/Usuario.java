@@ -5,7 +5,7 @@
  */
 package salondebelleza.entidadesdenegocio;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Usuario {
     private String login;
     private String password;
     private byte estado;
-    private LocalDate fechaRegistro;
+    private LocalDateTime fechaRegistro;
     private int top_aux;
     private String confirmarPassword_aux;
     private Rol rol;
@@ -30,7 +30,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, int idrol, String dui, String nombre, String apellido, String numero, String login, String password, byte estado, LocalDate fechaRegistro) {
+    public Usuario(int id, int idrol, String dui, String nombre, String apellido, String numero, String login, String password, byte estado, LocalDateTime fechaRegistro) {
         this.id = id;
         this.idrol = idrol;
         this.dui = dui;
@@ -115,11 +115,11 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public LocalDate getFechaRegistro() {
+    public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDate fechaRegistro) {
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
