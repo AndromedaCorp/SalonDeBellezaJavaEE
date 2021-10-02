@@ -49,8 +49,8 @@ public class SessionUser {
         // session.getAttribute es para obtener el valor de una variable de session, si no existe devuelve null por defecto.
         // Aprender sobre el operador ternario en java http://lineadecodigo.com/java/el-operador-ternario-en-java/
         boolean auth = session.getAttribute("auth") != null ? (boolean) session.getAttribute("auth") : false;
-     //   return auth;
-        return true;
+       return auth;
+        /////////////////////////return true;
     }
 
     /**

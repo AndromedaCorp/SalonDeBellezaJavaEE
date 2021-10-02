@@ -1,9 +1,9 @@
-<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="salondebelleza.appweb.utils.*"%>
 <% if (SessionUser.isAuth(request) == false) {
          response.sendRedirect("Usuario?accion=login");
     }
-%>--%>
+%>
 
 <!doctype html>
 <html lang="en">
