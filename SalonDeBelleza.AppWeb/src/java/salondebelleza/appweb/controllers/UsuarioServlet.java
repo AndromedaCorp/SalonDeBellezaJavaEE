@@ -592,7 +592,7 @@ public class UsuarioServlet extends HttpServlet {
             String passActual = Utilidad.getParameter(request, "passwordActual", ""); // Obtener el parámetro passwordActual del request
 
             // Codigo agregar para consumir la Web API
-            usuario.setConfirmPassword_aux(passActual);
+            usuario.setConfirmarPassword_aux(passActual);
             int result = 0;
             HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/CambiarPassword", "POST");
             con.setDoOutput(true);
