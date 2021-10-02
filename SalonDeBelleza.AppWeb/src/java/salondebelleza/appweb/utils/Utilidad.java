@@ -6,6 +6,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/* librerias para utilidad la web api */
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 /**
  * En esta clase vamos a programar, los métodos de utilidad en la aplicacion web
  * de java
@@ -78,5 +93,74 @@ public class Utilidad {
         // request.getContextPath() devuelve el nombre de la aplicación (o directorio raíz del proyecto) en Java EE.
         return request.getContextPath() + pStrRuta; // concatenar la ruta raiz de la aplicacion, mas la ruta del archivo css, js o imagen 
     }
+    // codigo agregar para consumir la web API
     
+    public static HttpURLConnection obtenerHttpURLConnection (URL pUrl) throws IOException {
+    HttpURLConnection con = (HttpURLConnection) pUrl.openConnection();
+    return con;
+    }
+    
+    public static HttpsURLConnection obtenerHttpsURLConnection(URL pUrl) throws IOException, NoSuchAlgorithmException, KeyManagementException {
+        TrustManager[] trustAllCerts = new TrustManager[]{
+            new X509TrustManager() {
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                }
+            }
+        };
+        SSLContext sc = SSLContext.getInstance("SSL"); // "TLS" "SSL"
+        sc.init(null, trustAllCerts, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        /*        HttpsURLConnection.setDefaultHostnameVerifier((String hostname, SSLSession session) -> false);*/
+        HttpsURLConnection con = (HttpsURLConnection) pUrl.openConnection();
+        return con;
+    }
+    
+    public static HttpURLConnection obtenerConnecionWebAPI(String pUrl, String pMetodo) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException {
+        // Agregar la url de la Web API, que esta ejecutandose en .Net Core
+        String urlWEbAPI = "https://localhost:44319/api/"; 
+        urlWEbAPI += pUrl;
+        URL url = new URL(urlWEbAPI);
+        boolean esHttps = true;
+        HttpURLConnection con;
+        if (esHttps) {
+            con = obtenerHttpsURLConnection(url);
+        } else {
+            con = obtenerHttpURLConnection(url);
+        }
+
+        con.setRequestMethod(pMetodo);
+        con.setRequestProperty("Content-Type", "application/json");
+        return con;
+    }
+    
+    public static String obtenerJSONWebAPI(HttpURLConnection con) throws IOException {
+        StringBuffer content;
+        try (BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()))) {
+            String inputLine;
+            content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+        }
+        return content.toString();
+    }
+    
+    public static void asignarJSONWebAPI(HttpURLConnection con, String pJson) throws IOException {
+        try (OutputStream os = con.getOutputStream()) {
+            byte[] input = pJson.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+    //*****************************************************
+    }
 }
