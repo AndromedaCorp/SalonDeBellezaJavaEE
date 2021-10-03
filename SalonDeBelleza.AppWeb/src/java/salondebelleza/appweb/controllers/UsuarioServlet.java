@@ -57,13 +57,10 @@ public class UsuarioServlet extends HttpServlet {
             @Override
             public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
-                return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             }
 
         }).create();
-
-//        Usuario usuario = gson.fromJson(stringJson, Usuario.class);
-
         return gson;
     }
 
