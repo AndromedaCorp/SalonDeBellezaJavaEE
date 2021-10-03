@@ -1,4 +1,3 @@
-
 package salondebelleza.appweb.utils;
 
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
@@ -27,8 +27,8 @@ import javax.net.ssl.X509TrustManager;
  */
 
 public class Utilidad {
-    
-     /**
+
+    /**
      * En este método vamos obtener el valor de un parámetro, que es enviado en
      * la peticion get o post que recibe un servlet, desde un formulario o url
      * del navegador web. La utilidad de crear este metodo, es no repetir una y
@@ -43,7 +43,6 @@ public class Utilidad {
      * @return String devolver el valor del parámetro que se envio desde un
      * formulario o url del navegador web
      */
-    
     public static String getParameter(HttpServletRequest request, String pKey, String pDefault) {
         String result = "";
         // request.getParameter es para obtener el valor de un parámetro que se envio desde un formulario o url del navegador web 
@@ -70,7 +69,6 @@ public class Utilidad {
      * @throws java.io.IOException devolver una exception al leer o escribir un
      * archivo
      */
-    
     public static void enviarError(String pError, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // request.setAttribute es para crear un atributo y asignarle un valor el cual puede ser recibido en un jsp
         request.setAttribute("error", pError); // crear el atributo error  y asignarle el valor de la variable pError
@@ -94,12 +92,12 @@ public class Utilidad {
         return request.getContextPath() + pStrRuta; // concatenar la ruta raiz de la aplicacion, mas la ruta del archivo css, js o imagen 
     }
     // codigo agregar para consumir la web API
-    
-    public static HttpURLConnection obtenerHttpURLConnection (URL pUrl) throws IOException {
-    HttpURLConnection con = (HttpURLConnection) pUrl.openConnection();
-    return con;
+
+    public static HttpURLConnection obtenerHttpURLConnection(URL pUrl) throws IOException {
+        HttpURLConnection con = (HttpURLConnection) pUrl.openConnection();
+        return con;
     }
-    
+
     public static HttpsURLConnection obtenerHttpsURLConnection(URL pUrl) throws IOException, NoSuchAlgorithmException, KeyManagementException {
         TrustManager[] trustAllCerts = new TrustManager[]{
             new X509TrustManager() {
@@ -120,14 +118,22 @@ public class Utilidad {
         SSLContext sc = SSLContext.getInstance("SSL"); // "TLS" "SSL"
         sc.init(null, trustAllCerts, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-           /*  HttpsURLConnection.setDefaultHostnameVerifier((String hostname, SSLSession session) -> false);*/
+
+        HttpsURLConnection.setDefaultHostnameVerifier(
+                new HostnameVerifier() {
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        });
+
+        //HttpsURLConnection.setDefaultHostnameVerifier((String hostname, SSLSession session) -> false);
         HttpsURLConnection con = (HttpsURLConnection) pUrl.openConnection();
         return con;
     }
-    
+
     public static HttpURLConnection obtenerConnecionWebAPI(String pUrl, String pMetodo) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException {
         // Agregar la url de la Web API, que esta ejecutandose en .Net Core
-        String urlWEbAPI = "https://localhost:44319/api/"; 
+        String urlWEbAPI = "https://localhost:44319/api/";
         urlWEbAPI += pUrl;
         URL url = new URL(urlWEbAPI);
         boolean esHttps = true;
@@ -142,7 +148,7 @@ public class Utilidad {
         con.setRequestProperty("Content-Type", "application/json");
         return con;
     }
-    
+
     public static String obtenerJSONWebAPI(HttpURLConnection con) throws IOException {
         StringBuffer content;
         try (BufferedReader in = new BufferedReader(
@@ -155,12 +161,12 @@ public class Utilidad {
         }
         return content.toString();
     }
-    
+
     public static void asignarJSONWebAPI(HttpURLConnection con, String pJson) throws IOException {
         try (OutputStream os = con.getOutputStream()) {
             byte[] input = pJson.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-    //*****************************************************
+        //*****************************************************
     }
 }
