@@ -8,10 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;     // Importar la clase ArrayList
-import salondebelleza.accesoadatos.ServicioDAL;  // Importar la clase RolDAL de la capa de acceso a datos
+//import salondebelleza.accesoadatos.ServicioDAL;  // Importar la clase RolDAL de la capa de acceso a datos
 import salondebelleza.entidadesdenegocio.Servicio; // Importar la clase Rol de la capa de entidades de negocio
 import salondebelleza.appweb.utils.*; // Importar las clases SessionUser, Utilidad del paquete de utils
 
+
+/* Librerias para utilizar la Web API */
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+
+/* ************************************* */
 /**
  * En este Servlet, vamos a recibir todas las peticiones get y post que se
  * realice al Servlet Rol. Aprender conceptos básicos de servlets
@@ -73,7 +81,25 @@ public class ServicioServlet extends HttpServlet {
         try {
             Servicio servicio = new Servicio(); // Crear una instancia  de la entidad de Servicio.
             servicio.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Servicio.
-            ArrayList<Servicio> servicios = ServicioDAL.buscar(servicio); // Ir a la capa de acceso a datos y buscar los registros de Rol.
+
+            // Codigo agregar para consumir la Web API
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Servicio/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(servicio));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Servicio> servicios = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Servicio>>() {
+                }.getType();
+                servicios = gson.fromJson(json, tipo);
+            }
+            //********************************************
+
+            //ArrayList<Servicio> servicios = ServicioDAL.buscar(servicio); // Ir a la capa de acceso a datos y buscar los registros de Rol.
             // El request.setAttribute se utiliza para enviar datos desde un servlet a un jsp.
             request.setAttribute("servicios", servicios); // Enviar los roles al jsp utilizando el request.setAttribute con el nombre del atributo servicios.
             // Enviar el Top_aux de Servicio al jsp utilizando el request.setAttribute con el nombre del atributo top_aux.
@@ -100,7 +126,25 @@ public class ServicioServlet extends HttpServlet {
     private void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Servicio servicio = obtenerServicio(request); // Llenar la instancia de Servicio con los parámetros enviados en el request 
-            ArrayList<Servicio> servicios = ServicioDAL.buscar(servicio); // Buscar los servicios que cumple con los datos enviados en el request
+
+            // Codigo agregar para consumir la Web API   
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Servicio/Buscar", "POST");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(servicio));
+            con.connect();
+            int status = con.getResponseCode();
+            ArrayList<Servicio> servicios = new ArrayList();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                Type tipo = new TypeToken<ArrayList<Servicio>>() {
+                }.getType();
+                servicios = gson.fromJson(json, tipo);
+            }
+            //*******************************************
+
+            //ArrayList<Servicio> servicios = ServicioDAL.buscar(servicio); // Buscar los servicios que cumple con los datos enviados en el request
             request.setAttribute("servicios", servicios); // Enviar los servicios al jsp utilizando el request.setAttribute con el nombre del atributo roles
             // Enviar el Top_aux de Servicio al jsp utilizando el request.setAttribute con el nombre del atributo top_aux
             request.setAttribute("top_aux", servicio.getTop_aux());
@@ -139,8 +183,22 @@ public class ServicioServlet extends HttpServlet {
     private void doPostRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Servicio servicio = obtenerServicio(request); // Llenar la instancia de Servicio con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Servicio", "POST");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(servicio));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //*******************************************
+
             // Enviar los datos de Servicio a la capa de accesoa a datos para que lo almacene en la base de datos el registro.
-            int result = ServicioDAL.crear(servicio);
+            //int result = ServicioDAL.crear(servicio);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron ingresados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index
                 request.setAttribute("accion", "index");
@@ -169,8 +227,22 @@ public class ServicioServlet extends HttpServlet {
     private void requestObtenerPorId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Servicio servicio = obtenerServicio(request); // Llenar la instancia de Servicio con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Servicio/" + servicio.getId(), "GET");
+            con.connect();
+            int status = con.getResponseCode();
+            Gson gson = new Gson();
+            Servicio servicio_result = new Servicio();
+            if (status == HttpURLConnection.HTTP_OK) {
+                String json = Utilidad.obtenerJSONWebAPI(con);
+                con.disconnect();
+                servicio_result = gson.fromJson(json, Servicio.class);
+            }
+            //******************************************
+
             // Obtener desde la capa de acceso a datos el servicio por Id.
-            Servicio servicio_result = ServicioDAL.obtenerPorId(servicio);
+            //Servicio servicio_result = ServicioDAL.obtenerPorId(servicio);
             if (servicio_result.getId() > 0) { // Si el Id es mayor a cero.
                 // Enviar el atributo servicio con el valor de los datos del servicio de nuestra base de datos a un jsp
                 request.setAttribute("servicio", servicio_result);
@@ -214,8 +286,22 @@ public class ServicioServlet extends HttpServlet {
     private void doPostRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Servicio servicio = obtenerServicio(request); // Llenar la instancia de Servicio con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Servicio/" + servicio.getId(), "PUT");
+            con.setDoOutput(true);
+            Gson gson = new Gson();
+            Utilidad.asignarJSONWebAPI(con, gson.toJson(servicio));
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //********************************************
+
             // Enviar los datos de Servicio a la capa de accesoa a datos para modificar el registro.
-            int result = ServicioDAL.modificar(servicio);
+            //int result = ServicioDAL.modificar(servicio);
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -277,8 +363,19 @@ public class ServicioServlet extends HttpServlet {
     private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Servicio servicio = obtenerServicio(request); // Llenar la instancia de Servicio con los parámetros enviados en el request.
+
+            // Codigo agregar para consumir la Web API
+            int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Servicio/" + servicio.getId(), "DELETE");
+            con.connect();
+            int status = con.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+                result = 1;
+            }
+            //*******************************************
+
             // Enviar los datos de Servicio a la capa de accesoa a datos para que elimine el registro.
-            int result = ServicioDAL.eliminar(servicio);
+            //int result = ServicioDAL.eliminar(servicio);
             if (result != 0) {// Si el result es diferente a cero significa que los datos fueron eliminados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -310,17 +407,17 @@ public class ServicioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
         // puedan acceder al servlet de Rol. Todo el codigo que este dentro  expresion Lambda, se ejecutara si el usuario tiene permitido
         // acceder a este Servlet      
-        final HttpServletRequest requestLocal=request;
-        final HttpServletResponse  responseLocal=response;
-        
+        final HttpServletRequest requestLocal = request;
+        final HttpServletResponse responseLocal = response;
+
         SessionUser.authorize(requestLocal, response, new IAuthorize() {
             @Override
             public void authorize() throws ServletException, IOException {
-                        // Obtener el parámetro accion del request.
+                // Obtener el parámetro accion del request.
                 String accion = Utilidad.getParameter(requestLocal, "accion", "index");
                 // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
                 switch (accion) {
@@ -352,9 +449,6 @@ public class ServicioServlet extends HttpServlet {
             }
         });
     }
-    
-
-
     /**
      * Este método es un override al método de la clase HttpServlet para recibir
      * todas las peticiones post que se realice al Servlet Rol
@@ -373,14 +467,14 @@ public class ServicioServlet extends HttpServlet {
         // Utilizar el método authorize de la clase SessionUser para validar que solo usuario con permiso
         // puedan acceder al servlet de Servicio. Todo el codigo que este dentro  expresion Lambda,  se ejecutara si el usuario tiene permitido
         // acceder a este Servlet 
-        final HttpServletRequest requestLocal=request;
-        final HttpServletResponse  responseLocal=response;
-        
+        final HttpServletRequest requestLocal = request;
+        final HttpServletResponse responseLocal = response;
+
         SessionUser.authorize(requestLocal, response, new IAuthorize() {
             @Override
             public void authorize() throws ServletException, IOException {
-                        // Obtener el parámetro accion del request.
-                        // Obtener el parámetro accion del request.
+                // Obtener el parámetro accion del request.
+                // Obtener el parámetro accion del request.
                 String accion = Utilidad.getParameter(requestLocal, "accion", "index");
                 // Hacer un switch para decidir a cual metodo ir segun el valor que venga en el parámetro de accion.
                 switch (accion) {
@@ -412,8 +506,6 @@ public class ServicioServlet extends HttpServlet {
             }
         });
     }
-
-    
 
     // </editor-fold>
 }
