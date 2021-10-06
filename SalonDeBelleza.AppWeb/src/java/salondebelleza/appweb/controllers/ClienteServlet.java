@@ -83,7 +83,7 @@ public class ClienteServlet extends HttpServlet {
             cliente.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de cliente.
 
             // Codigo agregar para consumir la Web API
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/Buscar", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/Buscar", "POST", request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(cliente));
@@ -127,7 +127,7 @@ public class ClienteServlet extends HttpServlet {
             Cliente cliente = obtenerCliente(request); // Llenar la instancia de cliente con los parámetros enviados en el request 
 
             // Codigo agregar para consumir la Web API   
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/Buscar", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/Buscar", "POST", request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(cliente));
@@ -185,7 +185,7 @@ public class ClienteServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente", "POST",request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(cliente));
@@ -228,7 +228,7 @@ public class ClienteServlet extends HttpServlet {
             Cliente cliente = obtenerCliente(request); // Llenar la instancia de Cliente con los parámetros enviados en el request.
 
             // Codigo agregar para consumir la Web API
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "GET");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "GET",request);
             con.connect();
             int status = con.getResponseCode();
             Gson gson = new Gson();
@@ -288,7 +288,7 @@ public class ClienteServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "PUT");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "PUT", request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(cliente));
@@ -365,7 +365,7 @@ public class ClienteServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "DELETE");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "DELETE",request);
             con.connect();
             int status = con.getResponseCode();
             if (status == HttpURLConnection.HTTP_OK) {
