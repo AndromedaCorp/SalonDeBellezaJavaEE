@@ -84,7 +84,7 @@ public class RolServlet extends HttpServlet {
             rol.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de rol.
            
             //codigo agregar para consumir la web API
-               HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/Buscar", "POST");
+               HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/Buscar", "POST",request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
@@ -127,7 +127,7 @@ public class RolServlet extends HttpServlet {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request 
            
             //Codigo agregar para consumir la web API
-             HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/Buscar", "POST");
+             HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/Buscar", "POST",request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
@@ -185,7 +185,7 @@ public class RolServlet extends HttpServlet {
       
              //Codigo agregar para consumir la web API
               int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol", "POST",request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
@@ -226,7 +226,7 @@ public class RolServlet extends HttpServlet {
             Rol rol = obtenerRol(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
            
          // Codigo agregar para consumir la Web API
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET",request);
             con.connect();
             int status = con.getResponseCode();
             Gson gson = new Gson();
@@ -285,7 +285,7 @@ public class RolServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "PUT");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "PUT",request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(rol));
@@ -362,7 +362,7 @@ public class RolServlet extends HttpServlet {
             
        // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "DELETE");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "DELETE",request);
             con.connect();
             int status = con.getResponseCode();
             if (status == HttpURLConnection.HTTP_OK) {
