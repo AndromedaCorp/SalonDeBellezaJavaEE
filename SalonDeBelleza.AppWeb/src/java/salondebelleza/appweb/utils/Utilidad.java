@@ -20,6 +20,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.servlet.http.HttpSession;
 
 /**
  * En esta clase vamos a programar, los métodos de utilidad en la aplicacion web
@@ -118,6 +119,8 @@ public class Utilidad {
         SSLContext sc = SSLContext.getInstance("SSL"); // "TLS" "SSL"
         sc.init(null, trustAllCerts, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        
+        
 
         HttpsURLConnection.setDefaultHostnameVerifier(
                 new HostnameVerifier() {
@@ -131,7 +134,7 @@ public class Utilidad {
         return con;
     }
 
-    public static HttpURLConnection obtenerConnecionWebAPI(String pUrl, String pMetodo) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException {
+    public static HttpURLConnection obtenerConnecionWebAPI(String pUrl, String pMetodo,HttpServletRequest request) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException {
         // Agregar la url de la Web API, que esta ejecutandose en .Net Core
         String urlWEbAPI = "https://localhost:44319/api/";
         urlWEbAPI += pUrl;
@@ -146,6 +149,13 @@ public class Utilidad {
 
         con.setRequestMethod(pMetodo);
         con.setRequestProperty("Content-Type", "application/json");
+            // Agregar para aplicar seguridad mediante TOKEN JWT
+        HttpSession session = (HttpSession) request.getSession();
+        String token = session.getAttribute("token") != null ? (String) session.getAttribute("token") : "";
+        if (token.length() > 0) {
+            con.setRequestProperty("Authorization", "Bearer "+token);
+        }
+        //***********************************
         return con;
     }
 
