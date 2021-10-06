@@ -26,6 +26,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.servlet.http.HttpSession;
 
 /* ************************************* */
 /**
@@ -123,7 +124,7 @@ public class UsuarioServlet extends HttpServlet {
             usuario.setTop_aux(10); // Agregar el Top_aux con el valor de 10 a la propiedad Top_aux de Usuario.
 
             // Codigo agregar para consumir la Web API
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST", request);
             con.setDoOutput(true);
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
@@ -166,7 +167,7 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
 
             // Codigo agregar para consumir la Web API   
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST", request);
             con.setDoOutput(true);
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
@@ -225,7 +226,7 @@ public class UsuarioServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario", "POST", request);
             con.setDoOutput(true);
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
@@ -268,7 +269,7 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
 
             // Codigo agregar para consumir la Web API
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "GET");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "GET", request);
             con.connect();
             int status = con.getResponseCode();
             Gson gson = obtenerGson();
@@ -286,7 +287,7 @@ public class UsuarioServlet extends HttpServlet {
                 rol.setId(usuario_result.getIdrol());
 
                 // Codigo agregar para consumir la Web API
-                HttpURLConnection con_Rol = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET");
+                HttpURLConnection con_Rol = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET", request);
                 con_Rol.connect();
                 int status_Rol = con_Rol.getResponseCode();
                 Rol rol_result = new Rol();
@@ -345,7 +346,7 @@ public class UsuarioServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "PUT");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "PUT", request);
             con.setDoOutput(true);
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
@@ -422,7 +423,7 @@ public class UsuarioServlet extends HttpServlet {
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "DELETE");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "DELETE", request);
             con.connect();
             int status = con.getResponseCode();
             if (status == HttpURLConnection.HTTP_OK) {
@@ -477,23 +478,44 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
 
             // Codigo agregar para consumir la Web API
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Login", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Login", "POST", request);
             con.setDoOutput(true);
             //Gson gson = new Gson();
             //Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))).create();
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
             con.connect();
-            String jsonX = gson.toJson(usuario);
+            //String jsonX = gson.toJson(usuario);
             int status = con.getResponseCode();
-            Usuario usuario_auth = new Usuario();
+            //Usuario usuario_auth = new Usuario();
             if (status == HttpURLConnection.HTTP_OK) {
-                String json = Utilidad.obtenerJSONWebAPI(con);
+                //ArrayList<Usuario> usuarios = new ArrayList();
+                String token = Utilidad.obtenerJSONWebAPI(con);
                 con.disconnect();
-                usuario_auth = gson.fromJson(json, Usuario.class);
+                //Type tipo = new TypeToken<ArrayList<Usuario>>() {
+                //}.getType();
+                //usuarios = gson.fromJson(json, tipo);
+                //usuario_auth = usuarios.get(0);
+                HttpSession session = (HttpSession) request.getSession(); // obtener las variables de session del request      
+                session.setAttribute("token", token); // asignar el valor de true a la variable de session auth 
             }
             //******************************************
-
+             //******************************************
+            HttpURLConnection conBuscar = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST", request);
+            conBuscar.setDoOutput(true);
+            Utilidad.asignarJSONWebAPI(conBuscar, gson.toJson(usuario));
+            conBuscar.connect();
+            int statusBuscar = conBuscar.getResponseCode();
+            Usuario usuario_auth = new Usuario();
+            if (statusBuscar == HttpURLConnection.HTTP_OK) {
+                ArrayList<Usuario> usuarios = new ArrayList();
+                String json = Utilidad.obtenerJSONWebAPI(conBuscar);
+                conBuscar.disconnect();
+                Type tipo = new TypeToken<ArrayList<Usuario>>() {
+                }.getType();
+                usuarios = gson.fromJson(json, tipo);
+                usuario_auth = usuarios.get(0);
+            }
             // Ir a la capa de accesoa a datos para que autorizar el usuario.
             //Usuario usuario_auth = UsuarioDAL.login(usuario);
             // Confirmar que el usuario cumple con la autorizacion para entrar al sistema.
@@ -502,7 +524,7 @@ public class UsuarioServlet extends HttpServlet {
                 rol.setId(usuario_auth.getIdrol());
 
                 // Codigo agregar para consumir la Web API
-                HttpURLConnection con_Rol = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET");
+                HttpURLConnection con_Rol = Utilidad.obtenerConnecionWebAPI("Rol/" + rol.getId(), "GET", request);
                 con_Rol.connect();
                 int status_Rol = con_Rol.getResponseCode();
                 Rol rol_result = new Rol();
@@ -551,7 +573,7 @@ public class UsuarioServlet extends HttpServlet {
             usuario.setLogin(SessionUser.getUser(request));
 
             // Codigo agregar para consumir la Web API   
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/Buscar", "POST", request);
             con.setDoOutput(true);
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
@@ -603,7 +625,7 @@ public class UsuarioServlet extends HttpServlet {
             // Codigo agregar para consumir la Web API
             usuario.setConfirmarPassword_aux(passActual);
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/CambiarPassword", "POST");
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/CambiarPassword", "POST", request);
             con.setDoOutput(true);
             Gson gson = obtenerGson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
