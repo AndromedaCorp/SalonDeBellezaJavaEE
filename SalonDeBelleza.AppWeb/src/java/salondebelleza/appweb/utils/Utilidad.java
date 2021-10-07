@@ -136,10 +136,10 @@ public class Utilidad {
 
     public static HttpURLConnection obtenerConnecionWebAPI(String pUrl, String pMetodo,HttpServletRequest request) throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException {
         // Agregar la url de la Web API, que esta ejecutandose en .Net Core
-        String urlWEbAPI = "https://localhost:44319/api/";
+        String urlWEbAPI = "http://webapi.andromedacorp.3hcps.info";
         urlWEbAPI += pUrl;
         URL url = new URL(urlWEbAPI);
-        boolean esHttps = true;
+        boolean esHttps = false;
         HttpURLConnection con;
         if (esHttps) {
             con = obtenerHttpsURLConnection(url);
