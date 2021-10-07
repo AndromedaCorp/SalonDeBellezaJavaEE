@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;     // Importar la clase ArrayList
-import salondebelleza.accesoadatos.CitaDAL;  // Importar la clase RolDAL de la capa de acceso a datos
+import salondebelleza.accesoadatos.CitaDAL;
 import salondebelleza.entidadesdenegocio.Cita; // Importar la clase Rol de la capa de entidades de negocio
 import salondebelleza.appweb.utils.*; // Importar las clases SessionUser, Utilidad del paquete de utils
 
