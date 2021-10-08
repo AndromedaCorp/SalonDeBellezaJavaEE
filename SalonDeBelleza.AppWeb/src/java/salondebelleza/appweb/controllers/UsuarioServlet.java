@@ -207,7 +207,8 @@ public class UsuarioServlet extends HttpServlet {
      */
     private void doGetRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // direccionar al jsp create de Usuario
-        request.getRequestDispatcher("Views/Usuario/create.jsp").forward(request, response);
+         request.getRequestDispatcher("Views/Usuario/create.jsp").forward(request, response);
+   
     }
 
     /**
@@ -222,27 +223,24 @@ public class UsuarioServlet extends HttpServlet {
      */
     private void doPostRequestCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request
-
-            // Codigo agregar para consumir la Web API
-            int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario", "POST", request);
+             Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
+      
+             //Codigo agregar para consumir la web API
+              int result = 0;
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario", "POST",request);
             con.setDoOutput(true);
-            Gson gson = obtenerGson();
+            Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(usuario));
             con.connect();
             int status = con.getResponseCode();
             if (status == HttpURLConnection.HTTP_OK) {
                 result = 1;
-            }
-            //*******************************************
-
-            // Enviar los datos de Usuario a la capa de accesoa a datos para que lo almacene en la base de datos el registro.
-            //int result = UsuarioDAL.crear(usuario);
+            }  
+            //****************************************
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron ingresados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index
                 request.setAttribute("accion", "index");
-                doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex para que nos direcciones al jsp index
+                doGetRequestIndex(request, response); // ir al metodo doGetRequestIndex para que nos direcciones al jsp index
             } else {
                 // Enviar al jsp de error el siguiente mensaje. No se logro registrar un nuevo registro
                 Utilidad.enviarError("No se logro registrar un nuevo registro", request, response);
@@ -251,6 +249,7 @@ public class UsuarioServlet extends HttpServlet {
             // Enviar al jsp de error si hay un Exception
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
+
 
     }
 
@@ -402,9 +401,10 @@ public class UsuarioServlet extends HttpServlet {
      */
     private void doGetRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Enviar el usuario al jsp de delete que se obtiene por Id.
-        requestObtenerPorId(request, response);
+         requestObtenerPorId(request, response);
         // Direccionar al jsp delete de Usuario.
         request.getRequestDispatcher("Views/Usuario/delete.jsp").forward(request, response);
+    
     }
 
     /**
@@ -419,24 +419,22 @@ public class UsuarioServlet extends HttpServlet {
      */
     private void doPostRequestDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Usuario con los parámetros enviados en el request.
-
-            // Codigo agregar para consumir la Web API
+            Usuario usuario = obtenerUsuario(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
+           
+            
+       // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "DELETE", request);
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Usuario/" + usuario.getId(), "DELETE",request);
             con.connect();
             int status = con.getResponseCode();
             if (status == HttpURLConnection.HTTP_OK) {
                 result = 1;
             }
             //*******************************************
-
-            // Enviar los datos de Usuario a la capa de accesoa a datos para que elimine el registro.
-            //int result = UsuarioDAL.eliminar(usuario);
-            if (result != 0) { // Si el result es diferente a cero significa que los datos fueron eliminados correctamente.
+            if (result != 0) {// Si el result es diferente a cero significa que los datos fueron eliminados correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
-                doGetRequestIndex(request, response);  // Ir al método doGetRequestIndex para que nos direccione al jsp index.
+                doGetRequestIndex(request, response); // Ir al método doGetRequestIndex para que nos direccione al jsp index.
             } else {
                 // Enviar al jsp de error el siguiente mensaje. No se logro eliminar el registro.
                 Utilidad.enviarError("No se logro eliminar el registro", request, response);

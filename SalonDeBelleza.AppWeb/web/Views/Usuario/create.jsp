@@ -22,6 +22,14 @@
                         <input  id="txtApellido" class="validate form-control" type="text" name="apellido" required class="validate" maxlength="30">
                     </div> 
                     <div class="col-md-6">
+                        <label for="txtDui" class="form-label">DUI</label>
+                        <input  id="txtDUI" class="validate form-control" type="text" name="dui" required class="validate" maxlength="30">
+                    </div> 
+                    <div class="col-md-6">
+                        <label for="txtNumero" class="form-label">Numero</label>
+                        <input  id="txtNumero" class="validate form-control" type="text" name="numero" required class="validate" maxlength="30">
+                    </div> 
+                    <div class="col-md-6">
                         <label for="txtLogin" class="form-label">Login</label>
                         <input  id="txtLogin" class="validate form-control" type="text" name="login" required class="validate" maxlength="25">
                     </div> 
@@ -31,8 +39,8 @@
                     </div> 
                     <div class="col-md-6">
                         <label for="txtConfirmPassword_aux" class="form-label">Confirmar password</label>
-                        <input  id="txtConfirmPassword_aux" class="validate form-control" type="password" name="confirmPassword_aux" required class="validate" minlength="5" maxlength="32">
-                        <span id="txtConfirmPassword_aux_error" style="color:red" class="helper-text"></span>
+                        <input  id="txtConfirmarPassword_aux" class="validate form-control" type="password" name="confirmarPassword_aux" required class="validate" minlength="5" maxlength="32">
+                        <span id="txtConfirmarPassword_aux_error" style="color:red" class="helper-text"></span>
                     </div> 
                     <div class="col-md-6">  
                         <label for="slEstatus" class="form-label">Estatus</label>

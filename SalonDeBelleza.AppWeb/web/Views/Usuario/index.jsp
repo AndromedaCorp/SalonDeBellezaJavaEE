@@ -51,8 +51,8 @@
                         
                     </div>
                     <div class="col-md-6">
-                        <label for="txtDui" class="form-label">Numero</label>
-                        <input  id="txtDui" class="form-control" type="text" name="dui">
+                        <label for="txtDui" class="form-label">DUI</label>
+                        <input  id="txtDUI" class="form-control" type="text" name="dui">
                         
                     </div>  
                     <div class="col-md-6">
