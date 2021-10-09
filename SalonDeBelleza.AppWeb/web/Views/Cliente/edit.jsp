@@ -12,7 +12,7 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Editar Cliente</h5>
-            <form action="Cliente" method="post" onsubmit="return  validarFormulario()>
+            <form action="Cliente" method="post" onsubmit="return  validarFormulario()">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">   
                 <input type="hidden" name="id" value="<%=cliente.getId()%>"> 
                 <div class="row">
@@ -25,8 +25,8 @@
                         <label for="txtApellido">Apellido</label>     
                 </div>
                 <div class="input-field col l4 s12">
-                        <label for="txtDui">DUI</label>
                         <input  id="txtDui" type="text" name="dui" value="<%=cliente.getDui()%>" required class="validate" maxlength="50">
+                        <label for="txtDui">DUI</label>
                 </div>
                 <div class="input-field col l4 s12">
                         <input  id="txtNumero" type="text" name="numero" value="<%=cliente.getNumero()%>" required class="validate" maxlength="30">
