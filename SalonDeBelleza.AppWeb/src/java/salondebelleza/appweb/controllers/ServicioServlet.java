@@ -316,7 +316,7 @@ public class ServicioServlet extends HttpServlet {
                 doGetRequestIndex(request, response); // Ir al metodo doGetRequestIndex para que nos direcciones al jsp index.
             } else {
                 // Enviar al jsp de error el siguiente mensaje. No se logro actualizar el registro.
-                Utilidad.enviarError("No se logro actualizar el registro", request, response);
+                Utilidad.enviarError("No se  logro actualizar el registro", request, response);
             }
         } catch (Exception ex) {
             // Enviar al jsp de error si hay un Exception

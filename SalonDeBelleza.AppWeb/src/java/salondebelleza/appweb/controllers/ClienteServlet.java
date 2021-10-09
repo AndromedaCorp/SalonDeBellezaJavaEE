@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import salondebelleza.entidadesdenegocio.Rol;
 
 /* ************************************* */
 /**
@@ -273,9 +274,9 @@ public class ClienteServlet extends HttpServlet {
      * @throws java.io.IOException
      */
     private void doGetRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Enviar el cliente al jsp de edit que se obtiene por Id
+          // Enviar el rol al jsp de edit que se obtiene por Id
         requestObtenerPorId(request, response);
-        // Direccionar al jsp edit de Cliente
+        // Direccionar al jsp edit de Rol
         request.getRequestDispatcher("Views/Cliente/edit.jsp").forward(request, response);
     }
 
@@ -290,12 +291,13 @@ public class ClienteServlet extends HttpServlet {
      * @throws java.io.IOException
      */
     private void doPostRequestEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+         try {
             Cliente cliente = obtenerCliente(request); // Llenar la instancia de Rol con los parámetros enviados en el request.
+            
 
             // Codigo agregar para consumir la Web API
             int result = 0;
-            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "PUT", request);
+            HttpURLConnection con = Utilidad.obtenerConnecionWebAPI("Cliente/" + cliente.getId(), "PUT",request);
             con.setDoOutput(true);
             Gson gson = new Gson();
             Utilidad.asignarJSONWebAPI(con, gson.toJson(cliente));
@@ -305,9 +307,8 @@ public class ClienteServlet extends HttpServlet {
                 result = 1;
             }
             //********************************************
-
-            // Enviar los datos de Rol a la capa de accesoa a datos para modificar el registro.
-            //int result = ClienteDAL.modificar(cliente);
+            
+            
             if (result != 0) { // Si el result es diferente a cero significa que los datos fueron modificado correctamente.
                 // Enviar el atributo accion con el valor index al jsp de index.
                 request.setAttribute("accion", "index");
@@ -321,6 +322,7 @@ public class ClienteServlet extends HttpServlet {
             Utilidad.enviarError(ex.getMessage(), request, response);
         }
     }
+    
 
     /**
      * En este método se ejecutara cuando se envie una peticion get al servlet
