@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col l12 s12">
                     <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">delete</i>Eliminar</button>
-                    <a href="Usuario" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>
+                    <a href="Usuario" class="waves-effect waves-light btn purple darken-1"><i class="material-icons right">list</i>Cancelar</a>
                 </div>
                 </div>
             </form>          

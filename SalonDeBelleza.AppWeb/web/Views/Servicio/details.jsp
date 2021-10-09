@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col l12 s12">
                     <a href="Servicio?accion=edit&id=<%=servicio.getId()%>" class="waves-effect waves-light btn blue"><i class="material-icons right">edit</i>Ir modificar</a>                        
-                    <a href="Servicio" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
+                    <a href="Servicio" class="waves-effect waves-light btn purple darken-1"><i class="material-icons right">list</i>Cancelar</a>                          
                 </div>
             </div>         
         </main>

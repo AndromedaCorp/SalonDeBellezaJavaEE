@@ -44,8 +44,8 @@
                 </div>
                 <div class="row">
                 <div class="col l12 s12">
-                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                    <a href="Cliente?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a> 
+                    <button type="sutmit" class="waves-effect waves-light btn cyan darken-3"><i class="material-icons right">search</i>Buscar</button>
+                    <a href="Cliente?accion=create" class="waves-effect waves-light btn pink"><i class="material-icons right">add</i>Crear</a> 
                 </div>
                 </div>
             </form>
@@ -82,7 +82,7 @@
                                             <a href="Cliente?accion=edit&id=<%=cliente.getId()%>" title="Modificar" class="waves-effect waves-light btn green">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a href="Cliente?accion=details&id=<%=cliente.getId()%>" title="Ver" class="waves-effect waves-light btn blue">
+                                            <a href="Cliente?accion=details&id=<%=cliente.getId()%>"title="Ver" class="waves-effect waves-light btn blue">
                                                <i class="material-icons">description</i>
                                             </a>
                                             <a href="Cliente?accion=delete&id=<%=cliente.getId()%>" title="Eliminar" class="waves-effect waves-light btn red">

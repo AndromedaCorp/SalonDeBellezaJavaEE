@@ -32,7 +32,7 @@
                 </div>
                 <div class="mb-3">
                     <button type="sutmit" class="btn btn-primary">Eliminar</button>                        
-                    <a href="Servicio" class="btn btn-danger">Cancelar</a>                          
+                    <a href="Servicio" class="btn purple darken-1">Cancelar</a>                          
                 </div>
             </form>          
         </main>

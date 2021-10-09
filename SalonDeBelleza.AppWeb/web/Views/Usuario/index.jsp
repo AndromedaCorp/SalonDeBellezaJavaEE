@@ -74,8 +74,8 @@
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
-                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                    <a href="Usuario?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a> 
+                    <button type="sutmit" class="waves-effect waves-light btn cyan darken-3"><i class="material-icons right">search</i>Buscar</button>
+                    <a href="Usuario?accion=create" class="waves-effect waves-light btn pink"><i class="material-icons right">add</i>Crear</a> 
                 </div>
                 </div>
             </form>

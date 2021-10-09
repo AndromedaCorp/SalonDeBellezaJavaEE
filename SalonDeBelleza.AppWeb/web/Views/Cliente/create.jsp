@@ -36,7 +36,7 @@
                     <div class="row">
                 <div class="input-field col l4 s12">
                     <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">save</i>Guardar</button>
-                    <a href="Cliente" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a> 
+                    <a href="Cliente" class="waves-effect waves-light btn purple darken-1"><i class="material-icons right">list</i>Cancelar</a> 
                 </div>
                 </div>
             </form>     
