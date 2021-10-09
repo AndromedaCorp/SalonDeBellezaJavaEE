@@ -52,6 +52,13 @@ public class ClienteServlet extends HttpServlet {
         }
         // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Cliente.
         cliente.setNombre(Utilidad.getParameter(request, "nombre", ""));
+        
+        cliente.setApellido(Utilidad.getParameter(request, "apellido", ""));
+        
+        cliente.setDui(Utilidad.getParameter(request, "dui", ""));
+        
+        cliente.setNumero(Integer.parseInt(Utilidad.getParameter(request, "numero", "0")));
+        
         if (accion.equals("index")) {  // Si accion es index.
             // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Cliente.
             cliente.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));

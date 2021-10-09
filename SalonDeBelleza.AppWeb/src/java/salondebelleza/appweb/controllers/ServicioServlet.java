@@ -47,12 +47,20 @@ public class ServicioServlet extends HttpServlet {
         // Obtener el parámetro accion del request
         String accion = Utilidad.getParameter(request, "accion", "index");
         Servicio servicio = new Servicio();
+        // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Servicio.
+        servicio.setNombre(Utilidad.getParameter(request, "nombre", ""));
+        
+        servicio.setDescripcion(Utilidad.getParameter(request, "descripcion", ""));
+        
+        servicio.setPrecio(Integer.parseInt(Utilidad.getParameter(request, "precio", "0")));
+        
+        servicio.setDuracion(Integer.parseInt(Utilidad.getParameter(request, "duracion", "0")));
+        
         if (accion.equals("create") == false) { // Si la accion no es create.
             // Obtener el parámetro id del request  y asignar ese valor a la propiedad Id de Servicio.
             servicio.setId(Integer.parseInt(Utilidad.getParameter(request, "id", "0")));
         }
-        // Obtener el parámetro nombre del request   y asignar ese valor a la propiedad Nombre de Servicio.
-        servicio.setNombre(Utilidad.getParameter(request, "nombre", ""));
+        
         if (accion.equals("index")) {  // Si accion es index.
             // Obtener el parámetro top_aux del request  y asignar ese valor a la propiedad Top_aux de Servicio.
             servicio.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, "top_aux", "10")));
@@ -297,7 +305,7 @@ public class ServicioServlet extends HttpServlet {
             int status = con.getResponseCode();
             if (status == HttpURLConnection.HTTP_OK) {
                 result = 1;
-            }
+            } 
             //********************************************
 
             // Enviar los datos de Servicio a la capa de accesoa a datos para modificar el registro.

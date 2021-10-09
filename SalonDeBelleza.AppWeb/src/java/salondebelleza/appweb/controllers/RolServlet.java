@@ -322,12 +322,12 @@ public class RolServlet extends HttpServlet {
      * @throws java.io.IOException
      */
     private void doGetRequestDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Enviar el rol al jsp de details que se obtiene por Id.
+      // Enviar el rol al jsp de details que se obtiene por Id.
         requestObtenerPorId(request, response);
         // Direccionar al jsp details de Rol.
         request.getRequestDispatcher("Views/Rol/details.jsp").forward(request, response);
     }
-    
+
     /**
      * En este método se ejecutara cuando se envie una peticion get al servlet
      * Rol , y el parámetro accion sea igual delete.
