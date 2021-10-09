@@ -11,38 +11,41 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Eliminar Usuario</h5>
-            <form action="Usuario" method="post" class="row g-3">  
+            <form action="Usuario" method="post">  
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <input type="hidden" name="id" value="<%=usuario.getId()%>">  
                 
-                    <div class="col-md-6"">
-                        <label for="txtNombre" class="form-label">Nombre</label>
-                        <input  id="txtNombre" class="form-control" type="text" value="<%=usuario.getNombre()%>" disabled>
+                    <div class="row">
+                        <div class="input-field col l4 s12">
+                        <input  id="txtNombre" type="text" value="<%=usuario.getNombre()%>" disabled>
+                        <label for="txtNombre">Nombre</label>
                     </div>                       
-                    <div class="col-md-6"">
-                        <label for="txtApellido" class="form-label">Apellido</label>
-                        <input  id="txtApellido" class="form-control" type="text" value="<%=usuario.getApellido()%>" disabled>   
+                        <div class="input-field col l4 s12">
+                        <input  id="txtApellido" type="text" value="<%=usuario.getApellido()%>" disabled> 
+                        <label for="txtApellido">Apellido</label>
                     </div> 
-                    <div class="col-md-6"">
-                        <label for="txtLogin" class="form-label">Login</label>
-                        <input  id="txtLogin" class="form-control" type="text" value="<%=usuario.getLogin()%>" disabled>
+                     <div class="input-field col l4 s12">
+                        <input  id="txtLogin" type="text" value="<%=usuario.getLogin()%>" disabled>
+                        <label for="txtLogin">Login</label>
                     </div>                     
-                    <div class="col-md-6"">   
-                        <label for="slEstatus" class="form-label">Estatus</label>
-                        <select id="slEstatus" name="estatus" class="form-select" disabled>
+                       <div class="input-field col l4 s12">   
+                        <select id="slEstatus" name="estatus" disabled>
                             <option value="0" <%=(usuario.getEstado()== 10) ? "selected" : ""%>>SELECCIONAR</option>
                             <option value="<%=Usuario.EstadoUsuario.ACTIVO%>"  <%=(usuario.getEstado() == Usuario.EstadoUsuario.ACTIVO) ? "selected" : ""%>>ACTIVO</option>
                             <option value="<%=Usuario.EstadoUsuario.INACTIVO%>"  <%=(usuario.getEstado() == Usuario.EstadoUsuario.INACTIVO) ? "selected" : ""%>>INACTIVO</option>
-                        </select>                                  
+                        </select> 
+                        <label for="slEstatus">Estatus</label>
                     </div>
-                    <div class="col-md-6"">
-                        <label for="txtRol" class="form-label">Rol</label>
-                        <input id="txtRol" class="form-control" type="text" value="<%=usuario.getRol().getNombre()%>" disabled>
+                    <div class="input-field col l4 s12">
+                        <input id="txtRol" type="text" value="<%=usuario.getRol().getNombre()%>" disabled>
+                        <label for="txtRol">Rol</label>
                     </div> 
-                
-                <div class="mb-3">
-                    <button type="sutmit" class="btn btn-primary">Eliminar</button>
-                    <a href="Usuario" class="btn btn-danger">Cancelar</a>
+                    </div>
+                <div class="row">
+                    <div class="col l12 s12">
+                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">delete</i>Eliminar</button>
+                    <a href="Usuario" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>
+                </div>
                 </div>
             </form>          
         </main>

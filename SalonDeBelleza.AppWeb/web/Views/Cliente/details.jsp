@@ -13,13 +13,19 @@
             <h5>Detalle de Cliente</h5>
             <div class="row">
                 <div class="input-field col l4 s12">
-                    <input disabled  id="txtNombre" type="text" value="<%=cliente.getNombre()%>">
+                    <input id="txtNombre" type="text" value="<%=cliente.getNombre()%>" disabled>
                     <label for="txtNombre">Nombre</label>
-                    <input disabled  id="txtApellido" type="text" value="<%=cliente.getApellido()%>">
+                 </div>
+                 <div class="input-field col l4 s12">   
+                    <input id="txtApellido" type="text" value="<%=cliente.getApellido()%>" disabled>
                     <label for="txtApellido">Apellido</label>
-                    <input disabled  id="txtDui" type="text" value="<%=cliente.getDui()%>">
+                 </div>
+                    <div class="input-field col l4 s12">
+                    <input id="txtDui" type="text" value="<%=cliente.getDui()%>" disabled>
                     <label for="txtDui">DUI</label>
-                    <input disabled  id="txtNumero" type="text" value="<%=cliente.getNumero()%>">
+                    </div> 
+                    <div class="input-field col l4 s12">
+                    <input id="txtNumero" type="text" value="<%=cliente.getNumero()%>" disabled>
                     <label for="txtNumero">Numero</label>
                 </div>                                         
             </div>

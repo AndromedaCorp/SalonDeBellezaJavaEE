@@ -11,37 +11,34 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Eliminar Cliente</h5>          
-            <form action="Cliente" method="post" class="row g-3">
+            <form action="Cliente" method="post">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">   
                 <input type="hidden" name="id" value="<%=cliente.getId()%>">   
-                
-                <div class="col-md-6"> 
-                    <label for="txtNombre" class="form-label">Nombre</label>
-                    <input disabled  class="form-control" id="txtNombre" type="text" value="<%=cliente.getNombre()%>">
+                <div class="row">
+                <div class="input-field col l4 s12"> 
+                    <input id="txtNombre" type="text" value="<%=cliente.getNombre()%>" disabled>
+                    <label for="txtNombre">Nombre</label>
                 </div>
                 
-                <div class="col-md-6">
-                    <label for="txtApellido" class="form-label" >Apellido</label>
-                    <input disabled  class="form-control" id="txtApellido" type="text" value="<%=cliente.getApellido()%>">
+                <div class="input-field col l4 s12">
+                    <input id="txtApellido" type="text" value="<%=cliente.getApellido()%>" disabled>
+                    <label for="txtApellido">Apellido</label>
+                </div>  
+                <div class="input-field col l4 s12">
+                    <input id="txtDui" type="text" value="<%=cliente.getDui()%>" disabled>
+                    <label for="txtDui">DUI</label>
+                </div>        
+                <div class="input-field col l4 s12">
+                    <input id="txtNumero" type="text" value="<%=cliente.getNumero()%>" disabled> 
+                    <label for="txtNumero">Numero</label>
                 </div>
-                
-                <div class="col-md-6">
-                    <label for="txtDui" class="form-label">DUI</label>
-                    <input disabled class="form-control" id="txtDui" type="text" value="<%=cliente.getDui()%>">
-
                 </div>
-                    
-                <div class="col-md-6">
-                    <label for="txtNumero" class="form-label" >Numero</label>
-                    <input disabled class="form-control" id="txtNumero" type="text" value="<%=cliente.getNumero()%>">            
-                </div>
-                    
-                
-               <div class="mb-3">
-                    <button type="sutmit" class="btn btn-primary">Eliminar</button>
-                    <a href="Cliente" class="btn btn-danger">Cancelar</a>
+               <div class="row">
+               <div class="input-field col l4 s12">
+                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">delete</i>Eliminar</button>
+                    <a href="Cliente" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>
               </div>
-                
+               </div>  
             </form>          
         </main>
         <jsp:include page="/Views/Shared/footerBody.jsp" />      

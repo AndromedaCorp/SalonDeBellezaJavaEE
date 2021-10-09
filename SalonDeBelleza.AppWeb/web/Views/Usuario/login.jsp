@@ -10,25 +10,27 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Login</h5>
-            <form action="Usuario?accion=login" method="post" class="row g-3">
+            <form action="Usuario?accion=login" method="post">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">     
-                
-                
-                    <div class="col-md-6">                                             
-                        <label for="txtLogin" class="form-label">Login</label>
-                        <input  id="txtLogin" class="form-control" type="text" name="login" required class="validate" maxlength="25">  
+                <div class="row">
+                    <div class="input-field col l5 s12"> 
+                        <i class="material-icons prefix">account_circle</i>
+                        <input  id="txtLogin"  type="text" name="login" required class="validate" maxlength="25">
+                        <label for="txtLogin">Login</label>
                     </div>                                       
-                
-                
-                
-                    <div class="col-md-6">                                             
-                        <label for="txtPassword" class="form-label">Password</label>
-                        <input  id="txtPassword" class="form-control" type="password" name="password" required class="validate" minlength="5" maxlength="32">  
+                </div>
+                <div class="row">
+                    <div class="input-field col l5 s12">  
+                        <i class="material-icons prefix">enhanced_encryption</i>
+                        <input  id="txtPassword" type="password" name="password" required class="validate" minlength="5" maxlength="32">
+                        <label for="txtPassword">Password</label>
                     </div>                                       
+                </div>
                 
-                
-                <div class="mb-3">
-                    <button type="sutmit" class="btn btn-primary">Login</button> 
+                <div class="row">
+                    <div class="col l12 s12">
+                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">send</i>Login</button> 
+                </div>
                 </div>
                 <% if (request.getAttribute("error") != null) { %>
                 <div class="row">

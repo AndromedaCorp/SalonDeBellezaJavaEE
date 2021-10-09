@@ -11,29 +11,33 @@
         <main class="container">   
             <h5>Crear Cliente</h5>
             
-            <form action="Cliente" method="post" class="row g-3">
+            <form action="Cliente" method="post" onsubmit="return  validarFormulario()">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">                
-                <div class="col-md-6">
-                        <label for="txtNombre" class="form-label">Nombre</label>
-                        <input  id="txtNombre" type="text" name="nombre" required class="validate form-control" maxlength="50"> 
+                <div class="row">
+                    <div class="input-field col l4 s12">
+                        <input  id="txtNombre" type="text" name="nombre" required class="validate" maxlength="50"> 
+                        <label for="txtNombre">Nombre</label>
                 </div>   
                         
                         
-                <div class="col-md-6"> 
-                        <label for="txtDescripcion" class="form-label">Apellido</label>
-                        <input  id="txtApellido" type="text" name="apellido" required class="validate form-control" maxlength="50">     
+                <div class="input-field col l4 s12"> 
+                        <input  id="txtApellido" type="text" name="apellido" required class="validate" maxlength="50">
+                        <label for="txtDescripcion">Apellido</label>
                 </div>    
-                <div class="col-md-6">
-                        <label for="txtDui" class="form-label">DUI</label>
-                        <input  id="txtDui" type="text" name="dui" required class="validate form-control" maxlength="50">
+                <div class="input-field col l4 s12">
+                        <input  id="txtDui" type="text" name="dui" required class="validate" maxlength="50">
+                        <label for="txtDui">DUI</label>
                 </div>
-                <div class="col-md-6">    
-                        <label for="txtNumero" class="form-label">Numero</label>
-                        <input  id="txtNumero" type="text" name="numero" required class="validate form-control" maxlength="30">
+                <div class="input-field col l4 s12">    
+                        <input  id="txtNumero" type="text" name="numero" required class="validate" maxlength="30">
+                         <label for="txtNumero">Numero</label>
                 </div>
-                <div class="mb-3">
-                    <button type="sutmit" class="btn btn-primary">Guardar</button>
-                    <a href="Cliente" class="btn btn-danger">Cancelar</a> 
+                </div>
+                    <div class="row">
+                <div class="input-field col l4 s12">
+                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">save</i>Guardar</button>
+                    <a href="Cliente" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a> 
+                </div>
                 </div>
             </form>     
                 

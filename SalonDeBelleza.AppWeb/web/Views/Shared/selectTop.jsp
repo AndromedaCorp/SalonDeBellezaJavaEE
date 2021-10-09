@@ -5,8 +5,8 @@
         top_aux = Integer.parseInt(strTop_aux);
     }
 %>
-<label class="form-label" for="sltop_aux">Top</label>
-<select class="form-select" id="sltop_aux" name="top_aux">
+
+<select  id="sltop_aux" name="top_aux">
     <option <%=(top_aux == 10) ? "selected" : ""%>  value="10">10</option>
     <option <%=(top_aux == 20) ? "selected" : ""%>  value="20">20</option>
     <option <%=(top_aux == 50) ? "selected" : ""%>  value="50">50</option>
@@ -16,3 +16,4 @@
     <option <%=(top_aux == 10000) ? "selected" : ""%>  value="10000">10000</option>
     <option <%=(top_aux == 0) ? "selected" : ""%>  value="0">Todos</option>
 </select>
+<label for="sltop_aux">Top</label>

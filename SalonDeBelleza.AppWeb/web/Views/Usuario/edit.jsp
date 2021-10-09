@@ -11,43 +11,45 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Editar Usuario</h5>
-            <form action="Usuario" method="post" onsubmit="return  validarFormulario()" class="row g-3">
+            <form action="Usuario" method="post" onsubmit="return  validarFormulario()">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <input type="hidden" name="id" value="<%=usuario.getId()%>">  
-                
-                    <div class="col-md-6">
-                        <label for="txtNombre" class="form-label">Nombre</label>
-                        <input  id="txtNombre" class="validate form-control" type="text" name="nombre" value="<%=usuario.getNombre()%>" required class="validate" maxlength="30">  
+                   <div class="row">
+                    <div class="input-field col l4 s12">
+                        <input  id="txtNombre" type="text" name="nombre" value="<%=usuario.getNombre()%>" required class="validate" maxlength="30"> 
+                        <label for="txtNombre">Nombre</label>
                     </div>                       
-                    <div class="col-md-6">
-                        <label for="txtApellido" class="form-label">Apellido</label>
-                        <input  id="txtApellido" class="validate form-control" type="text" name="apellido" value="<%=usuario.getApellido()%>" required class="validate" maxlength="30">
+                    <div class="input-field col l4 s12">
+                        <input  id="txtApellido" type="text" name="apellido" value="<%=usuario.getApellido()%>" required class="validate" maxlength="30">
+                        <label for="txtApellido">Apellido</label>
                     </div> 
-                    <div class="col-md-6">
-                        <label for="txtLogin" class="form-label">Login</label>
-                        <input  id="txtLogin" class="validate form-control" type="text" name="login" value="<%=usuario.getLogin()%>" required  class="validate" maxlength="25">
+                     <div class="input-field col l4 s12">
+                        <input  id="txtLogin" type="text" name="login" value="<%=usuario.getLogin()%>" required  class="validate" maxlength="25">
+                        <label for="txtLogin">Login</label>
                     </div>                     
-                    <div class="col-md-6">   
-                        <label for="slEstatus" class="form-label" >Estatus</label>
+                       <div class="input-field col l4 s12">
                         <select id="slEstatus" name="estatus" class="form-select">
                             <option value="0" <%=(usuario.getEstado()== 10) ? "selected" : ""%>>SELECCIONAR</option>
                             <option value="<%=Usuario.EstadoUsuario.ACTIVO%>"  <%=(usuario.getEstado() == Usuario.EstadoUsuario.ACTIVO) ? "selected" : ""%>>ACTIVO</option>
                             <option value="<%=Usuario.EstadoUsuario.INACTIVO%>"  <%=(usuario.getEstado() == Usuario.EstadoUsuario.INACTIVO) ? "selected" : ""%>>INACTIVO</option>
-                        </select>          
+                        </select>
+                        <label for="slEstatus">Estatus</label>
                         <span id="slEstatus_error" style="color:red" class="helper-text"></span>
                     </div>
-                    <div class="col-md-6">   
+                    <div class="input-field col l4 s12">
                         <jsp:include page="/Views/Rol/select.jsp">                           
                             <jsp:param name="id" value="<%=usuario.getIdrol()%>" />  
                         </jsp:include>  
                         <span id="slRol_error" style="color:red" class="helper-text"></span>
                     </div>
-                
-
-                <div class="mb-3">
-                    <button type="sutmit" class="btn btn-primary">Guardar</button>
-                    <a href="Usuario" class="btn btn-danger">Cancelar</a>                          
+                   </div>
+             
+                <div class="row">
+                    <div class="col l12 s12">
+                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">save</i>Guardar</button>
+                    <a href="Usuario" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
                 </div>
+            </div>
             </form>          
         </main>
         <jsp:include page="/Views/Shared/footerBody.jsp" />   

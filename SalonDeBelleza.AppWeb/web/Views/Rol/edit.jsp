@@ -12,17 +12,20 @@
         <jsp:include page="/Views/Shared/headerBody.jsp" />  
         <main class="container">   
             <h5>Editar Rol</h5>
-            <form action="Rol" method="post" class="row g-3">
+            <form action="Rol" method="post">
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>">   
                 <input type="hidden" name="id" value="<%=rol.getId()%>">   
-                <div class="col-md-6">
-                    <label for="txtNombre" class="form-label">Nombre</label> 
-                    <input  id="txtNombre" type="text" name="nombre" value="<%=rol.getNombre()%>" required class="validate form-control" maxlength="30">
-                                                           
+                <div class="row">
+                    <div class="input-field col l4 s12">
+                    <input  id="txtNombre" type="text" name="nombre" value="<%=rol.getNombre()%>" required class="validate" maxlength="30">
+                    <label for="txtNombre">Nombre</label> 
+                    </div>                                       
                 </div>
-                <div class="mb-3">
-                    <button type="sutmit" class="btn btn-primary">Guardar</button>
-                    <a href="Rol" class="btn btn-danger">Cancelar</a>                          
+                <div class="row">
+                    <div class="col l12 s12">
+                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">save</i>Guardar</button>
+                    <a href="Rol" class="waves-effect waves-light btn blue"><i class="material-icons right">list</i>Cancelar</a>                          
+                </div>
                 </div>
             </form>          
         </main>
