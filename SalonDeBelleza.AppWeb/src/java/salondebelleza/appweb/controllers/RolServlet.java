@@ -322,9 +322,9 @@ public class RolServlet extends HttpServlet {
      * @throws java.io.IOException
      */
     private void doGetRequestDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      // Enviar el rol al jsp de details que se obtiene por Id.
+        // Enviar el usuario al jsp de details que se obtiene por Id.
         requestObtenerPorId(request, response);
-        // Direccionar al jsp details de Rol.
+        // Direccionar al jsp details de Usuario.
         request.getRequestDispatcher("Views/Rol/details.jsp").forward(request, response);
     }
 

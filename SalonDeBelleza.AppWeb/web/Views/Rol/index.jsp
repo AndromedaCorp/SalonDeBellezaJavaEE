@@ -32,20 +32,20 @@
                 <input type="hidden" name="accion" value="<%=request.getAttribute("accion")%>"> 
                 <div class="row">
                     <div class="input-field col l6 s12">
-                    <input  id="txtNombre" type="text" name="nombre">
-                    <label for="txtNombre">Nombre</label> 
-                </div>                 
-                <div class="input-field col l3 s12">   
-                    <jsp:include page="/Views/Shared/selectTop.jsp">
-                        <jsp:param name="top_aux" value="<%=top_aux%>" />                        
-                    </jsp:include>                        
-                </div>
+                        <input  id="txtNombre" type="text" name="nombre">
+                        <label for="txtNombre">Nombre</label>
+                    </div>                    
+                    <div class="input-field col l3 s12">   
+                        <jsp:include page="/Views/Shared/selectTop.jsp">
+                            <jsp:param name="top_aux" value="<%=top_aux%>" />                        
+                        </jsp:include>                        
+                    </div> 
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
-                    <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
-                    <a href="Rol?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a> 
-                </div>
+                        <button type="sutmit" class="waves-effect waves-light btn blue"><i class="material-icons right">search</i>Buscar</button>
+                        <a href="Rol?accion=create" class="waves-effect waves-light btn blue"><i class="material-icons right">add</i>Crear</a>                          
+                    </div>
                 </div>
             </form>
 
@@ -55,8 +55,8 @@
                         <table class="paginationjs">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nombre</th>                                          
-                                    <th scope="col">Acciones</th>
+                                    <th>Nombre</th>                                          
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>                       
                             <tbody>                           
@@ -76,10 +76,10 @@
                                                 <i class="material-icons">edit</i>
                                             </a>
                                             <a href="Rol?accion=details&id=<%=rol.getId()%>" title="Ver" class="waves-effect waves-light btn blue">
-                                              <i class="material-icons">description</i>
+                                                <i class="material-icons">description</i>
                                             </a>
                                             <a href="Rol?accion=delete&id=<%=rol.getId()%>" title="Eliminar" class="waves-effect waves-light btn red">
-                                              <i class="material-icons">delete</i>
+                                                <i class="material-icons">delete</i>
                                             </a>     
                                         </div>
                                     </td>                                   
@@ -101,3 +101,4 @@
         <jsp:include page="/Views/Shared/footerBody.jsp" />        
     </body>
 </html>
+
