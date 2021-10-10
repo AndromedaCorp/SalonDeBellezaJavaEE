@@ -1,4 +1,4 @@
-package sysseguridad.appweb.controllers;
+package salondebelleza.appweb.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
