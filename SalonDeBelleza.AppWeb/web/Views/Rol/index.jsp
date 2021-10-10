@@ -43,8 +43,8 @@
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
-                        <button type="sutmit" class="waves-effect waves-light btn cyan darken-3"><i class="material-icons right">search</i>Buscar</button>
-                        <a href="Rol?accion=create" class="waves-effect waves-light btn pink"><i class="material-icons right">add</i>Crear</a>                          
+                        <button type="sutmit" class="waves-effect waves-light btn blue darken-1"><i class="material-icons right">search</i>Buscar</button>
+                        <a href="Rol?accion=create" class="waves-effect waves-light btn purple"><i class="material-icons right">add</i>Crear</a>                          
                     </div>
                 </div>
             </form>
@@ -72,13 +72,13 @@
                                     <td><%=rol.getNombre()%></td>                                       
                                     <td>
                                         <div style="display:flex">
-                                            <a href="Rol?accion=edit&id=<%=rol.getId()%>" title="Modificar" class="waves-effect waves-light btn green">
+                                            <a href="Rol?accion=edit&id=<%=rol.getId()%>" title="Modificar" class="waves-effect waves-light btn purple">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a href="Rol?accion=details&id=<%=rol.getId()%>" title="Ver" class="waves-effect waves-light btn blue">
+                                            <a href="Rol?accion=details&id=<%=rol.getId()%>" title="Ver" class="waves-effect waves-light btn blue darken-1">
                                                 <i class="material-icons">description</i>
                                             </a>
-                                            <a href="Rol?accion=delete&id=<%=rol.getId()%>" title="Eliminar" class="waves-effect waves-light btn red">
+                                            <a href="Rol?accion=delete&id=<%=rol.getId()%>" title="Eliminar" class="waves-effect waves-light btn purple accent-2">
                                                 <i class="material-icons">delete</i>
                                             </a>     
                                         </div>

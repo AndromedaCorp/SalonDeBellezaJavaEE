@@ -74,8 +74,8 @@
                 </div>
                 <div class="row">
                     <div class="col l12 s12">
-                    <button type="sutmit" class="waves-effect waves-light btn cyan darken-3"><i class="material-icons right">search</i>Buscar</button>
-                    <a href="Usuario?accion=create" class="waves-effect waves-light btn pink"><i class="material-icons right">add</i>Crear</a> 
+                    <button type="sutmit" class="waves-effect waves-light btn blue darken-1"><i class="material-icons right">search</i>Buscar</button>
+                    <a href="Usuario?accion=create" class="waves-effect waves-light btn purple"><i class="material-icons right">add</i>Crear</a> 
                 </div>
                 </div>
             </form>
@@ -128,13 +128,13 @@
                                     <td><%=usuario.getFechaRegistro()%></td> 
                                     <td>
                                         <div style="display:flex">
-                                            <a href="Usuario?accion=edit&id=<%=usuario.getId()%>" title="Modificar" class="waves-effect waves-light btn green">
+                                            <a href="Usuario?accion=edit&id=<%=usuario.getId()%>" title="Modificar" class="waves-effect waves-light btn  purple">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a href="Usuario?accion=details&id=<%=usuario.getId()%>" title="Ver" class="waves-effect waves-light btn blue">
+                                            <a href="Usuario?accion=details&id=<%=usuario.getId()%>" title="Ver" class="waves-effect waves-light btn blue darken-1">
                                                <i class="material-icons">description</i>
                                             </a>
-                                            <a href="Usuario?accion=delete&id=<%=usuario.getId()%>" title="Eliminar" class="waves-effect waves-light btn red">
+                                            <a href="Usuario?accion=delete&id=<%=usuario.getId()%>" title="Eliminar" class="waves-effect waves-light btn  purple accent-2">
                                                 <i class="material-icons">delete</i>
                                             </a>     
                                         </div>
